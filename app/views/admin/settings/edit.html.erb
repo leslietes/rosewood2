@@ -1,0 +1,25 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Admin</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4">
+    <%#= render :partial => 'menu_sidebar' %>
+  </div>
+		
+  <div class="col_3_4 last">
+    <h3 class="red">Edit Settings</h3>
+
+    <%= render 'form' %>
+
+    <%= link_to 'Show', admin_setting_path %> |
+    <%= link_to 'Back', admin_setting_path %>
+    
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>
