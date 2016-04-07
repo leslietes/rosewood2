@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  resources :faqs
+  resources :faqs
   namespace :admin do
     resource :setting
   end
+  
+  resources :faqs
   
   get 'home/about'
   get 'home/contact'
