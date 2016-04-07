@@ -1,0 +1,52 @@
+<!-- slider -->
+<div class="bannerbg">
+  <div class="container clearfix">
+    <div class="flexslider" >
+      <ul class="slides">
+        
+          <li>
+            <%= image_tag @setting.photo1.url(:large) %>
+            <p class="flex-caption"><%= @setting.photo1_caption %></p>
+          </li>
+          
+          <li>
+            <%= image_tag @setting.photo2.url(:large) %>
+            <p class="flex-caption"><%= @setting.photo2_caption %></p>
+          </li>
+          
+          <li>
+            <%= image_tag @setting.photo3.url(:large) %>
+            <p class="flex-caption"><%= @setting.photo3_caption %></p>
+          </li>
+          
+          <li>
+            <%= image_tag @setting.photo4.url(:large) %>
+            <p class="flex-caption"><%= @setting.photo4_caption %></p>
+          </li>
+          
+          <li>
+            <%= image_tag @setting.photo5.url(:large) %>
+            <p class="flex-caption"><%= @setting.photo5_caption %></p>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- /Slider -->
+
+<!--div class="clear padding40"></div-->
+
+<!-- content -->
+
+<!--section class="container clearfix"-->
+
+  <%#= render :partial => 'text_sections' %>
+	
+  <!--div class="clear padding10"></div-->
+
+  <%#= render :partial => 'featured_area' %>		
+  		
+<!--/section-->
+
+<%#= render :partial => 'about_us' %>

@@ -1,0 +1,85 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- START PAGE INFO -->
+  <header class="container page_info clearfix">      			
+    <h1 class="regular brown bottom_line">Contact Us Today</h1>
+    <div class="clear"></div>
+  </header>
+			
+  <!-- END PAGE INFO -->
+		
+  <div class="padding15"></div>
+
+  <!-- START COL 1/3 -->	
+  <div class="col_1_3">
+    <ul class="contact-address">
+      <li class="address"><span><%= @setting.address %></span></li>
+      <li class="phone"><span><%= @setting.phone %></span></li>
+      <li class="phone"><span><%= @setting.mobile %></span></li>
+      <li class="email"><span><a href="<%= @setting.email %>"><%= @setting.email %></a></span></li>
+    </ul>
+    <div class="clear"></div>
+  </div>
+  <!-- END COL 1/3 -->	
+		
+  <!-- START COL 2/3 LAST -->	
+  <div class="col_2_3 last">
+    <p><%= @setting.page_description %></p>
+			
+    <div class="padding20"></div>
+			
+    <p class="required_info"><span>*</span> Required</p>
+	
+			
+			<!-- SUCCESS MESSAGE -->
+			<div class="success_box none">
+				Email successfully sent. Thank you!
+			</div>
+			<!-- END SUCCESS MESSAGE -->
+			
+			<!-- ERROR MESSAGE -->
+			<div class="error_box none">
+				Please complete all required fields.
+			</div>
+			<!-- END ERROR MESSAGE -->
+			
+			
+			
+			<!-- START CONTACT FORM -->	
+			<form action="#" class="contact_form">
+			<p>
+				<label for="name">Name <span>*</span></label>
+				<input class="inputText" type="text" id="name" name="name" />
+			</p>
+			<div class="clear"></div>
+			<p>
+				<label for="email">E-mail <span>*</span></label>
+				<input class="inputText" type="text" id="email" name="email" />
+			</p>
+			<div class="clear"></div>
+			<p>
+				<label for="website">Website</label>
+				<input class="inputText" type="text" id="website" name="website" />
+			</p>
+			<div class="clear"></div>
+			<p>
+				<label for="message">Message <span>*</span></label>
+				<textarea class="inputTextarea" cols="88" rows="6" id="message" name="message"></textarea>
+			</p>
+			<div class="clear"></div>
+			<p class="submit">
+				<a href="javascript:void(0);" class="button white" onclick="$('.contact_form').submit();">Send</a>
+			</p>
+			</form>
+			<!-- END CONTACT FORM -->	
+			
+		</div>
+		<!-- END COL 2/3 LAST -->	
+        
+      
+		
+		<div class="clear padding20"></div>
+	
+		
+	</section>
+    <!-- END CONTENT -->
