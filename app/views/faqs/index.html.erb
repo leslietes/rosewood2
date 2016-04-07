@@ -1,0 +1,19 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Frequently Asked Questions</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+		
+  <div class="container">
+    <% @faqs.each do |faq| %>
+    <h3><%= faq.question %></h3>
+    <p><%= faq.answer %></p>
+    <% end %>
+  </div>
+
+  <div class="clear padding30"></div>
+
+</section>

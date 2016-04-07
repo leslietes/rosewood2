@@ -1,0 +1,31 @@
+  <% if @faq.errors.any? %>
+      <%= pluralize(@faq.errors.count, "error")%> prohibited this entry from being saved
+      <ul>
+        <% @faq.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+  <% end %>
+  
+  <div class="">
+    <%= f.label :queston %>
+    <%= f.text_field :question %>
+  </div>
+
+  <div class="">
+    <%#= f.label :category %>
+    <%#= select('faq','category_id', Category.all.collect {|c|[ c.name, c.id]}, {:include_blank => 'Please Select'}) %>
+  </div>
+
+ <div class="">
+    <%= f.label :answer %>
+    <%= f.text_area :answer, :rows => 10 %>
+  </div>
+  
+  <div class="">
+    <%= f.label :show %>
+    <%= check_box('faq','show') %> Show
+  </div>
+  
+
+  <div class="clear padding25"></div>  
