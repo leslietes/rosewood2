@@ -87,13 +87,34 @@
   </p>
   
   <p>
+    <label></label>
+    <%= image_tag @setting.whyus1.url(:thumb) %><br/>
+    <%= f.label :why_us_1_icon %>
+    <%= f.file_field :whyus1 %>
+  </p>
+  
+  <p>
     <%= f.label :why_us_1 %>
     <%= f.text_area :why_us_1 %>
   </p>
 
   <p>
+    <label></label>
+    <%= image_tag @setting.whyus2.url(:thumb) %><br/>
+    <%= f.label :why_us_2_icon %>
+    <%= f.file_field :whyus2 %>
+  </p>
+
+  <p>
     <%= f.label :why_us_2 %>
     <%= f.text_area :why_us_2 %>
+  </p>
+
+  <p>
+    <label></label>
+    <%= image_tag @setting.whyus3.url(:thumb) %><br/>
+    <%= f.label :why_us_3_icon %>
+    <%= f.file_field :whyus3 %>
   </p>
 
   <p>

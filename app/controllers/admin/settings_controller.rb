@@ -72,7 +72,7 @@ class Admin::SettingsController < ApplicationController
     def setting_params
       #params.fetch(:setting, {})
       params.require(:setting).permit(:logo, :address, :phone, :mobile, :email, :page_description, :photo1, :photo1_caption, :photo2, :photo2_caption, :photo3, :photo3_caption, :photo4, :photo4_caption, :photo5, :photo5_caption,
-      :about_us, :why_us_1, :whyus1, :why_us_2, :whyus2, :why_us_3, :why_us_3)
+      :about_us, :why_us_1, :whyus1, :why_us_2, :whyus2, :why_us_3, :whyus3)
       
     end
 end
