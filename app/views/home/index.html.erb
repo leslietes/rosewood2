@@ -4,30 +4,40 @@
     <div class="flexslider" >
       <ul class="slides">
         
+          <% if @setting.photo1? %>
           <li>
             <%= image_tag @setting.photo1.url(:large) %>
             <p class="flex-caption"><%= @setting.photo1_caption %></p>
           </li>
+          <% end %>
           
+          <% if @setting.photo2? %>
           <li>
             <%= image_tag @setting.photo2.url(:large) %>
             <p class="flex-caption"><%= @setting.photo2_caption %></p>
           </li>
+          <% end %>
           
+          <% if @setting.photo3? %>
           <li>
             <%= image_tag @setting.photo3.url(:large) %>
             <p class="flex-caption"><%= @setting.photo3_caption %></p>
           </li>
+          <% end %>
           
+          <% if @setting.photo4? %>
           <li>
             <%= image_tag @setting.photo4.url(:large) %>
             <p class="flex-caption"><%= @setting.photo4_caption %></p>
           </li>
+          <% end %>
           
+          <% if @setting.photo5? %>
           <li>
             <%= image_tag @setting.photo5.url(:large) %>
             <p class="flex-caption"><%= @setting.photo5_caption %></p>
           </li>
+          <% end %>
           
       </ul>
     </div>
@@ -35,18 +45,19 @@
 </div>
 <!-- /Slider -->
 
-<!--div class="clear padding40"></div-->
+<div class="clear padding40"></div>
 
 <!-- content -->
 
-<!--section class="container clearfix"-->
+<section class="container clearfix">
 
+  <%= render :partial => 'about_us' %>
   <%#= render :partial => 'text_sections' %>
 	
-  <!--div class="clear padding10"></div-->
+  <div class="clear padding10"></div>
 
   <%#= render :partial => 'featured_area' %>		
   		
-<!--/section-->
+</section>
 
-<%#= render :partial => 'about_us' %>
+

@@ -1,0 +1,37 @@
+<section class="homepage_widgets_bg clearfix">
+    <div class="container clearfix">
+        <div class="padding20"></div>
+            <!-- START COL 1/2 -->
+	    <div class="col_1_2 ">
+		<h1 class="regular bottom_line">About Us</h1>
+		<p><%= @setting.about_us %></p>
+				
+	    </div>
+	    <!-- END COL 1/2 -->
+            
+	    <!-- START COL 1/2 -->
+           
+            <div class="col_1_2 last" id="why-section">
+		<h1 class="regular bottom_line">Why Us</h1>
+                <div><%= image_tag @setting.whyus1.url(:thumb), :class => "alignleft MT0" %></div>
+		<p><%= @setting.why_us_1 %></p>
+                
+                <div class="clear padding10"></div>
+                
+                <div><%= image_tag @setting.whyus2.url(:thumb), :class => "alignleft MT0" %></div>
+         	<p><%= @setting.why_us_2 %></p>
+
+                 <div class="clear padding10"></div>
+                 
+                <div><%= image_tag @setting.whyus3.url(:thumb), :class => "alignleft MT0" %></div>
+		<p><%= @setting.why_us_3 %></p>
+                
+  	    </div>
+            <div class="clear padding10"></div>
+			
+  	    <!-- end col 1/2 -->
+            
+        <div class="clear padding80"></div>
+    </div>
+</section>
+		

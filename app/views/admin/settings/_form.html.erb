@@ -15,35 +15,12 @@
   <% end %>
   
   <p>
-    <%= f.label :about_us %>
-    <%= f.text_area :about_us %>
+    <label></label>
+    <%= image_tag @setting.logo.url(:medium) %><br/>
+    <%= f.label :logo %>
+    <%= f.file_field :logo %>
   </p>
   
-  <p>
-    <%= f.label :contact_page_intro %>
-    <%= f.text_area :page_description %>
-  </p>
-  
-  <p>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </p>
-  
-  <p>
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
-  </p>
-  
-  <p>
-    <%= f.label :mobile %>
-    <%= f.text_field :mobile %>
-  </p>  
-  
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </p>
-   
   <p>
     <label></label>
     <%= image_tag @setting.photo1.url(:small) %><br/>
@@ -103,6 +80,52 @@
     <%= f.label :caption %>
     <%= f.text_field :photo5_caption %>
   </p>
+  
+  <p>
+    <%= f.label :about_us %>
+    <%= f.text_area :about_us %>
+  </p>
+  
+  <p>
+    <%= f.label :why_us_1 %>
+    <%= f.text_area :why_us_1 %>
+  </p>
+
+  <p>
+    <%= f.label :why_us_2 %>
+    <%= f.text_area :why_us_2 %>
+  </p>
+
+  <p>
+    <%= f.label :why_us_3 %>
+    <%= f.text_area :why_us_3 %>
+  </p>
+  
+  <p>
+    <%= f.label :contact_page_intro %>
+    <%= f.text_area :page_description %>
+  </p>
+  
+  <p>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </p>
+  
+  <p>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </p>
+  
+  <p>
+    <%= f.label :mobile %>
+    <%= f.text_field :mobile %>
+  </p>  
+  
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+   
   <div class="clear"></div>
 
   <div class="actions">

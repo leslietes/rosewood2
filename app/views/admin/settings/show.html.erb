@@ -2,7 +2,7 @@
 <section class="container clearfix">
   <!-- Page Title -->
   <header class="container page_info clearfix">
-    <h1 class="regular brown bottom_line">Admin</h1>
+    <h1 class="regular brown bottom_line">Settings</h1>
     <div class="clear"></div>
   </header>
   <!-- /Page Title -->
@@ -12,34 +12,15 @@
   </div>
   
   <div class="col_3_4 last">
-    <h3 class="red">Settings</h3>
+    <!--h3 class="red">Settings</h3-->
 
     <p id="notice"><%= notice %></p>
     
-    <p>
-      <%= label_tag :about_us %><%= @setting.about_us %>
-    </p>
+    <span>
+      <%= label_tag :logo %><br/>
+      <figure><%= image_tag @setting.logo.url(:medium) %></figure>     
+    </span>
     
-    <p>
-      <%= label_tag :description %><%= @setting.page_description %>
-    </p>
-    
-    <p>
-      <%= label_tag :address %><%= @setting.address %>
-    </p>
-    
-    <p>
-      <%= label_tag :phone %><%= @setting.phone %>
-    </p>
-    
-    <p>
-      <%= label_tag :mobile %><%= @setting.mobile %>
-    </p>
-    
-    <p>
-      <%= label_tag :email %><%= @setting.email %>
-    </p>
-        
     <span>
       <%= label_tag :photo_one %><br/>
       <figure><%= image_tag @setting.photo1.url(:small) %></figure>
@@ -70,10 +51,45 @@
       <figcaption><%= @setting.photo5_caption %></figcaption>      
     </span>
     
+    <p>
+      <%= label_tag :about_us %><br/><%= @setting.about_us %>
+    </p>
+    
+    <p>
+      <%= label_tag :about_us %><br/><%= @setting.why_us_1 %>
+    </p>
+    
+    <p>
+      <%= label_tag :about_us %><br/><%= @setting.why_us_2 %>
+    </p>
+    
+    <p>
+      <%= label_tag :about_us %><br/><%= @setting.why_us_3 %>
+    </p>
+    
+    <p>
+      <%= label_tag :description %><br/><%= @setting.page_description %>
+    </p>
+    
+    <p>
+      <%= label_tag :address %><%= @setting.address %>
+    </p>
+    
+    <p>
+      <%= label_tag :phone %><%= @setting.phone %>
+    </p>
+    
+    <p>
+      <%= label_tag :mobile %><%= @setting.mobile %>
+    </p>
+    
+    <p>
+      <%= label_tag :email %><%= @setting.email %>
+    </p>
+          
     <br/>
 
-    <%= link_to 'Edit', edit_admin_setting_path(@setting) %> |
-    <%= link_to 'Back', admin_setting_path %>
+    <%= link_to 'Edit', edit_admin_setting_path(@setting) %>
 
   </div>
         

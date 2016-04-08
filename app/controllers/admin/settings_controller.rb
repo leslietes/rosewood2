@@ -1,5 +1,5 @@
 class Admin::SettingsController < ApplicationController
-  before_action :set_setting, only: [:show, :edit, :update, :destroy]
+  #before_action :set_setting, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   # GET /settings
@@ -65,13 +65,13 @@ class Admin::SettingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_setting
-      @setting = Setting.first || Setting.new
+      #@setting = Setting.first || Setting.new
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def setting_params
       #params.fetch(:setting, {})
-      params.require(:setting).permit(:address, :phone, :mobile, :email, :page_description, :photo1, :photo1_caption, :photo2, :photo2_caption, :photo3, :photo3_caption, :photo4, :photo4_caption, :photo5, :photo5_caption,
+      params.require(:setting).permit(:logo, :address, :phone, :mobile, :email, :page_description, :photo1, :photo1_caption, :photo2, :photo2_caption, :photo3, :photo3_caption, :photo4, :photo4_caption, :photo5, :photo5_caption,
       :about_us, :why_us_1, :whyus1, :why_us_2, :whyus2, :why_us_3, :why_us_3)
       
     end
