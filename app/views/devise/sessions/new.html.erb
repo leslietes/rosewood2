@@ -1,0 +1,42 @@
+<section class="container clearfix">
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Log In</h1>
+    <div class="clear"></div>
+  </header>
+  
+  <div class="col_1_4">
+    <%#= render :partial => 'menu_sidebar' %>
+  </div>
+		
+  <div class="col_3_4 last">
+    <h3 class="red">Admin</h3>
+  
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end -%>
+
+  <div class="actions">
+    <%= f.submit "Log in", :class => "button white" %>
+  </div>
+<% end %>
+
+  <%#= render "devise/shared/links" %>
+
+  <div class="clear padding25"></div>
+
+</section>
