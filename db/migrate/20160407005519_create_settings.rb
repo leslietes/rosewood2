@@ -1,6 +1,10 @@
 class CreateSettings < ActiveRecord::Migration
   def change
     create_table :settings do |t|
+      
+      t.string :logo_file_name
+      t.string :logo_content_type
+      t.string :logo_file_size
 
       t.string :address
       t.string :phone

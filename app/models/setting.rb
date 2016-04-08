@@ -1,4 +1,8 @@
 class Setting < ActiveRecord::Base
+  has_attached_file :logo, :styles => {:medium => "240x50#"}
+  
+  validates_attachment_content_type :logo, :content_type => ["image/jpg","image/jpeg","image/png","image/gif"]
+  
   has_attached_file :photo1, :styles => {:large => "940x360#", :small => "120x90#" }
   has_attached_file :photo2, :styles => {:large => "940x360#", :small => "120x90#" }
   has_attached_file :photo3, :styles => {:large => "940x360#", :small => "120x90#" }
