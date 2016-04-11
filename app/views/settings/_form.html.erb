@@ -1,0 +1,155 @@
+<%= form_for(@setting, :html => {:multipart => true}) do |f| %>
+
+  <%#= render :partial => "flash_message" %>
+  
+  <% if @setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+
+      <ul>
+      <% @setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <!--p>
+    <label></label>
+    <%#= image_tag @setting.logo.url(:medium) %><br/>
+    <%#= f.label :logo %>
+    <%#= f.file_field :logo %>
+  </p-->
+  
+  <p>
+    <label></label>
+    <%= image_tag @setting.photo1.url(:small) %><br/>
+    <%= f.label :photo_one %>
+    <%= f.file_field :photo1 %>
+  </p>
+  <div class="clear"></div>
+  <p>
+    <%= f.label :caption %>
+    <%= f.text_field :photo1_caption %>
+  </p>
+  <div class="clear"></div>
+  <p>
+    <label></label>
+    <%= image_tag @setting.photo2.url(:small) %><br/>
+    <%= f.label :photo_two %>
+    <%= f.file_field :photo2 %>
+  </p>
+  <div class="clear"></div>
+  <p>
+    <%= f.label :caption %>
+    <%= f.text_field :photo2_caption %>
+  </p>
+  <div class="clear"></div>
+  <p>
+    <label></label>    
+    <%= image_tag @setting.photo3.url(:small) %><br/>
+    <%= f.label :photo_three %>
+    <%= f.file_field :photo3 %>
+  </p>
+  <div class="clear"></div>
+  <p>
+    <%= f.label :caption %>
+    <%= f.text_field :photo3_caption %>
+  </p>
+  <div class="clear"></div>
+  <p>
+    <label></label>    
+    <%= image_tag @setting.photo4.url(:small) %><br/>
+    <%= f.label :photo_four %>
+    <%= f.file_field :photo4 %>
+  </p>
+  <div class="clear"></div>
+  <p>
+    <%= f.label :caption %>
+    <%= f.text_field :photo4_caption %>
+  </p>
+  <div class="clear"></div>
+  <p>
+    <label></label>    
+    <%= image_tag @setting.photo5.url(:small) %><br/>
+    <%= f.label :photo_five %>
+    <%= f.file_field :photo5 %>
+  </p>
+  <div class="clear"></div>
+  <p>
+    <%= f.label :caption %>
+    <%= f.text_field :photo5_caption %>
+  </p>
+  
+  <p>
+    <%= f.label :about_us %>
+    <%= f.text_area :about_us %>
+  </p>
+  
+  <p>
+    <label></label>
+    <%= image_tag @setting.whyus1.url(:thumb) %><br/>
+    <%= f.label :why_us_1_icon %>
+    <%= f.file_field :whyus1 %>
+  </p>
+  
+  <p>
+    <%= f.label :why_us_1 %>
+    <%= f.text_area :why_us_1 %>
+  </p>
+
+  <p>
+    <label></label>
+    <%= image_tag @setting.whyus2.url(:thumb) %><br/>
+    <%= f.label :why_us_2_icon %>
+    <%= f.file_field :whyus2 %>
+  </p>
+
+  <p>
+    <%= f.label :why_us_2 %>
+    <%= f.text_area :why_us_2 %>
+  </p>
+
+  <p>
+    <label></label>
+    <%= image_tag @setting.whyus3.url(:thumb) %><br/>
+    <%= f.label :why_us_3_icon %>
+    <%= f.file_field :whyus3 %>
+  </p>
+
+  <p>
+    <%= f.label :why_us_3 %>
+    <%= f.text_area :why_us_3 %>
+  </p>
+  
+  <p>
+    <%= f.label :contact_page_intro %>
+    <%= f.text_area :page_description %>
+  </p>
+  
+  <p>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </p>
+  
+  <p>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </p>
+  
+  <p>
+    <%= f.label :mobile %>
+    <%= f.text_field :mobile %>
+  </p>  
+  
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+   
+  <div class="clear"></div>
+
+  <div class="actions">
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>
