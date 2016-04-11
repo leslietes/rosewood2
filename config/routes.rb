@@ -2,12 +2,12 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :faqs
-  resources :faqs
-  namespace :admin do
+
+  get 'admin'   => "settings#index"
+  scope :admin do
     resource :setting
+    resources :rooms
   end
-  
-  resources :faqs
   
   match 'contact' => "home#contact", :via => [:get, :post]
   get 'location'=> "home#location"

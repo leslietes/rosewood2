@@ -1,4 +1,43 @@
-<p id="notice"><%= notice %></p>
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <h3 class="red">Room <%= @room.room_no %></h3>
+
+    <p id="notice"><%= notice %></p>
+        
+    <p>
+      <%= label_tag :max_occupants %><%= @room.max_occupants %>
+    </p>
+    
+    <p>
+      <%= label_tag :daily_rate %><%= to_currency(@room.daily_rate) %>
+    </p>
+    
+    <p>
+      <%= label_tag :room_rate %><%= to_currency(@room.room_rate) %>
+    </p>
+    
+    <p>
+      <%= label_tag :active? %><%= to_status(@room.active) %>
+    </p>
+          
+    <br/>
+
+    <%= link_to 'Edit', edit_room_path(@room) %> |
+    <%= link_to 'Back', rooms_path %>
+
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>

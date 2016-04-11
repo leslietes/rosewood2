@@ -10,6 +10,36 @@
       </ul>
     </div>
   <% end %>
+  
+  <p>
+    <%= f.label :room_no %>
+    <%= f.text_field :room_no %>
+  </p>
+  <div class="clear"></div>
+  
+  <p>
+    <%= f.label :max_occupants %>
+    <%= f.text_field :max_occupants %>
+  </p>
+  <div class="clear"></div>
+  
+  <p>
+    <%= f.label :daily_rate %>
+    <%= f.text_field :daily_rate %>
+  </p>
+  <div class="clear"></div>
+  
+  <p>
+    <%= f.label :room_rate %>
+    <%= f.text_field :room_rate %>
+  </p>
+  <div class="clear"></div>
+  
+  <p>
+    <%= f.check_box :active %>
+    <%= f.label :active? %>
+  </p>
+  <div class="clear"></div>
 
   <div class="actions">
     <%= f.submit %>
