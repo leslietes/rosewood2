@@ -5,6 +5,8 @@ class HomeController < ApplicationController
   end
 
   def contact
+    return unless request.post?
     
+    Notifier.contact_us(params).deliver_now
   end
 end

@@ -15,6 +15,19 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options   = { :hsot => 'localhost:3000' }
+
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: "587",
+    domain: "gmail.com",
+    authentication: "login",
+    enable_starttls_auto: true,
+    user_name: '1ststopconveniencestore@gmail.com',
+    password: "magicspell"
+  }  
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
