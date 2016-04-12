@@ -83,6 +83,18 @@ class RoomsController < ApplicationController
   
   def occupancy_list
     @rooms = Room.occupancy_list
+    respond_to do |format|
+      format.html
+      format.pdf do
+        html = render_to_string(:layout => false, :action => "occupancy_list.html.erb")
+        # many other options
+        kit  = PDFKit.new(html, :page_size =>   'Letter')
+        # you have to give whole path of stylesheet
+        kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/print.css"
+        # use disposition inline to open in browser. if removed, will automatically download. Another option is 'inline'
+        send_data kit.to_pdf, filename: "occupancy_list_#{Date.today}.pdf", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   private

@@ -2,12 +2,12 @@
 <section class="container clearfix">
   <!-- Page Title -->
   <header class="container page_info clearfix">
-    <h1 class="regular brown bottom_line">Settings</h1>
+    <h1 class="regular brown bottom_line" id="no_print">Settings</h1>
     <div class="clear"></div>
   </header>
   <!-- /Page Title -->
 
-  <div class="col_1_4">
+  <div class="col_1_4" id="no_print">
     <%= render :partial => '/shared/menu_sidebar' %>
   </div>
   
@@ -28,22 +28,25 @@
         
         <% @rooms.each do |room| %>
           <tr>
-            <td><%= room.room_no if room.id != room_no %></td>
-            <td>
+            <td class="ten center"><%= room.room_no if room.id != room_no %></td>
+            <td class="seventy">
               <% if !room.last_name.blank? %>
                 <%= "#{room.first_name} #{room.last_name}" %>
               <% else %>
                 <%= "VACANT " %>     
               <% end %>
             </td>
-            <td><%= room.start_date %></td>
+            <td class="twenty" class="center"><%= room.start_date %></td>
           </tr>  
           <% room_no = room.id %>
         <% end %>
       </tbody>
     </table>
 
-
+    <div id="no_print">
+      <%= link_to 'PRINT', occupancy_list_rooms_url(:format => :pdf) %>
+    </div>
+    
     <div class="clear padding15"></div>
     
   </div>
