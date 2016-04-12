@@ -1,0 +1,62 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3>Occupant List</h3>
+
+    <p id="notice"><%= notice %></p>
+    
+    
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Province</th>
+      <th>Mobile</th>
+      <th>School/Work</th>
+      <th>Course/Position</th>
+      <th>Year/Year Started</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @occupants.each do |occupant| %>
+      <tr>
+        <td><%= occupant.name %></td>
+        <td><%= occupant.city %></td>
+        <td><%= occupant.province %></td>
+        <td><%= occupant.mobile %></td>
+        <td><%= occupant.school_or_work %></td>
+        <td><%= occupant.course_or_position %></td>
+        <td><%= occupant.year_or_date_started %></td>
+        <td><%= link_to 'Show', occupant %></td>
+        <td><%= link_to 'Edit', edit_occupant_path(occupant) %></td>
+        <td><%= link_to 'Destroy', occupant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+
+  <%= link_to 'New Occupant', new_occupant_path %>
+
+  <div class="clear padding15"></div>
+</section>
+
+    
+    

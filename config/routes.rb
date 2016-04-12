@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   scope :admin do
     resource :setting
     resources :rooms
+    resources :occupants
   end
   
   match 'contact' => "home#contact", :via => [:get, :post]

@@ -1,0 +1,251 @@
+<%= form_for(@occupant) do |f| %>
+    <% if @occupant.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@occupant.errors.count, "error") %> prohibited this occupant from being saved:</h2>
+
+        <ul>
+          <% @occupant.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="portfolio_1_2">  
+        <ul id="list">
+          
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+
+      <li id="id-1">
+  
+        <p>
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name %>
+        </p>
+        <div class="clear"></div>
+  
+        <p>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name %>
+        </p>
+        <div class="clear"></div>
+  
+        <p>
+          <%= f.label :address1 %>
+          <%= f.text_field :address1 %>
+        </p>
+        <div class="clear"></div>
+  
+        <p>
+          <%= f.label :address2 %>
+          <%= f.text_field :address2 %>
+        </p>
+        <div class="clear"></div>
+  
+        <p>
+          <%= f.label :city %>
+          <%= f.text_field :city %>
+        </p>
+        <div class="clear"></div>
+  
+        <p>
+          <%= f.label :province %>
+          <%= f.text_field :province %>
+        </p>
+        <div class="clear"></div>
+  
+        <p>
+          <%= f.label :postcode %>
+          <%= f.text_field :postcode %>
+        </p> 
+        <div class="clear"></div>
+  
+        <p>
+          <%= f.label :telephone %>
+          <%= f.text_field :telephone %>
+        </p>
+        <div class="clear"></div>
+  
+        <p>
+          <%= f.label :mobile %>
+          <%= f.text_field :mobile %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+          <%= f.label :school_or_work %>
+          <%= f.text_field :school_or_work %>
+        </p>
+        <div class="clear"></div>
+  
+        <p>
+          <%= f.label :course_or_position %>
+          <%= f.text_field :course_or_position %>
+        </p>
+        <div class="clear"></div>  
+      
+        <p>
+          <%= f.label :year_or_date_started %>
+          <%= f.text_field :year_or_date_started %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+          <%= f.label :previous_school_or_work %>
+          <%= f.text_field :previous_school_or_work %>
+        </p>
+        <div class="clear"></div>
+      
+        <p>
+          <%= f.label :school_city %>
+          <%= f.text_field :school_city %>
+        </p>
+        <div class="clear"></div>
+      
+        <p>
+          <%= f.label :school_province %>
+          <%= f.text_field :school_province %>
+        </p>
+        <div class="clear"></div>
+      
+        <p>
+          <%= f.label :course_and_year %>
+          <%= f.text_field :course_and_year %>
+        </p>
+        <div class="clear"></div>
+      
+        <p>
+          <%= f.label :work_position %>
+          <%= f.text_field :work_position %>
+        </p>
+        <div class="clear"></div>
+      
+        <p>
+          <%= f.label :date_left %>
+          <%= f.text_field :date_left %>
+        </p>
+        <div class="clear padding15"></div>
+      </li>
+
+      <li id="id-2">
+        <p>
+           <%= f.label :fathers_name %>
+           <%= f.text_field :fathers_name %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :fathers_address %>
+           <%= f.text_field :fathers_address %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :fathers_occupation %>
+           <%= f.text_field :fathers_occupation %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :fathers_company %>
+           <%= f.text_field :fathers_company %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :fathers_company_address %>
+           <%= f.text_field :fathers_company_address %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :fathers_telephone %>
+           <%= f.text_field :fathers_telephone %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :fathers_mobile %>
+           <%= f.text_field :fathers_mobile %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :mothers_name %>
+           <%= f.text_field :mothers_name %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :mothers_address %>
+           <%= f.text_field :mothers_address %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :mothers_occupation %>
+           <%= f.text_field :mothers_occupation %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :mothers_company %>
+           <%= f.text_field :mothers_company %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :mothers_company_address %>
+           <%= f.text_field :mothers_company_address %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :mothers_telephone %>
+           <%= f.text_field :mothers_telephone %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+           <%= f.label :mothers_mobile %>
+           <%= f.text_field :mothers_mobile %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+          <%= f.label :guardians_name %>
+          <%= f.text_field :guardians_name %>
+        </p>  
+        <div class="clear"></div>
+        
+        <p>
+          <%= f.label :guardians_address %>
+          <%= f.text_field :guardians_address %>
+        </p>  
+        <div class="clear"></div>
+        
+        <p>
+          <%= f.label :guardians_telephone %>
+          <%= f.text_field :guardians_telephone %>
+        </p>  
+        <div class="clear"></div>
+        
+        <p>
+          <%= f.label :guardians_mobile %>
+          <%= f.text_field :guardians_mobile %>
+        </p>  
+        <div class="clear"></div>
+  
+      </li>
+      
+    </ul>
+   
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+        
+  <% end %>
+
+</div>
