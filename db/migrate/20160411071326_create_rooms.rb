@@ -6,6 +6,7 @@ class CreateRooms < ActiveRecord::Migration
       t.decimal :daily_rate,precision: 6, scale: 2
       t.decimal :room_rate, precision: 8, scale: 2
       t.boolean :active, default: 1
+      t.boolean :full,   default: 0
       
       t.timestamps null: false
     end

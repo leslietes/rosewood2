@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   get 'admin'   => "settings#index"
   scope :admin do
     resource :setting
-    resources :rooms
+    resources :rooms do
+      get 'check_in', on: :collection
+      post 'check_in', on: :collection
+    end
     resources :occupants
   end
   

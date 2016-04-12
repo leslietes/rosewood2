@@ -34,3 +34,12 @@ Faq.create(question: 'Do I need to inform Rosewood Residence before I move out?'
 Faq.create(question: 'How soon do I need to inform  Rosewood Residence that I plan to move out?', answer: 'A minimum of 1 month advance notice is required if you wish to move out. Please be informed that if the 1 month advance notice is not given, a 1 month rent will still be charged from the day that we are informed.')
 Faq.create(question: 'When is the monthly cut off date?', answer: '')
 Faq.create(question: 'Can I ask for an extra bed?', answer: 'Our rooms are specifically made for those who want more comfort and convenience. If the number of persons in your group exceed the room limit, we will be happy provide you with more rooms.')
+
+Room.create(room_no: 201, max_occupants: 3, room_rate: 10000, active: true)
+Room.create(room_no: 202, max_occupants: 3, room_rate: 9000, active: true)
+Room.create(room_no: 203, max_occupants: 3, room_rate: 9000, active: true)
+Room.create(room_no: 204, max_occupants: 2, room_rate: 8000, active: true)
+Room.create(room_no: 205, max_occupants: 2, room_rate: 8000, active: true)
+
+Occupant.create(first_name: 'John', last_name: 'Smith')
+Occupant.create(first_name: 'Jane', last_name: 'Doe')

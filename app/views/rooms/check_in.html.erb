@@ -1,0 +1,52 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3>Check In</h3>
+
+    <p id="notice"><%= notice %></p>
+    
+    <%= form_tag '' do %>
+      <p>
+        <%= label_tag :room_no %>
+        <%= select_tag "room_no", options_for_select(@rooms) %>
+      </p>
+      
+      <p>
+        <%= label_tag :occupant %>
+        <%= select_tag "occupant", options_for_select(@occupants.map {|o| [o.name, o.id] }) %>
+      </p>
+      
+      <p>
+        <%= label_tag :start_date %>
+        <%= date_field_tag :start_date %>
+      </p>
+      
+      <p>
+        <%= label_tag :full %>
+        <%= check_box_tag :full %>  
+      </p>
+          
+      <%= submit_tag 'New Check In' %>
+    <% end %>
+    
+    <div class="clear padding15"></div>
+    
+    <%= link_to 'Cancel', admin_path %>
+    
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>  

@@ -44,6 +44,9 @@ class CreateOccupants < ActiveRecord::Migration
       t.string  :guardians_telephone
       t.string  :guardians_mobile
       
+      t.boolean :waiting, null: false, default: true
+      t.boolean :active,  null: false, default: true
+      
       t.timestamps null: false
     end
   end

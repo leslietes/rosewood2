@@ -61,6 +61,23 @@ class RoomsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def check_in
+    @rooms     = Room.not_full
+    @occupants = Occupant.waiting_for_room
+    
+    return unless request.post?
+    
+    if Room.exists?(params[:room_no]) && Occupant.exists?(params[:occupant])
+      Room.transaction do
+        new_checkin(params[:room_no], params[:occupant], params[:start_date]) 
+        update_room(params[:room_no], params[:full]) 
+      end
+      flash[:notice] = "Occupant has checked in"
+    else
+      flash[:error]  = "Unable to check in. Please select valid room or occupant"
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -72,4 +89,13 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:room_no,:max_occupants,:daily_rate,:room_rate,:active)
     end
+    
+    def new_checkin(room_id, occupant_id, start_date)
+      Checkin.create(room_id: room_id, occupant_id: occupant_id, start_date: start_date)
+    end
+    
+    def update_room(room_id, full_flag)
+      Room.update_status(room_id, full_flag)
+    end
+    
 end
