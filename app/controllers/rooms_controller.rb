@@ -82,7 +82,7 @@ class RoomsController < ApplicationController
   end
   
   def occupancy_list
-    @checkins = Checkin.get_all
+    @rooms = Room.occupancy_list
   end
 
   private

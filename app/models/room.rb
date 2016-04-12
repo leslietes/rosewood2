@@ -14,4 +14,16 @@ class Room < ActiveRecord::Base
   def self.update_status(room_id, full_flag)
     find(room_id).update(full: full_flag)
   end
+  
+  def self.occupancy_list
+    Room.find_by_sql("select rooms.id, 
+                             rooms.room_no, 
+                             occupants.last_name as last_name,
+                             occupants.first_name as first_name, 
+                             checkins.start_date as start_date 
+                        from rooms 
+                   left join checkins on rooms.id = checkins.room_id 
+                   left join occupants on checkins.occupant_id = occupants.id
+               order by rooms.room_no, occupants.last_name, occupants.first_name ;")
+  end
 end

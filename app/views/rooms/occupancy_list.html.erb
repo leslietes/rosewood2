@@ -26,14 +26,13 @@
         <%# do not duplicate room nos if same %>
         <% room_no = 0 %>
         
-        <% @checkins.each do |checkin| %>
-        <tr>
-          <td><%= checkin.room.room_no if room_no != checkin.room_id %></td>
-          <td><%= checkin.occupant.name %></td>
-          <td><%= checkin.start_date %></td>
-        </tr>
-        
-        <% room_no = checkin.room_id %>
+        <% @rooms.each do |room| %>
+          <tr>
+            <td><%= room.room_no if room.id != room_no %></td>
+            <td><%= "#{room.first_name} #{room.last_name}" %></td>
+            <td><%= room.start_date %></td>
+          </tr>  
+          <% room_no = room.id %>
         <% end %>
       </tbody>
     </table>
