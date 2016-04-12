@@ -29,7 +29,13 @@
         <% @rooms.each do |room| %>
           <tr>
             <td><%= room.room_no if room.id != room_no %></td>
-            <td><%= "#{room.first_name} #{room.last_name}" %></td>
+            <td>
+              <% if !room.last_name.blank? %>
+                <%= "#{room.first_name} #{room.last_name}" %>
+              <% else %>
+                <%= "VACANT " %>     
+              <% end %>
+            </td>
             <td><%= room.start_date %></td>
           </tr>  
           <% room_no = room.id %>
