@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :rooms do
       get 'check_in', on: :collection
       post 'check_in', on: :collection
+      get  'occupancy_list', on: :collection
     end
     resources :occupants
   end

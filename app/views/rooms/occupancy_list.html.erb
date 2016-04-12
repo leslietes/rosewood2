@@ -1,0 +1,47 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3>Occupancy List</h3>
+
+    <table>
+      <thead>
+        <th>Room No</th>
+        <th>Occupants</th>
+        <th>Start Date</th>
+      </thead>
+      <tbody>
+        <%# do not duplicate room nos if same %>
+        <% room_no = 0 %>
+        
+        <% @checkins.each do |checkin| %>
+        <tr>
+          <td><%= checkin.room.room_no if room_no != checkin.room_id %></td>
+          <td><%= checkin.occupant.name %></td>
+          <td><%= checkin.start_date %></td>
+        </tr>
+        
+        <% room_no = checkin.room_id %>
+        <% end %>
+      </tbody>
+    </table>
+
+
+    <div class="clear padding15"></div>
+    
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>  

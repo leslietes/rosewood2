@@ -72,11 +72,17 @@ class RoomsController < ApplicationController
       Room.transaction do
         new_checkin(params[:room_no], params[:occupant], params[:start_date]) 
         update_room(params[:room_no], params[:full]) 
+        update_occupant(params[:occupant])
       end
+      redirect_to check_in_rooms_url
       flash[:notice] = "Occupant has checked in"
     else
       flash[:error]  = "Unable to check in. Please select valid room or occupant"
     end
+  end
+  
+  def occupancy_list
+    @checkins = Checkin.get_all
   end
 
   private
@@ -96,6 +102,10 @@ class RoomsController < ApplicationController
     
     def update_room(room_id, full_flag)
       Room.update_status(room_id, full_flag)
+    end
+    
+    def update_occupant(occupant_id)
+      Occupant.not_waiting(occupant_id)
     end
     
 end

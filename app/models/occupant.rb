@@ -9,6 +9,10 @@ class Occupant < ActiveRecord::Base
     select(:id, :last_name, :first_name).where(waiting: true)
   end
   
+  def self.not_waiting(occupant_id)
+    find(occupant_id).update(waiting: false)
+  end
+  
   def name
     "#{last_name}, #{first_name}"
   end

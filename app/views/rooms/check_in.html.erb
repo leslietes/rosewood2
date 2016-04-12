@@ -36,7 +36,8 @@
       
       <p>
         <%= label_tag :full %>
-        <%= check_box_tag :full %>  
+        <%= hidden_field_tag :full, 0 %>
+        <%= check_box_tag :full, checked = true %>  
       </p>
           
       <%= submit_tag 'New Check In' %>
