@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     resources :occupants
     resources :utilities    
+    resources :extras
   end
   
   match 'contact' => "home#contact", :via => [:get, :post]

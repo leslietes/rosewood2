@@ -1,5 +1,6 @@
 class ExtrasController < ApplicationController
   before_action :set_extra, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /extras
   # GET /extras.json
@@ -28,7 +29,7 @@ class ExtrasController < ApplicationController
 
     respond_to do |format|
       if @extra.save
-        format.html { redirect_to @extra, notice: 'Extra was successfully created.' }
+        format.html { redirect_to extras_url, notice: 'Extra was successfully created.' }
         format.json { render :show, status: :created, location: @extra }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class ExtrasController < ApplicationController
   def update
     respond_to do |format|
       if @extra.update(extra_params)
-        format.html { redirect_to @extra, notice: 'Extra was successfully updated.' }
+        format.html { redirect_to extras_url, notice: 'Extra was successfully updated.' }
         format.json { render :show, status: :ok, location: @extra }
       else
         format.html { render :edit }
@@ -69,6 +70,6 @@ class ExtrasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def extra_params
-      params.fetch(:extra, {})
+      params.require(:extra).permit(:name,:description,:unit,:rate)
     end
 end

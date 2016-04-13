@@ -52,3 +52,9 @@ Utility.create(name: 'Water Excess',          description: "Monthly. Excess of 1
 Utility.create(name: 'Electricity',           description: "Monthly. Per kilowatt hour", rate: 450, unit: 'per kwh')
 Utility.create(name: 'Water Commercial Basic',description: "Monthly. First 10 cubic meter", rate: 450, unit: 'first 10 cubic meter')
 Utility.create(name: 'Water Commercial Excess',description: "Monthly. Excess of 10 cubic meter", rate: 450, unit: 'per cubic meter')
+
+Extra.create(name: 'Parking Fee',    description: "Monthly parking fee",    rate: 2000, unit: 'per month')
+Extra.create(name: 'Transcient Fee', description: "Extra person per night", rate: 250,  unit: 'per night')
+Extra.create(name: 'Penalty',        description: "Past due penalty",       rate: 100,  unit: 'per day')
+Extra.create(name: 'Damages',        description: "Rate depending on damage",           unit: 'per damage')
+Extra.create(name: 'Cleaning Fee',   description: "Out-of-cycle cleaning request", rate: 350, unit: 'per room')
