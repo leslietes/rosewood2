@@ -12,10 +12,68 @@
   </div>
   
   <div class="col_3_4 last">
+    
     <h3 class="red"><%= @occupant.name %></h3>
-
-    <p id="notice"><%= notice %></p>
-        
+    
+    <p>
+      <%= image_tag @occupant.photo.url(:medium) %>
+    </p>
+    
+    <p>
+      <%= label_tag :address %><%= @occupant.address %><br/>
+      <%= label_tag :telephone %><%= @occupant.telephone %><br/>
+      <%= label_tag :mobile %><%= @occupant.mobile %><br/>
+      <%= label_tag :birthdate %><%= @occupant.birthdate %> <%= @occupant.age %>
+    </p>
+    
+    <h4>School or Profession</h4>
+    
+    <p>
+      <%= label_tag :school_or_work %><%= @occupant.school_or_work %><br/>
+      <%= label_tag :course_or_position %><%= @occupant.course_or_position %><br/>
+      <%= label_tag :year_or_date_started %><%= @occupant.year_or_date_started %>
+    </p>
+    
+    <h4>Previous School Or Work</h4>
+    
+    <p>
+      <%= label_tag :previous_schooL_or_work %><%= @occupant.previous_school_or_work %><br/>
+      <%= label_tag :city %><%= "#{@occupant.school_city}, #{@occupant.school_province}" %><br/>
+      <%= label_tag :course_and_year %><%= @occupant.course_and_year %><br/>
+      <%= label_tag :work_position   %><%= @occupant.work_position %><br/>
+      <%= label_tag :date_left       %><%= @occupant.date_left %>
+    </p>
+    
+    <h4>Parent's Info</h4>
+    
+    <p>
+      <%= label_tag :fathers_name %><%= @occupant.fathers_name %><br/>
+      <%= label_tag :home_address %><%= @occupant.fathers_address %><br/>
+      <%= label_tag :occupation   %><%= @occupant.fathers_occupation %><br/>
+      <%= label_tag :company      %><%= @occupant.fathers_company %><br/>
+      <%= label_tag :company_address %><%= @occupant.fathers_company_address %><br/>
+      <%= label_tag :telephone    %><%= @occupant.fathers_telephone %><br/>
+      <%= label_tag :mobile       %><%= @occupant.fathers_mobile %>
+    </p>
+    
+    <p>
+      <%= label_tag :mothers_name %><%= @occupant.mothers_name %><br/>
+      <%= label_tag :home_address %><%= @occupant.mothers_address%><br/>
+      <%= label_tag :occupation   %><%= @occupant.mothers_occupation %><br/>
+      <%= label_tag :company      %><%= @occupant.mothers_company %><br/>
+      <%= label_tag :company_address %><%= @occupant.mothers_company_address %><br/>
+      <%= label_tag :telephone    %><%= @occupant.mothers_telephone %><br/>
+      <%= label_tag :mobile       %><%= @occupant.mothers_mobile %>
+    </p>
+    
+    <h4>In case of emergency, contact</h4>
+    
+    <p>
+      <%= label_tag :guardians_name      %><%= @occupant.guardians_name %><br/>
+      <%= label_tag :guardians_address   %><%= @occupant.guardians_address %><br/>
+      <%= label_tag :guardians_telephone %><%= @occupant.guardians_telephone %><br/>
+      <%= label_tag :guardians_mobile    %><%= @occupant.guardians_mobile %>
+    </p>
     
           
     <br/>

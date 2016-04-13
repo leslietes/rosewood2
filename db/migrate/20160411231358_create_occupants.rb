@@ -1,6 +1,11 @@
 class CreateOccupants < ActiveRecord::Migration
   def change
     create_table :occupants do |t|
+      
+      t.string  :photo_file_name
+      t.string  :photo_content_type
+      t.integer  :photo_file_size
+      
       t.string  :first_name 
       t.string  :last_name  
       t.string  :address1   

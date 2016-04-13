@@ -70,7 +70,7 @@ class OccupantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def occupant_params
-      params.require(:occupant).permit(:first_name,:last_name,:address1,:address2,:city,:province,:postcode,:telephone,:mobile,:birthdate,:school_or_work,
+      params.require(:occupant).permit(:photo,:first_name,:last_name,:address1,:address2,:city,:province,:postcode,:telephone,:mobile,:birthdate,:school_or_work,
       :course_or_position,:year_or_date_started,:previous_school_or_work,:school_city,:school_province,:course_and_year,:work_position,:date_left,:fathers_name,:fathers_address,
       :fathers_occupation,:fathers_company,:fathers_company_address,:fathers_telephone,:fathers_mobile,:mothers_name,:mothers_address,:mothers_occupation,:mothers_company,:mothers_company_address,
       :mothers_telephone,:mothers_mobile,:guardians_name,:guardians_address,:guardians_telephone,:guardians_mobile)

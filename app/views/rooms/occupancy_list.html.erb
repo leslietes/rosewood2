@@ -16,7 +16,7 @@
     
     <h3>Occupancy List</h3>
 
-    <table>
+    <table id="borders">
       <thead>
         <th>Room No</th>
         <th>Occupants</th>
@@ -30,11 +30,7 @@
           <tr>
             <td class="ten center"><%= room.room_no if room.id != room_no %></td>
             <td class="seventy">
-              <% if !room.last_name.blank? %>
-                <%= "#{room.first_name} #{room.last_name}" %>
-              <% else %>
-                <%= "VACANT " %>     
-              <% end %>
+              <%= room.occupant_or_vacant %>
             </td>
             <td class="twenty" class="center"><%= room.start_date %></td>
           </tr>  

@@ -26,4 +26,9 @@ class Room < ActiveRecord::Base
                    left join occupants on checkins.occupant_id = occupants.id
                order by rooms.room_no, occupants.last_name, occupants.first_name ;")
   end
+  
+  # for occupancy list report
+  def occupant_or_vacant
+    last_name.blank? ? 'VACANT' : "#{first_name} #{last_name}"
+  end
 end

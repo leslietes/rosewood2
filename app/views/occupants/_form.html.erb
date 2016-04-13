@@ -19,6 +19,12 @@
           </div>
 
       <li id="id-1">
+        
+        <p>
+          <%= f.label :photo %>
+          <%= f.file_field :photo %>
+        </p>
+        <div class="clear"></div>
   
         <p>
           <%= f.label :first_name %>
@@ -71,6 +77,12 @@
         <p>
           <%= f.label :mobile %>
           <%= f.text_field :mobile %>
+        </p>
+        <div class="clear"></div>
+        
+        <p>
+          <%= f.label :birthdate %>
+          <%= f.date_field :birthdate %>
         </p>
         <div class="clear"></div>
         
