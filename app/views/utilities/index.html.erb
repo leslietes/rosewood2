@@ -1,25 +1,52 @@
-<p id="notice"><%= notice %></p>
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
 
-<h1>Listing Utilities</h1>
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3>Utilities</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <p id="notice"><%= notice %></p>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Rate</th>
+          <th>Unit</th>
+          <th colspan="3">Actions</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @utilities.each do |utility| %>
-      <tr>
-        <td><%= link_to 'Show', utility %></td>
-        <td><%= link_to 'Edit', edit_utility_path(utility) %></td>
-        <td><%= link_to 'Destroy', utility, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Utility', new_utility_path %>
+      <tbody>
+        <% @utilities.each do |utility| %>
+          <tr>
+            <td><%= utility.name %></td>
+            <td><%= utility.description %></td>
+            <td><%= to_currency(utility.rate) %></td>
+            <td><%= utility.unit %></td>
+            <td><%= link_to 'Show', utility %></td>
+            <td><%= link_to 'Edit', edit_utility_path(utility) %></td>
+            <td><%= link_to 'Destroy', utility, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+  
+  <%= link_to 'New Utility', new_utility_path %>      
+  
+  <div class="clear padding15"></div>
+</section>

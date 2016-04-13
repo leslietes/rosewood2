@@ -1,5 +1,6 @@
 class UtilitiesController < ApplicationController
   before_action :set_utility, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /utilities
   # GET /utilities.json
@@ -28,7 +29,7 @@ class UtilitiesController < ApplicationController
 
     respond_to do |format|
       if @utility.save
-        format.html { redirect_to @utility, notice: 'Utility was successfully created.' }
+        format.html { redirect_to utilities_url, notice: 'Utility was successfully created.' }
         format.json { render :show, status: :created, location: @utility }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class UtilitiesController < ApplicationController
   def update
     respond_to do |format|
       if @utility.update(utility_params)
-        format.html { redirect_to @utility, notice: 'Utility was successfully updated.' }
+        format.html { redirect_to utilities_url, notice: 'Utility was successfully updated.' }
         format.json { render :show, status: :ok, location: @utility }
       else
         format.html { render :edit }
@@ -69,6 +70,6 @@ class UtilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def utility_params
-      params.fetch(:utility, {})
+      params.require(:utility).permit(:name,:description,:rate,:unit)
     end
 end

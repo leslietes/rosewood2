@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get  'occupancy_list', on: :collection
     end
     resources :occupants
+    resources :utilities    
   end
   
   match 'contact' => "home#contact", :via => [:get, :post]

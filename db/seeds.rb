@@ -43,3 +43,12 @@ Room.create(room_no: 205, max_occupants: 2, room_rate: 8000, active: true)
 
 Occupant.create(first_name: 'John', last_name: 'Smith')
 Occupant.create(first_name: 'Jane', last_name: 'Doe')
+
+Utility.create(name: 'Cable TV Subscription', description: "Monthly fee", rate: 450, unit: 'per month')
+Utility.create(name: 'Cable TV Installation', description: "One time fee", rate: 450, unit: 'one time')
+Utility.create(name: 'Cable TV Termination',  description: "One time fee", rate: 450, unit: 'one time')
+Utility.create(name: 'Water Basic',           description: "Monthly. First 10 cubic meter", rate: 150, unit: 'first 10 cubic meter')
+Utility.create(name: 'Water Excess',          description: "Monthly. Excess of 10 cubic meter", rate: 450, unit: 'per cubic meter')
+Utility.create(name: 'Electricity',           description: "Monthly. Per kilowatt hour", rate: 450, unit: 'per kwh')
+Utility.create(name: 'Water Commercial Basic',description: "Monthly. First 10 cubic meter", rate: 450, unit: 'first 10 cubic meter')
+Utility.create(name: 'Water Commercial Excess',description: "Monthly. Excess of 10 cubic meter", rate: 450, unit: 'per cubic meter')
