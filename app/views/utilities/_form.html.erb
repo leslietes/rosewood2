@@ -34,6 +34,11 @@
     <%= f.text_field :unit %>
   </p>
   <div class="clear"></div>
+  
+  <p>
+    <%= f.label :category %>
+    <%= f.select(:category, Utility::CATEGORIES) %>
+  </p>
 
   <div class="actions">
     <%= f.submit %>

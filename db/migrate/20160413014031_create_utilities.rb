@@ -5,6 +5,7 @@ class CreateUtilities < ActiveRecord::Migration
       t.text    :description
       t.decimal :rate, precision: 6, scale: 2
       t.string  :unit
+      t.string  :category
 
       t.timestamps null: false
     end
