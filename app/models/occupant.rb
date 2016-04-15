@@ -5,6 +5,7 @@ class Occupant < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ["image/jpg","image/jpeg","image/png","image/gif"]
   
   validates :first_name, presence: true
+  validates :last_name,  presence: true
   
   has_many :checkins, through: :checkin_occupants
   has_many :rooms,    through: :checkins
