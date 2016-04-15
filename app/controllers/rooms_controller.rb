@@ -108,12 +108,23 @@ class RoomsController < ApplicationController
   end
   
   def occupancy_details
-    #todo: check if checkin exists else redirect
-    
-    @checkin = Checkin.get_details(params[:id])
-    #@checkin   = Checkin.includes(:room).find(params[:id])
-    #@occupants = Checkin.includes(:checkin_occupants,:occupants).where(id: params[:id]).first
+    #todo: check if checkin exists else redirect    
+    @checkin   = Checkin.get_details(params[:id])
     @details   = @checkin.first.checkin_details
+    
+    # for form
+    @occupants = Occupant.waiting_for_room
+  end
+  
+  def new_roommate
+    puts "==========#{params.inspect}"
+    #return unless request.post?
+    
+    checkin = Checkin.find(params[:id])
+    add_occupants(checkin, params[:occupants], params[:start_date])
+    
+    flash[:notice] = "New roommate added"
+    redirect_to occupancy_details_room_url()
   end
 
   private

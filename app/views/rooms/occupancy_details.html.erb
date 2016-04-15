@@ -30,6 +30,17 @@
     
     <h3>Occupants</h3>
     
+    <%= form_tag new_roommate_room_path(id: @checkin.first.id) do %>
+      <p>
+        <label>New Roommate</label>
+        <%= select_tag "occupants[]", options_for_select(@occupants.map {|o| [o.name, o.id] }), multiple: :multiple, size: 5, prompt: "Select occupant" %><br/>
+        <%= label_tag :start_date %>
+        <%= date_field_tag :start_date, Date.today %>
+        <%= submit_tag 'Add' %>
+      </p>
+      
+    <% end %>
+    
     <table>
       <thead>
         <th>Name</th>

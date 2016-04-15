@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post 'check_in', on: :collection
       get  'occupancy_list', on: :collection
       get  'occupancy_details', on: :member
+      post  'new_roommate', on: :member
     end
     resources :occupants
     resources :utilities    
