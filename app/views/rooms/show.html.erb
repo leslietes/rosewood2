@@ -29,6 +29,10 @@
     </p>
     
     <p>
+      <%= label_tag :occupied? %><%= to_status(@room.occupied) %>
+    </p>
+    
+    <p>
       <%= label_tag :active? %><%= to_status(@room.active) %>
     </p>
           

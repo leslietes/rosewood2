@@ -63,16 +63,26 @@ class RoomsController < ApplicationController
   end
   
   def check_in
-    @rooms     = Room.not_full
+    @rooms     = Room.unoccupied
     @occupants = Occupant.waiting_for_room
+    # for checkboxes
+    @basic = Utility.basic
+    @extra = Utility.extras
+    
+    # at least one occupant should be selected
+    if params[:occupants].blank? || params[:room_no].blank?
+      flash[:notice] = "Please select room and occupant"
+      return
+    end
     
     return unless request.post?
     
-    if Room.exists?(params[:room_no]) && Occupant.exists?(params[:occupant])
+    if Room.exists?(params[:room_no])
       Room.transaction do
-        new_checkin(params[:room_no], params[:occupant], params[:start_date]) 
-        update_room(params[:room_no], params[:full]) 
-        update_occupant(params[:occupant])
+        checkin = new_checkin(params[:room_no],params[:start_date]) 
+        add_occupants(checkin, params[:occupants], params[:start_date])
+        add_utilities(checkin,params[:utilities],  params[:start_date])
+        update_room(params[:room_no]) 
       end
       redirect_to check_in_rooms_url
       flash[:notice] = "Occupant has checked in"
@@ -96,6 +106,15 @@ class RoomsController < ApplicationController
       end
     end
   end
+  
+  def occupancy_details
+    #todo: check if checkin exists else redirect
+    
+    @checkin = Checkin.get_details(params[:id])
+    #@checkin   = Checkin.includes(:room).find(params[:id])
+    #@occupants = Checkin.includes(:checkin_occupants,:occupants).where(id: params[:id]).first
+    @details   = @checkin.first.checkin_details
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -105,19 +124,34 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:room_no,:max_occupants,:daily_rate,:room_rate,:active)
+      params.require(:room).permit(:room_no,:max_occupants,:daily_rate,:room_rate,:active,:occupied)
     end
     
-    def new_checkin(room_id, occupant_id, start_date)
-      Checkin.create(room_id: room_id, occupant_id: occupant_id, start_date: start_date)
+    def new_checkin(room_id, start_date)
+      Checkin.create(room_id: room_id, start_date: start_date, user_id: current_user.id)
+    end
+      
+    def update_room(room_id)      
+      Room.occupied!(room_id)
     end
     
-    def update_room(room_id, full_flag)
-      Room.update_status(room_id, full_flag)
+    def add_occupants(checkin, occupants, start_date)
+      occupants.each do |occupant_id|
+        checkin.checkin_occupants.create(id: checkin, occupant_id: occupant_id, start_date: start_date)
+        Occupant.checked_in!(occupant_id)
+      end
     end
     
-    def update_occupant(occupant_id)
-      Occupant.not_waiting(occupant_id)
-    end
-    
+    def add_utilities(checkin, utilities_array, start_date)
+      return if utilities_array.blank?
+      
+      # returns ["1","2"]
+      keys = utilities_array.keys
+      
+      keys.each do |key| 
+        # get updated amount
+        amount = Utility.find(key).rate
+        checkin.checkin_details.create(utility_id: key, amount: amount, start_date: start_date)
+      end
+    end    
 end

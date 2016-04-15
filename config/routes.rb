@@ -10,10 +10,10 @@ Rails.application.routes.draw do
       get 'check_in', on: :collection
       post 'check_in', on: :collection
       get  'occupancy_list', on: :collection
+      get  'occupancy_details', on: :member
     end
     resources :occupants
     resources :utilities    
-    resources :extras
   end
   
   match 'contact' => "home#contact", :via => [:get, :post]

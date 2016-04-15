@@ -21,25 +21,33 @@
     <%= form_tag '' do %>
       <p>
         <%= label_tag :room_no %>
-        <%= select_tag "room_no", options_for_select(@rooms) %>
+        <%= select_tag "room_no", options_for_select(@rooms), prompt: "Select room" %>
       </p>
       
       <p>
         <%= label_tag :occupant %>
-        <%= select_tag "occupant", options_for_select(@occupants.map {|o| [o.name, o.id] }) %>
+        <%= select_tag "occupants[]", options_for_select(@occupants.map {|o| [o.name, o.id] }), multiple: :multiple, size: 5, prompt: "Select occupant" %>
       </p>
       
       <p>
         <%= label_tag :start_date %>
-        <%= date_field_tag :start_date %>
+        <%= date_field_tag :start_date, Date.today %>
       </p>
       
       <p>
-        <%= label_tag :full %>
-        <%= hidden_field_tag :full, 0 %>
-        <%= check_box_tag :full, checked = true %>  
+        <%= label_tag :basic %><br/>
+        <% @basic.all.each do |u| %>
+          <%= check_box_tag "utilities[#{u.id}]" %> <%= u.to_s %> <%= to_currency(u.rate) %><br/>
+        <% end %>
       </p>
-          
+        
+      <p>
+        <%= label_tag :extras %><br/>
+        <% @extra.all.each do |u| %>
+          <%= check_box_tag "utilities[#{u.id}]" %> <%= u.to_s %> <%= to_currency(u.rate) %><br/>
+        <% end %>
+      </p>
+      
       <%= submit_tag 'New Check In' %>
     <% end %>
     

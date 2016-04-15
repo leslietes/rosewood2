@@ -6,19 +6,20 @@ class Occupant < ActiveRecord::Base
   
   validates :first_name, presence: true
   
-  has_many :checkins
-  has_many :rooms, through: :checkins
+  has_many :checkins, through: :checkin_occupants
+  has_many :rooms,    through: :checkins
   
   def self.waiting_for_room
     select(:id, :last_name, :first_name).where(waiting: true)
   end
   
-  def self.not_waiting(occupant_id)
+  # status updated after check in
+  def self.checked_in!(occupant_id)
     find(occupant_id).update(waiting: false)
   end
   
   def name
-    "#{last_name}, #{first_name}"
+    "#{first_name} #{last_name}"
   end
   
   def address

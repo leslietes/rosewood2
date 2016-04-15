@@ -21,20 +21,22 @@
         <th>Room No</th>
         <th>Occupants</th>
         <th>Start Date</th>
+        <th>Actions</th>
       </thead>
       <tbody>
         <%# do not duplicate room nos if same %>
-        <% room_no = 0 %>
+        <% room_id = 0 %>
         
-        <% @rooms.each do |room| %>
+        <% @rooms.each do |list| %>
+          
           <tr>
-            <td class="ten center"><%= room.room_no if room.id != room_no %></td>
-            <td class="seventy">
-              <%= room.occupant_or_vacant %>
-            </td>
-            <td class="twenty" class="center"><%= room.start_date %></td>
+            <td class="ten center"><%= list.room_no if list.id != room_id %></td>                       <td class="seventy"><%= "#{list.first_name} #{list.last_name}" %></td>
+            <td class="ten center"><%= list._date %></td>
+            <td class="ten center"><%= link_to 'Details', occupancy_details_room_url(list._id) if list.has_checkin? %></td>
           </tr>  
-          <% room_no = room.id %>
+
+          <% room_id = list.id %>
+
         <% end %>
       </tbody>
     </table>

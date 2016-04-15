@@ -4,31 +4,55 @@ class Room < ActiveRecord::Base
   validates :room_rate,     presence: true, numericality: true
   
   has_many :checkins
-  has_many :occupants, through: :checkins
+  has_many :occupants, through: :checkin_occupants
   
-  def self.not_full
+  def self.unoccupied
     # do not reverse order of pluck - for select_tag
-    where(full: false).pluck(:room_no, :id)
+    where(occupied: false).pluck(:room_no, :id)
   end
   
-  def self.update_status(room_id, full_flag)
-    find(room_id).update(full: full_flag)
+  def self.occupied!(room_id)
+    find(room_id).update(occupied: 1)
   end
   
   def self.occupancy_list
+    #Room.includes(:checkins,:occupants)
     Room.find_by_sql("select rooms.id, 
                              rooms.room_no, 
-                             occupants.last_name as last_name,
-                             occupants.first_name as first_name, 
-                             checkins.start_date as start_date 
-                        from rooms 
-                   left join checkins on rooms.id = checkins.room_id 
-                   left join occupants on checkins.occupant_id = occupants.id
-               order by rooms.room_no, occupants.last_name, occupants.first_name ;")
+                             IFNULL(occupants.last_name,'VACANT') as last_name,
+                             occupants.first_name as first_name,
+                             checkins.id as _id, 
+                             checkin_occupants.start_date as _date 
+                       from rooms 
+                       left join checkins on rooms.id = checkins.room_id 
+                       left join checkin_occupants on checkins.id = checkin_occupants.checkin_id
+                       left join occupants on checkin_occupants.occupant_id = occupants.id
+                   order by rooms.room_no, occupants.last_name, occupants.first_name ;")
+  end
+  
+  def self.occupancy_detail(room_id)
+    Room.includes(:checkins,:occupants).find(room_id)
   end
   
   # for occupancy list report
-  def occupant_or_vacant
-    last_name.blank? ? 'VACANT' : "#{first_name} #{last_name}"
+  def occupied_or_vacant
+    if checkins.blank?
+      return 'VACANT'
+    else
+      checkins.first.occupant.name
+    end
+  end
+  
+  def start_date
+    if checkins.blank?
+      return ''
+    else
+      checkins.first.start_date
+    end
+  end
+  
+  def has_checkin?
+    return false if checkins.blank?
+    return true
   end
 end
