@@ -114,16 +114,22 @@ class RoomsController < ApplicationController
     
     # for form
     @occupants = Occupant.waiting_for_room
+    @utilities = Utility.all.flatten - @checkin.first.utilities.flatten
   end
   
   def new_roommate
-    puts "==========#{params.inspect}"
-    #return unless request.post?
+    if params[:occupants].blank? && params[:utilities].blank?
+      flash[:notice] = "Please select new roommate or utility to add"
+      redirect_to :back
+      return
+    end
     
     checkin = Checkin.find(params[:id])
-    add_occupants(checkin, params[:occupants], params[:start_date])
     
-    flash[:notice] = "New roommate added"
+    add_occupants(checkin, params[:occupants], params[:start_date]) if !params[:occupants].blank?
+    add_utilities(checkin, params[:utilities], params[:start_date]) if !params[:utilities].blank?
+    
+    flash[:notice] = "New roommate added or utility added"
     redirect_to occupancy_details_room_url()
   end
 

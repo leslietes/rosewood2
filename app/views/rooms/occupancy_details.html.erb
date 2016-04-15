@@ -14,32 +14,18 @@
   <div class="col_3_4 last">
     <!--h3 class="red">Settings</h3-->
     
-    <h3>Occupancy Details</h3>
+    <h3 class="center">Occupancy Details</h3>
 
     <p id="notice"><%= notice %></p>
     
     <p>
       <%= label_tag :room_no %>
-      <%= @checkin.first.room_no %>
-    </p>
-    
-    <p>
+      <%= @checkin.first.room_no %><br/>
       <%= label_tag :start_date %>
       <%= @checkin.first.start_date %>
     </p>
     
-    <h3>Occupants</h3>
-    
-    <%= form_tag new_roommate_room_path(id: @checkin.first.id) do %>
-      <p>
-        <label>New Roommate</label>
-        <%= select_tag "occupants[]", options_for_select(@occupants.map {|o| [o.name, o.id] }), multiple: :multiple, size: 5, prompt: "Select occupant" %><br/>
-        <%= label_tag :start_date %>
-        <%= date_field_tag :start_date, Date.today %>
-        <%= submit_tag 'Add' %>
-      </p>
-      
-    <% end %>
+    <h3 class="center">Occupants</h3>
     
     <table>
       <thead>
@@ -60,14 +46,16 @@
       </tbody>
     </table>
     
-    <h3>Billing Components</h3>
+    <span><i>'Remove Occupant' is for when an occupant leaves the room, but someone else is left behind.<br/> Do not use 'Remove Occupant' when vacating entire room.</i></span>
+    
+    <div class="clear padding20"></div>
+    
+    <h3 class="center">Billing Components</h3>
     
     <table>
       <thead>
         <th>Item</th>
         <th>Rate</th>
-        <th>Start</th>
-        <th>End</th>
         <th colspan="2">Actions</th>
       </thead>
       <tbody>
@@ -76,19 +64,49 @@
         <tr>
             <td class="left"><%= detail.utility %></td>
             <td><%= to_currency(detail.amount) %></td>
-            <td><%= detail.start_date %></td>
-            <td><%= detail.end_date %></td>
+            <%#= detail.start_date %>
+            <%#= detail.end_date   %>
             <td><%= link_to 'Edit'   %></td>
             <td><%= link_to 'Remove' %></td>
       </tr>
       <% end %>
     </tbody>
     </table>
+    <span><i>These are items added when generating billing statements. Remove one-time items such as Cable TV Installation, Cable TV Termination, Transcient Fees and Damages, and add them as needed.</i></span>
+    
+    <div class="clear padding20"></div>
+    <div class="clear padding20"></div>
+    
+    <%= link_to 'PRINT' %> 
 
+    <div class="clear padding20"></div>
+    <div class="clear padding20"></div>
+    
+    <%= form_tag new_roommate_room_path(id: @checkin.first.id) do %>
+      <p>
+        <label>New Roommate</label>
+        <%= select_tag "occupants[]", options_for_select(@occupants.map {|o| [o.name, o.id] }), multiple: :multiple, size: 5, prompt: "Select occupant" %><br/>
+      </p>
+      
+      <p>
+        <%= label_tag :start_date %>
+        <%= date_field_tag :start_date, Date.today %>
+      </p>
+    
+      <p>
+        <%= label_tag :utilities %><br/>
+        <% @utilities.each do |u| %>
+          <%= check_box_tag "utilities[#{u.id}]" %> <%= u.to_s %> <%= to_currency(u.rate) %><br/>
+        <% end %>
+      </p>
+
+      <p>     
+        <%= submit_tag 'Add' %>
+      </p>
+      
+    <% end %>   
     
   </div>
-  
-  <%= link_to 'Back', occupancy_list_rooms_url %>      
   
   <div class="clear padding15"></div>
 </section>
