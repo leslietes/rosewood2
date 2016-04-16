@@ -1,6 +1,6 @@
 class FaqsController < ApplicationController
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:index]
+  before_action :authenticate_user!, :except => [:index, :show]
 
   # GET /faqs
   # GET /faqs.json
@@ -11,6 +11,7 @@ class FaqsController < ApplicationController
   # GET /faqs/1
   # GET /faqs/1.json
   def show
+    redirect_to faqs_url
   end
 
   # GET /faqs/new
