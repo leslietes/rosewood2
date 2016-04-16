@@ -73,6 +73,6 @@ class OccupantsController < ApplicationController
       params.require(:occupant).permit(:photo,:first_name,:last_name,:address1,:address2,:city,:province,:postcode,:telephone,:mobile,:birthdate,:school_or_work,
       :course_or_position,:year_or_date_started,:previous_school_or_work,:school_city,:school_province,:course_and_year,:work_position,:date_left,:fathers_name,:fathers_address,
       :fathers_occupation,:fathers_company,:fathers_company_address,:fathers_telephone,:fathers_mobile,:mothers_name,:mothers_address,:mothers_occupation,:mothers_company,:mothers_company_address,
-      :mothers_telephone,:mothers_mobile,:guardians_name,:guardians_address,:guardians_telephone,:guardians_mobile)
+      :mothers_telephone,:mothers_mobile,:guardians_name,:guardians_address,:guardians_telephone,:guardians_mobile,:waiting,:active)
     end
 end

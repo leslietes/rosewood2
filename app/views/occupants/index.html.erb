@@ -29,23 +29,23 @@
       <th>School/Work</th>
       <th>Course/Position</th>
       <th>Year/Year Started</th>
-      <th colspan="3">Actions</th>
+      <th colspan="1">Actions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @occupants.each do |occupant| %>
       <tr>
-        <td><%= occupant.name %></td>
+        <td><%= link_to occupant.name, occupant %></td>
         <td><%= occupant.city %></td>
         <td><%= occupant.province %></td>
         <td><%= occupant.mobile %></td>
         <td><%= occupant.school_or_work %></td>
         <td><%= occupant.course_or_position %></td>
         <td><%= occupant.year_or_date_started %></td>
-        <td><%= link_to 'Show', occupant %></td>
+        <%#= link_to 'Show', occupant %>
         <td><%= link_to 'Edit', edit_occupant_path(occupant) %></td>
-        <td><%= link_to 'Destroy', occupant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%#= link_to 'Destroy', occupant, method: :delete, data: { confirm: 'Are you sure?' } %>
       </tr>
     <% end %>
   </tbody>
