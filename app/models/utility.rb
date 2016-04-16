@@ -1,5 +1,8 @@
 class Utility < ActiveRecord::Base
   
+  validates :name, presence: true
+  validates :category, presence: true
+  
   has_many :checkin_details
   
   CATEGORIES = ["Basic","Extra"]
@@ -12,9 +15,5 @@ class Utility < ActiveRecord::Base
   def self.extras
     # basic or extra
     where(category: 'Extra')
-  end
-
-  def to_s
-    name
   end
 end
