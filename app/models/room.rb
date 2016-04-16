@@ -30,19 +30,6 @@ class Room < ActiveRecord::Base
                    order by rooms.room_no, occupants.last_name, occupants.first_name ;")
   end
   
-  def self.occupancy_detail(room_id)
-    Room.includes(:checkins,:occupants).find(room_id)
-  end
-  
-  # for occupancy list report
-  def occupied_or_vacant
-    if checkins.blank?
-      return 'VACANT'
-    else
-      checkins.first.occupant.name
-    end
-  end
-  
   def start_date
     if checkins.blank?
       return ''

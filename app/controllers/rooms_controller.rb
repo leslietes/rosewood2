@@ -120,7 +120,7 @@ class RoomsController < ApplicationController
   def new_roommate
     if params[:occupants].blank? && params[:utilities].blank?
       flash[:notice] = "Please select new roommate or utility to add"
-      redirect_to :back
+      redirect_to occupancy_details_room_url() 
       return
     end
     
@@ -129,7 +129,7 @@ class RoomsController < ApplicationController
     add_occupants(checkin, params[:occupants], params[:start_date]) if !params[:occupants].blank?
     add_utilities(checkin, params[:utilities], params[:start_date]) if !params[:utilities].blank?
     
-    flash[:notice] = "New roommate added or utility added"
+    flash[:notice] = "New roommate or utility added"
     redirect_to occupancy_details_room_url()
   end
 
