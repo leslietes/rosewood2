@@ -26,6 +26,7 @@
           <th>Monthly Rate</th>
           <th>Daily Rate</th>
           <th>Active?</th>
+          <th>Occupied?</th>
           <th colspan="3">Actions</th>
         </tr>
       </thead>
@@ -38,6 +39,7 @@
             <td><%= to_currency(room.room_rate) %></td>
             <td><%= to_currency(room.daily_rate) %></td>
             <td><%= to_status(room.active) %></td>
+            <td><%= to_status(room.occupied) %></td>
             <td><%= link_to 'Show', room %></td>
             <td><%= link_to 'Edit', edit_room_path(room) %></td>
             <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
