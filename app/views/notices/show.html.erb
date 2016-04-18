@@ -1,0 +1,63 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Notice of Intention to Vacate</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <h3 class="red">Notice of Intention to Vacate</h3>
+
+    <p id="notice"><%= notice %></p>
+    
+    <p>
+      <%= label_tag :room_no %>
+      <%= @notice.room_no %>
+    </p>
+    
+    <p>
+      <%= label_tag :occupants %>
+      <%= @notice.occupants %>
+    </p>
+    
+    <p>
+      <%= label_tag :reason %>
+      <%= @notice.reason %>
+    </p>
+    
+    <p>
+      <%= label_tag :date_received %>
+      <%= @notice.date_received %>
+    </p>
+    
+    <h3 class="red">Proposed New Occupant</h3>
+    
+    <p>
+      <%= label_tag :proposed_occupants %>
+      <%= @notice.proposed_occupants %>
+    </p>
+    
+    <p>
+      <%= label_tag :check_in_date %>
+      <%= @notice.checkin_date %>
+    </p>
+    
+    <p>
+      <%= label_tag :reservation_paid? %>
+      <%= @notice.paid %>
+    </p>
+
+    <%= link_to 'Edit', edit_notice_path(@notice) %> 
+
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>
+
+

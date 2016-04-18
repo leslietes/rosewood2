@@ -6,6 +6,12 @@ class Room < ActiveRecord::Base
   has_many :checkins
   has_many :occupants, through: :checkin_occupants
   
+  has_many :notices
+  
+  def self.all_vacant
+    where(occupied: false).order("room_no")
+  end
+  
   def self.unoccupied
     # do not reverse order of pluck - for select_tag
     where(occupied: false).pluck(:room_no, :id)
