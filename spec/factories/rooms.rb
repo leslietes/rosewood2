@@ -7,5 +7,7 @@ FactoryGirl.define do
   
   factory :invalid_room, parent: :room do |f|
     f.room_no 102
+    f.max_occupants nil
+    f.room_rate nil
   end
 end
