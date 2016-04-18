@@ -33,4 +33,13 @@ class Checkin < ActiveRecord::Base
                         checkins.id = #{checkin_id};" )
     
   end
+  
+  def vacate!
+    hdr = CheckinHistoryHdr.create(room_id: room_id, start_date: start_date, end_date: Date.today)
+    checkin_occupants.each do |o| 
+      CheckinHistoryDtl.create(checkin_history_hdr_id: hdr.id, occupant_id: o.occupant_id, start_date: o.start_date, end_date: o.end_date)
+      destroy
+    end
+    destroy
+  end
 end

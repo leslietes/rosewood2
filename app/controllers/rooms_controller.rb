@@ -82,7 +82,7 @@ class RoomsController < ApplicationController
         checkin = new_checkin(params[:room_no],params[:start_date]) 
         add_occupants(checkin, params[:occupants], params[:start_date])
         add_utilities(checkin,params[:utilities],  params[:start_date])
-        update_room(params[:room_no]) 
+        occupy_room(params[:room_no]) 
       end
       redirect_to check_in_rooms_url
       flash[:notice] = "Occupant has checked in"
@@ -123,7 +123,6 @@ class RoomsController < ApplicationController
         kit = PDFKit.new(html, :page_size => 'Letter')
         kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/print.css"
         send_data kit.to_pdf, filename: "occupancy_details_#{@checkin.first.room_no}_#{Date.today}.pdf", type: "application/pdf", disposition: "inline"
-        
       end
     end
   end
@@ -143,7 +142,39 @@ class RoomsController < ApplicationController
     flash[:notice] = "New roommate or utility added"
     redirect_to occupancy_details_room_url()
   end
-
+  
+  def remove_occupant
+    occupant = CheckinOccupant.find(params[:id])
+    occupant.vacate_room!
+    
+    flash[:notice] = "Occupant has vacated room"
+    redirect_to occupancy_details_room_url(occupant.checkin.id)
+  end
+  
+  def remove_utility
+    detail = CheckinDetail.find(params[:id])
+    detail.remove!
+    
+    flash[:notice] = "Utility was removed from room"
+    redirect_to occupancy_details_room_url(detail.checkin.id)
+  end
+  
+  def vacate
+    checkin = Checkin.find(params[:id])
+    
+    Checkin.transaction do
+      checkin.vacate!
+      checkin.checkin_occupants.each do |checkin_occupant| 
+        checkin_occupant.vacate_room!
+        checkin_occupant.occupant.inactive! 
+      end
+      vacate_room(checkin.room_id)
+    end
+    
+    flash[:notice] = "Room has been vacated"
+    redirect_to occupancy_list_rooms_url
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
@@ -159,8 +190,12 @@ class RoomsController < ApplicationController
       Checkin.create(room_id: room_id, start_date: start_date, user_id: current_user.id)
     end
       
-    def update_room(room_id)      
+    def occupy_room(room_id)      
       Room.occupied!(room_id)
+    end
+    
+    def vacate_room(room_id)
+      Room.vacated!(room_id)
     end
     
     def add_occupants(checkin, occupants, start_date)

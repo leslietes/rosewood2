@@ -41,11 +41,17 @@
           <td><%= "#{occupant.first_name} #{occupant.last_name}" %></td>
           <td><%= occupant._sdate %></td>
           <td><%= occupant._edate %></td>
-          <td id="no_print"><%= link_to 'Remove Occupant' %></td>
+          <td id="no_print"><%= link_to 'Remove Occupant', remove_occupant_room_url(occupant.occupant_id) if occupant._edate.nil? %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
+    
+    <div id="no_print">
+      <%= link_to 'Vacate Room', vacate_room_url(@checkin.first) %>
+    </div>
+    
+    <div class="clear padding20"></div>
     
     <span id="no_print"><i>'Remove Occupant' is for when an occupant leaves the room, but someone else is left behind.<br/> Do not use 'Remove Occupant' when vacating entire room.</i></span>
     
@@ -56,19 +62,17 @@
     <table>
       <thead>
         <th>Item</th>
-        <th>Rate</th>
-        <th colspan="2" id="no_print">Actions</th>
+        <th colspan="1" id="no_print">Actions</th>
       </thead>
       <tbody>
         
       <% @details.each do |detail| %>
         <tr>
             <td class="left"><%= detail.utility.name %></td>
-            <td><%= to_currency(detail.amount) %></td>
+            <%#= to_currency(detail.amount) %>
             <%#= detail.start_date %>
             <%#= detail.end_date   %>
-            <td id="no_print"><%= link_to 'Edit'   %></td>
-            <td id="no_print"><%= link_to 'Remove' %></td>
+            <td id="no_print"><%= link_to 'Remove', remove_utility_room_url(detail.id) %></td>
       </tr>
       <% end %>
     </tbody>

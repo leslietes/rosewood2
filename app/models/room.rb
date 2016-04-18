@@ -15,6 +15,10 @@ class Room < ActiveRecord::Base
     find(room_id).update(occupied: 1)
   end
   
+  def self.vacated!(room_id)
+    find(room_id).update(occupied: 0)
+  end
+  
   def self.occupancy_list
     #Room.includes(:checkins,:occupants)
     Room.find_by_sql("select rooms.id, 

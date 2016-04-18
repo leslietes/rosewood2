@@ -32,4 +32,8 @@ class Occupant < ActiveRecord::Base
     return "" if birthdate.blank?
     "(#{Date.today.year - birthdate.year} years old)" 
   end
+  
+  def inactive!
+    update(active: false)
+  end
 end
