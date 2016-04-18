@@ -27,22 +27,22 @@
           <th>Daily Rate</th>
           <th>Active?</th>
           <th>Occupied?</th>
-          <th colspan="3">Actions</th>
+          <th colspan="1">Actions</th>
         </tr>
       </thead>
 
       <tbody>
         <% @rooms.each do |room| %>
           <tr>
-            <td><%= room.room_no %></td>
+            <td><%= link_to room.room_no, room %></td>
             <td><%= room.max_occupants %></td>
             <td><%= to_currency(room.room_rate) %></td>
             <td><%= to_currency(room.daily_rate) %></td>
             <td><%= to_status(room.active) %></td>
             <td><%= to_status(room.occupied) %></td>
-            <td><%= link_to 'Show', room %></td>
+            <%#= link_to 'Show', room %>
             <td><%= link_to 'Edit', edit_room_path(room) %></td>
-            <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%#= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %>
           </tr>
         <% end %>
       </tbody>
@@ -50,7 +50,7 @@
     
   </div>
   
-  <%= link_to 'New Room', new_room_path %>      
+  <%#= link_to 'New Room', new_room_path %>      
   
   <div class="clear padding15"></div>
 </section>
