@@ -21,7 +21,7 @@
         <th>Room No</th>
         <th>Occupants</th>
         <th>Start Date</th>
-        <th>Actions</th>
+        <th id="no_print">Actions</th>
       </thead>
       <tbody>
         <%# do not duplicate room nos if same %>
@@ -33,7 +33,7 @@
             <td class="ten center"><%= list.room_no if list.id != room_id %></td>                       
             <td class="seventy"><%= "#{list.first_name} #{list.last_name}" %></td>
             <td class="ten center"><%= list._date %></td>
-            <td class="ten center"><%= link_to 'Details', occupancy_details_room_url(list._id) if list.has_checkin? %></td>
+            <td class="ten center" id="no_print"><%= link_to 'Details', occupancy_details_room_url(list._id) if list.has_checkin? %></td>
           </tr>  
 
           <% room_id = list.id %>

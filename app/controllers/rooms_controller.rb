@@ -69,13 +69,13 @@ class RoomsController < ApplicationController
     @basic = Utility.basic
     @extra = Utility.extras
     
+    return unless request.post?
+    
     # at least one occupant should be selected
     if params[:occupants].blank? || params[:room_no].blank?
       flash[:notice] = "Please select room and occupant"
-      return
+      redirect_to :back
     end
-    
-    return unless request.post?
     
     if Room.exists?(params[:room_no])
       Room.transaction do
@@ -115,6 +115,17 @@ class RoomsController < ApplicationController
     # for form
     @occupants = Occupant.waiting_for_room
     @utilities = Utility.all.flatten - @checkin.first.utilities.flatten
+    
+    respond_to do |format|
+      format.html
+      format.pdf do
+        html = render_to_string(:layout => false, :action => "occupancy_details.html.erb")
+        kit = PDFKit.new(html, :page_size => 'Letter')
+        kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/print.css"
+        send_data kit.to_pdf, filename: "occupancy_details_#{@checkin.first.room_no}_#{Date.today}.pdf", type: "application/pdf", disposition: "inline"
+        
+      end
+    end
   end
   
   def new_roommate

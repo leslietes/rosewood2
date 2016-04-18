@@ -2,12 +2,12 @@
 <section class="container clearfix">
   <!-- Page Title -->
   <header class="container page_info clearfix">
-    <h1 class="regular brown bottom_line">Settings</h1>
+    <h1 class="regular brown bottom_line" id="no_print">Settings</h1>
     <div class="clear"></div>
   </header>
   <!-- /Page Title -->
 
-  <div class="col_1_4">
+  <div class="col_1_4" id="no_print">
     <%= render :partial => '/shared/menu_sidebar' %>
   </div>
   
@@ -19,11 +19,12 @@
     <p id="notice"><%= notice %></p>
     
     <p>
-      <%= label_tag :room_no %>
+      <%= label_tag :room_no %>:
       <%= @checkin.first.room_no %><br/>
-      <%= label_tag :start_date %>
+      <%= label_tag :start_date %>:
       <%= @checkin.first.start_date %>
     </p>
+    <div class="clear padding20"></div>
     
     <h3 class="center">Occupants</h3>
     
@@ -32,7 +33,7 @@
         <th>Name</th>
         <th>Start Date</th>
         <th>End Date</th>
-        <th>Actions</th>
+        <th id="no_print">Actions</th>
       </thead>
       <tbody>
         <% @checkin.each do |occupant| %>
@@ -40,13 +41,13 @@
           <td><%= "#{occupant.first_name} #{occupant.last_name}" %></td>
           <td><%= occupant._sdate %></td>
           <td><%= occupant._edate %></td>
-          <td><%= link_to 'Remove Occupant' %></td>
+          <td id="no_print"><%= link_to 'Remove Occupant' %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
     
-    <span><i>'Remove Occupant' is for when an occupant leaves the room, but someone else is left behind.<br/> Do not use 'Remove Occupant' when vacating entire room.</i></span>
+    <span id="no_print"><i>'Remove Occupant' is for when an occupant leaves the room, but someone else is left behind.<br/> Do not use 'Remove Occupant' when vacating entire room.</i></span>
     
     <div class="clear padding20"></div>
     
@@ -56,32 +57,36 @@
       <thead>
         <th>Item</th>
         <th>Rate</th>
-        <th colspan="2">Actions</th>
+        <th colspan="2" id="no_print">Actions</th>
       </thead>
       <tbody>
         
       <% @details.each do |detail| %>
         <tr>
-            <td class="left"><%= detail.utility %></td>
+            <td class="left"><%= detail.utility.name %></td>
             <td><%= to_currency(detail.amount) %></td>
             <%#= detail.start_date %>
             <%#= detail.end_date   %>
-            <td><%= link_to 'Edit'   %></td>
-            <td><%= link_to 'Remove' %></td>
+            <td id="no_print"><%= link_to 'Edit'   %></td>
+            <td id="no_print"><%= link_to 'Remove' %></td>
       </tr>
       <% end %>
     </tbody>
     </table>
-    <span><i>These are items added when generating billing statements. Remove one-time items such as Cable TV Installation, Cable TV Termination, Transcient Fees and Damages, and add them as needed.</i></span>
+    <span id="no_print"><i>These are items added when generating billing statements. Remove one-time items such as Cable TV Installation, Cable TV Termination, Transcient Fees and Damages, and add them as needed.</i></span>
     
     <div class="clear padding20"></div>
     <div class="clear padding20"></div>
     
-    <%= link_to 'PRINT' %> 
-
+    <div id="no_print">
+      <%= link_to 'PRINT', occupancy_details_room_url(@checkin.first, format: "pdf") %> 
+    </div>
+    
     <div class="clear padding20"></div>
     <div class="clear padding20"></div>
     
+    
+    <div id="no_print">
     <%= form_tag new_roommate_room_path(id: @checkin.first.id) do %>
       <p>
         <label>New Roommate</label>
@@ -96,7 +101,7 @@
       <p>
         <%= label_tag :utilities %><br/>
         <% @utilities.each do |u| %>
-          <%= check_box_tag "utilities[#{u.id}]" %> <%= u.to_s %> <%= to_currency(u.rate) %><br/>
+          <%= check_box_tag "utilities[#{u.id}]" %> <%= u.name %> <%= to_currency(u.rate) %><br/>
         <% end %>
       </p>
 
@@ -105,7 +110,7 @@
       </p>
       
     <% end %>   
-    
+    </div >
   </div>
   
   <div class="clear padding15"></div>
