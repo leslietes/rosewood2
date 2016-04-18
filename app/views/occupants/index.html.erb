@@ -45,8 +45,8 @@
         <td><%= occupant.school_or_work %></td>
         <td><%= occupant.course_or_position %></td>
         <td><%= occupant.year_or_date_started %></td>
-        <td><%= occupant.active? %></td>
-        <td><%= occupant.waiting? %></td>
+        <td><%= to_status(occupant.active?) %></td>
+        <td><%= to_status(occupant.waiting?) %></td>
         <%#= link_to 'Show', occupant %>
         <td><%= link_to 'Edit', edit_occupant_path(occupant) %></td>
         <%#= link_to 'Destroy', occupant, method: :delete, data: { confirm: 'Are you sure?' } %>

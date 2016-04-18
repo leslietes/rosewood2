@@ -24,8 +24,8 @@
       <%= label_tag :telephone %><%= @occupant.telephone %><br/>
       <%= label_tag :mobile %><%= @occupant.mobile %><br/>
       <%= label_tag :birthdate %><%= @occupant.birthdate %> <%= @occupant.age %><br/>
-      <%= label_tag :waiting? %><%= @occupant.waiting %><br/>
-      <%= label_tag :active? %><%= @occupant.active %><br/>
+      <%= label_tag :waiting? %><%= to_status(@occupant.waiting) %><br/>
+      <%= label_tag :active? %><%= to_status(@occupant.active) %><br/>
     </p>
     
     <h4>School or Profession</h4>
