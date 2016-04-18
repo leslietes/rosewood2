@@ -29,6 +29,8 @@
       <th>School/Work</th>
       <th>Course/Position</th>
       <th>Year/Year Started</th>
+      <th>Active?</th>
+      <th>Waiting?</th>
       <th colspan="1">Actions</th>
     </tr>
   </thead>
@@ -43,6 +45,8 @@
         <td><%= occupant.school_or_work %></td>
         <td><%= occupant.course_or_position %></td>
         <td><%= occupant.year_or_date_started %></td>
+        <td><%= occupant.active? %></td>
+        <td><%= occupant.waiting? %></td>
         <%#= link_to 'Show', occupant %>
         <td><%= link_to 'Edit', edit_occupant_path(occupant) %></td>
         <%#= link_to 'Destroy', occupant, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -50,12 +54,18 @@
     <% end %>
   </tbody>
 </table>
+<span><i>
+  Occupants should be 'active = true' and 'waiting = true' to appear on Check In page.<br/>
+  Occupants who are 'active = false' have moved out.<br/>
+  Occupants who are 'waiting = false' have checked in.<br/><br/>
+</i></span>
 
 </div>
 
   <%= link_to 'New Occupant', new_occupant_path %>
-
+  
   <div class="clear padding15"></div>
+    
 </section>
 
     

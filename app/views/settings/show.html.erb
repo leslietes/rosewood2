@@ -16,6 +16,10 @@
 
     <p id="notice"><%= notice %></p>
     
+    <%= link_to 'Edit Settings', edit_setting_path(@setting) %>
+    
+    <br/><br/>
+    
     <!--span>
       <%#= label_tag :logo %><br/>
       <figure><%#= image_tag @setting.logo.url(:medium) %></figure>     
@@ -104,7 +108,7 @@
           
     <br/>
 
-    <%= link_to 'Edit', edit_setting_path(@setting) %>
+    <%= link_to 'Edit Settings', edit_setting_path(@setting) %>
 
   </div>
         
