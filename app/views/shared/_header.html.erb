@@ -16,7 +16,7 @@
           <li><%= link_to 'FAQ', faqs_url %></li>
         	<li><%= link_to 'Contact', contact_url %></li>
           <% if current_user %>
-            <li><%= link_to 'SIGN OUT', logout_path, :method => :delete %></li>
+            <li><%= link_to 'LOG OUT', logout_path %></li>
           <% end %>  
          </ul>
        </nav>

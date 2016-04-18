@@ -3,13 +3,25 @@
     <h1 class="regular brown bottom_line">Edit Question</h1>
     <div class="clear"></div>
   </header>
+  
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
 
-<%= form_for @faq, :html => {:class => "admin_form"} do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
+  <div class="col_3_4 last">
+    <h3 class="red">Editing FAQ</h3>
 
-  <%= f.submit "Update", :class => "button white" %>
+    <p id="notice"><%= notice %></p>
+    
+    <%= form_for @faq, :html => {:class => "admin_form"} do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
 
-  <div class="clear padding25"></div>
-<% end %>
+      <%= f.submit "Update", :class => "button white" %>
 
-</section>
+      <div class="clear padding25"></div>
+    <% end %>
+
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>  

@@ -6,8 +6,19 @@
     <div class="clear"></div>
   </header>
   <!-- /Page Title -->
-		
-  <div class="container">
+	
+  <% if user_signed_in? %>
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  <% end %>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3>Room List</h3>
+  	
+
     <% @faqs.each do |faq| %>
     <% if !faq.show? %>
       <h3><%= faq.question %></h3>
@@ -19,8 +30,8 @@
     <% end %>
     
     <%= link_to 'New', new_faq_path if current_user %>
-  </div>
 
-  <div class="clear padding30"></div>
+
+  <div class="clear padding20"></div>
 
 </section>
