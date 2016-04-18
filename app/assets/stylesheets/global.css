@@ -3704,3 +3704,10 @@ ul.sidebarmenu li {
 ul.sidebarmenu li:hover {
 	background:#f7f3e3;
 }
+
+/* ============= Form Elements ================= */
+input[type="text"], input[type="file"] { width: 200px; }
+
+textarea { width:200px;height:200px; }
+
+select { width: 220px; }
