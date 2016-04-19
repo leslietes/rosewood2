@@ -5,6 +5,7 @@ class Room < ActiveRecord::Base
   
   has_many :checkins
   has_many :occupants, through: :checkin_occupants
+  has_many :checkin_occupants
   
   has_many :notices
   
@@ -26,18 +27,7 @@ class Room < ActiveRecord::Base
   end
   
   def self.occupancy_list
-    #Room.includes(:checkins,:occupants)
-    Room.find_by_sql("select rooms.id, 
-                             rooms.room_no, 
-                             IFNULL(occupants.last_name,'VACANT') as last_name,
-                             occupants.first_name as first_name,
-                             checkins.id as _id, 
-                             checkin_occupants.start_date as _date 
-                       from rooms 
-                       left join checkins on rooms.id = checkins.room_id 
-                       left join checkin_occupants on checkins.id = checkin_occupants.checkin_id
-                       left join occupants on checkin_occupants.occupant_id = occupants.id
-                   order by rooms.room_no, occupants.last_name, occupants.first_name ;")
+    Room.includes(checkins: {:checkin_occupants => :occupant})
   end
   
   def start_date

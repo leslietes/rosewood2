@@ -1,0 +1,33 @@
+    <h3>Occupancy List</h3>
+    
+    <table>
+      <thead>
+        <th>Room No</th>
+        <th>Occupants</th>
+        <th>Start Date</th>
+      </thead>
+      <tbody>
+        <% @rooms.each do |room| %>
+          <% if room.has_checkin? %>
+            <tr>
+              <td><%= room.room_no %></td>
+              <td>
+               <% room.checkins.first.checkin_occupants.each do |o| %>
+                 <%= o.occupant.name %><br/>
+               <% end %>
+              </td>
+              <td><%= room.checkins.first.start_date %></td>
+            </tr>
+          <% else %>
+            <tr>
+              <td><%= room.room_no %></td>
+              <td>VACANT</td>
+              <td></td>
+            </tr>
+          <% end %>
+        <% end %>
+        
+      </tbody>
+    </table>
+    
+ 

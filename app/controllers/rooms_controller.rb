@@ -96,7 +96,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        html = render_to_string(:layout => false, :action => "occupancy_list.html.erb")
+        html = render_to_string(:layout => false, :action => "occupancy_list_print.html.erb")
         # many other options
         kit  = PDFKit.new(html, :page_size =>   'Letter')
         # you have to give whole path of stylesheet

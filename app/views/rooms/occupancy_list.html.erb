@@ -15,34 +15,43 @@
     <!--h3 class="red">Settings</h3-->
     
     <h3>Occupancy List</h3>
+    
+    <ul id="occupancy_list">
+      <% @rooms.each do |room| %>
+        <% if room.has_checkin? %>
+          <li>
+            <h2><%= room.room_no %></h2>
+            <div id="occupants">
+              <%= room.checkins.first.start_date %><br/>
+              <% room.checkins.first.checkin_occupants.each do |o| %>
+                <%= o.occupant.name %><br/>
+              <% end %>
 
-    <table id="borders">
-      <thead>
-        <th>Room No</th>
-        <th>Occupants</th>
-        <th>Start Date</th>
-        <th id="no_print">Actions</th>
-      </thead>
-      <tbody>
-        <%# do not duplicate room nos if same %>
-        <% room_id = 0 %>
-        
-        <% @rooms.each do |list| %>
-          
-          <tr>
-            <td class="ten center"><%= list.room_no if list.id != room_id %></td>                       
-            <td class="seventy"><%= "#{list.first_name} #{list.last_name}" %></td>
-            <td class="ten center"><%= list._date %></td>
-            <td class="ten center" id="no_print"><%= link_to 'Details', occupancy_details_room_url(list._id) if list.has_checkin? %></td>
-          </tr>  
+            </div>
+            <div id="actions" class="no_print">
+              <%= link_to 'VIEW DETAILS', occupancy_details_room_path(room.checkins.first) %><br/>
+              <%= link_to 'ADD NOTICE TO VACATE' %><br/>
+              <%= link_to 'ADD RESERVATION' %><br/>
+              <%= link_to 'GENERATE BILLING' %>
+            </div>
+          </li>
+        <% else %>
+          <li>
+            <h2><%= room.room_no %></h2>
+            <div id="vacant"><%= 'VACANT '%></div>
+            <div id="actions" class="no_print">
+              <br/><br/>
+              <%= link_to 'ADD RESERVATION' %><br/>
 
-          <% room_id = list.id %>
-
+            </div>
+          </li>  
         <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    </ul>
 
-    <div id="no_print">
+    <div class="clear padding15"></div>
+
+    <div class="no_print">
       <%= link_to 'PRINT', occupancy_list_rooms_url(:format => :pdf) %>
     </div>
     
