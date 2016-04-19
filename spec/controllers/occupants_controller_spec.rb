@@ -79,7 +79,7 @@ describe OccupantsController do
     
       it "redirects to index page after create" do
         post :create, occupant: FactoryGirl.attributes_for(:occupant1)
-        response.should redirect_to Occupant.last
+        response.should redirect_to occupants_url
       end
     end
     

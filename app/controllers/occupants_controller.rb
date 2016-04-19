@@ -5,7 +5,7 @@ class OccupantsController < ApplicationController
   # GET /occupants
   # GET /occupants.json
   def index
-    @occupants = Occupant.all
+    @occupants = Occupant.all.order(last_name: :asc, first_name: :asc)
   end
 
   # GET /occupants/1
@@ -29,7 +29,7 @@ class OccupantsController < ApplicationController
 
     respond_to do |format|
       if @occupant.save
-        format.html { redirect_to @occupant, notice: 'Occupant was successfully created.' }
+        format.html { redirect_to occupants_url, notice: 'Occupant was successfully created.' }
         format.json { render :show, status: :created, location: @occupant }
       else
         format.html { render :new }
