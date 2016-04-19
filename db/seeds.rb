@@ -37,7 +37,7 @@ Faq.create(question: 'Can I ask for an extra bed?', answer: 'Our rooms are speci
 
 
 Room.create(room_no: 101, max_occupants: 2, room_rate: 8000, active: false)
-Room.create(room:no: 102, max_occupants: 4, room_rate: 12000, active: true)
+Room.create(room_no: 102, max_occupants: 4, room_rate: 12000, active: true)
 
 Room.create(room_no: 201, max_occupants: 3, room_rate: 10500, active: true)
 Room.create(room_no: 202, max_occupants: 3, room_rate: 10000, active: true)
