@@ -11,7 +11,7 @@ class Occupant < ActiveRecord::Base
   has_many :rooms,    through: :checkins
   
   def self.waiting_for_room
-    select(:id, :last_name, :first_name).where(waiting: true)
+    select(:id, :last_name, :first_name).where(waiting: true).order(last_name: :asc, first_name: :asc)
   end
   
   # status updated after check in

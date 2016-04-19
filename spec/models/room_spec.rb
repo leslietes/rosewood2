@@ -72,13 +72,11 @@ describe Room do
     
       list = Room.occupancy_list
       list.size.should be 1
-      list.first.last_name.should eq "#{@occupant.last_name}"
     end
   
     it "returns VACANT if room has no checkin" do
       list = Room.occupancy_list
       list.size.should be 1
-      list.first.last_name.should eq "VACANT"
     end
   end
 end

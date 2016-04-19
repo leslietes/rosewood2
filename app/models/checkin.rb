@@ -14,6 +14,7 @@ class Checkin < ActiveRecord::Base
     
   def self.get_details(checkin_id)
     find_by_sql("select checkins.id, 
+                        checkins.room_id,
                         checkins.checkout, 
                         checkins.start_date as start_date, 
                         checkins.end_date, 
@@ -41,5 +42,9 @@ class Checkin < ActiveRecord::Base
       destroy
     end
     destroy
+  end
+  
+  def transfer_room(new_room_id)
+    update(room_id: new_room_id)
   end
 end

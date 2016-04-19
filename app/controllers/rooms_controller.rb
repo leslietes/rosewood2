@@ -74,7 +74,7 @@ class RoomsController < ApplicationController
     # at least one occupant should be selected
     if params[:occupants].blank? || params[:room_no].blank?
       flash[:notice] = "Please select room and occupant"
-      redirect_to :back
+      return
     end
     
     if Room.exists?(params[:room_no])
@@ -111,6 +111,9 @@ class RoomsController < ApplicationController
     #todo: check if checkin exists else redirect    
     @checkin   = Checkin.get_details(params[:id])
     @details   = @checkin.first.checkin_details
+    
+    # for transfer room
+    @rooms     = Room.unoccupied
     
     # for form
     @occupants = Occupant.waiting_for_room
@@ -173,6 +176,24 @@ class RoomsController < ApplicationController
     
     flash[:notice] = "Room has been vacated"
     redirect_to occupancy_list_rooms_url
+  end
+  
+  def transfer
+    puts "=======#{params.inspect}"
+    
+    checkin = Checkin.find(params[:id])
+    
+    Checkin.transaction do
+      checkin.transfer_room(params[:new_room_id])
+      Room.vacated!(params[:room_id])
+      Room.occupied!(params[:new_room_id])
+    
+      flash[:notice] = "Room transfer was made successfully" 
+      redirect_to occupancy_details_room_url(checkin)
+    end
+
+    return
+    
   end
   
   private

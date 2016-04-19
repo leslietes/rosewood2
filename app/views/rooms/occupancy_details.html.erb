@@ -48,7 +48,18 @@
     </table>
     
     <div class="no_print">
-      <%= link_to 'Vacate Room', vacate_room_url(@checkin.first) %>
+      
+      <div style="width:auto;display:inline-block">
+      <%= form_tag transfer_room_url(@checkin.first.id) do %>
+        <%= hidden_field_tag :room_id, @checkin.first.room_id %>
+        New Room Number: 
+        <%= select_tag "new_room_id", options_for_select(@rooms), prompt: "Select room" %>
+        <%= submit_tag 'Tranfer Room' %>
+        <%= link_to 'Vacate Room', vacate_room_url(@checkin.first), class: "styled_links" %>
+      <% end %>
+      
+    </div>
+      
     </div>
     
     <div class="clear padding20"></div>
@@ -80,10 +91,9 @@
     <span class="no_print"><i>These are items added when generating billing statements. Remove one-time items such as Cable TV Installation, Cable TV Termination, Transcient Fees and Damages, and add them as needed.</i></span>
     
     <div class="clear padding20"></div>
-    <div class="clear padding20"></div>
     
     <div class="no_print">
-      <%= link_to 'PRINT', occupancy_details_room_url(@checkin.first, format: "pdf") %> 
+      <%= link_to 'PRINT', occupancy_details_room_url(@checkin.first, format: "pdf"), class: "styled_links" %> 
     </div>
     
     <div class="clear padding20"></div>

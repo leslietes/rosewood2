@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get  'remove_occupant', on: :member
       get  'remove_utility',  on: :member
       get  'vacate',          on: :member
+      post 'transfer',        on: :member
     end
     resources :occupants
     resources :utilities    
