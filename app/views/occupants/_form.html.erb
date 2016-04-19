@@ -15,7 +15,7 @@
         <ul id="list">
           
           <div class="actions">
-            <%= f.submit %>
+            <%= f.submit %>    <%= link_to 'Cancel', @occupant, class: "styled_links" %> 
           </div>
 
       <li id="id-1">
@@ -138,7 +138,11 @@
           <%= f.label :date_left %>
           <%= f.text_field :date_left %>
         </p>
-        <div class="clear padding15"></div>
+
+        <div class="actions">
+          <%= f.submit %>    <%= link_to 'Cancel', @occupant, class: "styled_links" %> 
+        </div>
+
       </li>
 
       <li id="id-2">
@@ -260,16 +264,10 @@
           <%= f.label :active %>
           <%= f.check_box :active %>
         </p>
-        <div class="clear"></div>
-
   
       </li>
       
     </ul>
-   
-    <div class="actions">
-      <%= f.submit %>
-    </div>
         
   <% end %>
 

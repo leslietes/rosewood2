@@ -15,6 +15,12 @@
     
     <h3 class="red"><%= @occupant.name %></h3>
     
+    <p id="notice"><%= notice %></p>
+    
+    <%= link_to 'Edit', edit_occupant_path(@occupant), class: "styled_links" %>
+    
+    <div class="clear padding20"></div>
+    
     <p>
       <%= image_tag @occupant.photo.url(:medium) %>
     </p>
@@ -75,13 +81,9 @@
       <%= label_tag :guardians_address   %><%= @occupant.guardians_address %><br/>
       <%= label_tag :guardians_telephone %><%= @occupant.guardians_telephone %><br/>
       <%= label_tag :guardians_mobile    %><%= @occupant.guardians_mobile %>
-    </p>
-    
-          
-    <br/>
+    </p>      
 
-    <%= link_to 'Edit', edit_occupant_path(@occupant) %> |
-    <%= link_to 'Back', occupants_path %>
+    <%= link_to 'Edit', edit_occupant_path(@occupant), class: "styled_links" %>
 
   </div>
         

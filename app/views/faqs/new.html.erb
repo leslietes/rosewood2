@@ -13,14 +13,7 @@
 
     <p id="notice"><%= notice %></p>
 
-<%= form_for @faq, :html => {:class => "admin_form"} do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
-
-  <%= f.submit "Create", :class => "button white" %>
-
-  <div class="clear padding25"></div>
-<% end %>
-
+    <%= render 'form' %>
   </div>
         
   <div class="clear padding15"></div>

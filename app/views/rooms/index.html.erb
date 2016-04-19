@@ -15,8 +15,12 @@
     <!--h3 class="red">Settings</h3-->
     
     <h3>Room List</h3>
-
+    
     <p id="notice"><%= notice %></p>
+    
+    <%= link_to 'New Room', new_room_path, class: "styled_links" %>      
+
+    <div class="clear padding20"></div>  
     
     <table>
       <thead>
@@ -50,7 +54,7 @@
     
   </div>
   
-  <%#= link_to 'New Room', new_room_path %>      
+  <%= link_to 'New Room', new_room_path, class: "styled_links" %>      
   
   <div class="clear padding15"></div>
 </section>

@@ -1,4 +1,47 @@
-<p id="notice"><%= notice %></p>
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
 
-<%= link_to 'Edit', edit_utility_path(@utility) %> |
-<%= link_to 'Back', utilities_path %>
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <h3 class="red">Utilities</h3>
+
+    <p id="notice"><%= notice %></p>
+        
+    <p>
+      <%= label_tag :name %><%= @utility.name %>
+    </p>
+    
+    <p>
+      <%= label_tag :description %><%= @utility.description %>
+    </p>
+    
+    <p>
+      <%= label_tag :rate %><%= to_currency(@utility.rate) %>
+    </p>
+    
+    <p>
+      <%= label_tag :unit %><%= @utility.unit %>
+    </p>
+    
+    <p>
+      <%= label_tag :category %><%= @utility.category %>
+    </p>
+          
+    <br/>
+
+    <%= link_to 'Edit', edit_utility_path(@utility), class: "styled_links" %> 
+    <%= link_to 'Cancel', utilities_path, class: "styled_links" %>
+
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>

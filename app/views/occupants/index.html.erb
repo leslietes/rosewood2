@@ -15,8 +15,12 @@
     <!--h3 class="red">Settings</h3-->
     
     <h3>Occupant List</h3>
-
+    
     <p id="notice"><%= notice %></p>
+
+    <%= link_to 'New Occupant', new_occupant_path, class: "styled_links" %>
+
+    <div class="clear padding20"></div>
     
     
 <table>
@@ -62,7 +66,6 @@
 
 </div>
 
-  <%= link_to 'New Occupant', new_occupant_path %>
   
   <div class="clear padding15"></div>
     

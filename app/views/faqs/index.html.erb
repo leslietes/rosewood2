@@ -17,19 +17,23 @@
     <!--h3 class="red">Settings</h3-->
     
     <h3>Frequently Asked Questions</h3>
-  	
+
+    <p id="notice"><%= notice %></p>
+
+    <%= link_to 'New FAQ', new_faq_path, class: "styled_links" if current_user %>
+    
+    <div class="clear padding20"></div>  
 
     <% @faqs.each do |faq| %>
     <% if !faq.show? %>
       <h3><%= faq.question %></h3>
-      <p>
-        <%= faq.answer %>
-        <%= link_to 'Edit', edit_faq_url(faq) if current_user %>
-      </p>
+      <p><%= faq.answer %></p>
+      <%= link_to 'Edit', edit_faq_url(faq), class: "styled_links" if current_user %>
+      <div class="clear padding20"></div>
     <% end %>
     <% end %>
     
-    <%= link_to 'New FAQ', new_faq_path if current_user %>
+    <%= link_to 'New FAQ', new_faq_path, class: "styled_links" if current_user %>
 
 
   <div class="clear padding20"></div>

@@ -1,3 +1,5 @@
+<%= form_for @faq, :html => {:class => "admin_form"} do |f| %>
+
   <% if @faq.errors.any? %>
       <%= pluralize(@faq.errors.count, "error")%> prohibited this entry from being saved
       <ul>
@@ -29,3 +31,10 @@
   
 
   <div class="clear padding25"></div>  
+
+
+  <%= f.submit class: "button white" %>
+  <%= link_to 'Cancel', faqs_url, class: "styled_links "%>
+
+  <div class="clear padding25"></div>
+<% end %>

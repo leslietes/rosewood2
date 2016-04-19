@@ -16,9 +16,9 @@
 
     <p id="notice"><%= notice %></p>
     
-    <%= link_to 'Edit Settings', edit_setting_path(@setting) %>
+    <%= link_to 'Edit Settings', edit_setting_path(@setting), class: "styled_links" %>
     
-    <br/><br/>
+    <div class="clear padding20"></div>
     
     <!--span>
       <%#= label_tag :logo %><br/>
@@ -105,10 +105,10 @@
     <p>
       <%= label_tag :email %><%= @setting.email %>
     </p>
-          
-    <br/>
 
-    <%= link_to 'Edit Settings', edit_setting_path(@setting) %>
+    <%= link_to 'Edit Settings', edit_setting_path(@setting), class: "styled_links" %>
+    
+    <div class="clear padding20"></div>
 
   </div>
         

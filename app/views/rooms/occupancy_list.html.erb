@@ -16,6 +16,12 @@
     
     <h3>Occupancy List</h3>
     
+    <div class="no_print">
+      <%= link_to 'PRINT', occupancy_list_rooms_url(:format => :pdf) , class: "styled_links "%>
+    </div>
+    
+    <div class="clear padding15"></div>
+    
     <ul id="occupancy_list">
       <% @rooms.each do |room| %>
         <% if room.has_checkin? %>
@@ -52,7 +58,7 @@
     <div class="clear padding15"></div>
 
     <div class="no_print">
-      <%= link_to 'PRINT', occupancy_list_rooms_url(:format => :pdf) %>
+      <%= link_to 'PRINT', occupancy_list_rooms_url(:format => :pdf) , class: "styled_links "%>
     </div>
     
     <div class="clear padding15"></div>
