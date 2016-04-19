@@ -15,7 +15,7 @@ class Room < ActiveRecord::Base
   
   def self.unoccupied
     # do not reverse order of pluck - for select_tag
-    where(occupied: false).pluck(:room_no, :id)
+    where(occupied: false, active: true).pluck(:room_no, :id)
   end
   
   def self.occupied!(room_id)
@@ -27,7 +27,7 @@ class Room < ActiveRecord::Base
   end
   
   def self.occupancy_list
-    Room.includes(checkins: {:checkin_occupants => :occupant})
+    Room.where(active: true).includes(checkins: {:checkin_occupants => :occupant}).order(room_no: :asc)
   end
   
   def start_date
