@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     end
     resources :occupants
     resources :utilities    
-    resources :notices
   end
   
   match 'contact' => "home#contact", :via => [:get, :post]
