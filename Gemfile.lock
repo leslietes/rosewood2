@@ -140,6 +140,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
     pdfkit (0.8.2)
+    pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -263,6 +264,7 @@ DEPENDENCIES
   mysql
   paperclip (~> 5.0.0.beta1)
   pdfkit
+  pg
   rails (= 4.2.4)
   rspec-rails
   sass-rails (~> 5.0)

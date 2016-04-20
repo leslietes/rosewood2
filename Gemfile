@@ -59,3 +59,7 @@ group :test do
   gem 'guard-rspec'
   gem 'launchy'
 end
+
+group :production do
+  gem 'pg'
+end
