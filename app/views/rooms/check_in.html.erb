@@ -37,14 +37,14 @@
       <p>
         <%= label_tag :basic %><br/>
         <% @basic.all.each do |u| %>
-          <%= check_box_tag "utilities[#{u.id}]" %> <%= u.name %> <%= to_currency(u.rate) %><br/>
+          <%= check_box_tag "utilities[]", u.id , true %> <%= u.name %> <%= to_currency(u.rate) %><br/>
         <% end %>
       </p>
         
       <p>
         <%= label_tag :extras %><br/>
         <% @extra.all.each do |u| %>
-          <%= check_box_tag "utilities[#{u.id}]" %> <%= u.name %> <%= to_currency(u.rate) %><br/>
+          <%= check_box_tag "utilities[]", u.id %> <%= u.name %> <%= to_currency(u.rate) %><br/>
         <% end %>
       </p>
       

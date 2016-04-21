@@ -179,8 +179,6 @@ class RoomsController < ApplicationController
   end
   
   def transfer
-    puts "=======#{params.inspect}"
-    
     checkin = Checkin.find(params[:id])
     
     Checkin.transaction do
@@ -208,7 +206,9 @@ class RoomsController < ApplicationController
     end
     
     def new_checkin(room_id, start_date)
-      Checkin.create(room_id: room_id, start_date: start_date, user_id: current_user.id)
+      # get room no for easier generation of billings
+      room = Room.room_no(room_id)
+      Checkin.create(room_id: room_id, room_no: room.room_no, start_date: start_date, user_id: current_user.id)
     end
       
     def occupy_room(room_id)      
@@ -229,13 +229,10 @@ class RoomsController < ApplicationController
     def add_utilities(checkin, utilities_array, start_date)
       return if utilities_array.blank?
       
-      # returns ["1","2"]
-      keys = utilities_array.keys
-      
-      keys.each do |key| 
+      utilities_array.each do |key| 
         # get updated amount
         amount = Utility.find(key).rate
-        checkin.checkin_details.create(utility_id: key, amount: amount, start_date: start_date)
+        checkin.checkin_details.create(utility_id: key, amount: amount, start_date: start_date, amount: amount)
       end
     end    
 end

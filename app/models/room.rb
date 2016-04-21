@@ -30,6 +30,10 @@ class Room < ActiveRecord::Base
     Room.where(active: true).includes(checkins: {:checkin_occupants => :occupant}).order(room_no: :asc)
   end
   
+  def self.room_no(room_id)
+    find(room_id)
+  end
+  
   def start_date
     if checkins.blank?
       return ''
