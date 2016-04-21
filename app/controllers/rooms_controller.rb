@@ -207,8 +207,8 @@ class RoomsController < ApplicationController
     
     def new_checkin(room_id, start_date)
       # get room no for easier generation of billings
-      room = Room.room_no(room_id)
-      Checkin.create(room_id: room_id, room_no: room.room_no, start_date: start_date, user_id: current_user.id)
+      room_no = Room.room_no(room_id)
+      Checkin.create(room_id: room_id, room_no: room_no, start_date: start_date, user_id: current_user.id)
     end
       
     def occupy_room(room_id)      
@@ -231,7 +231,7 @@ class RoomsController < ApplicationController
       
       utilities_array.each do |key| 
         # get updated amount
-        amount = Utility.find(key).rate
+        amount = Utility.find(key).first_rate
         checkin.checkin_details.create(utility_id: key, amount: amount, start_date: start_date, amount: amount)
       end
     end    

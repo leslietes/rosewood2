@@ -28,6 +28,8 @@
           <th>Name</th>
           <th>Description</th>
           <th>Rate</th>
+          <th>Limit</th>
+          <th>Excess Rate</th>
           <th>Unit</th>
           <th colspan="1">Actions</th>
         </tr>
@@ -38,7 +40,9 @@
           <tr>
             <td><%= link_to utility.name, utility %></td>
             <td><%= utility.description %></td>
-            <td><%= to_currency(utility.rate) %></td>
+            <td><%= to_currency(utility.first_rate) %></td>
+            <td><%= utility.first_limit %></td>
+            <td><%= utility.excess_rate %></td>
             <td><%= utility.unit %></td>
             <%#= link_to 'Show', utility %>
             <td><%= link_to 'Edit', edit_utility_path(utility) %></td>

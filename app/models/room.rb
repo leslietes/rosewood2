@@ -31,7 +31,7 @@ class Room < ActiveRecord::Base
   end
   
   def self.room_no(room_id)
-    find(room_id)
+    find(room_id).room_no
   end
   
   def start_date

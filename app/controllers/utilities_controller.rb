@@ -70,6 +70,6 @@ class UtilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def utility_params
-      params.require(:utility).permit(:name,:description,:rate,:unit,:category)
+      params.require(:utility).permit(:name,:description,:first_rate,:first_limit,:excess_rate,:unit,:category)
     end
 end

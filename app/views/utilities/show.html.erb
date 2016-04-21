@@ -25,7 +25,15 @@
     </p>
     
     <p>
-      <%= label_tag :rate %><%= to_currency(@utility.rate) %>
+      <%= label_tag :rate %><%= to_currency(@utility.first_rate) %>
+    </p>
+    
+    <p>
+      <%= label_tag :limit %><%= to_currency(@utility.first_limit) %>
+    </p>
+    
+    <p>
+      <%= label_tag :excess_rate %><%= to_currency(@utility.excess_rate) %>
     </p>
     
     <p>
