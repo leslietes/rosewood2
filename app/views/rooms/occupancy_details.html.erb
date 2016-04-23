@@ -121,7 +121,7 @@
       <p>
         <%= label_tag :utilities %><br/>
         <% @utilities.each do |u| %>
-          <%= check_box_tag "utilities[#{u.id}]" %> <%= u.name %> <%= to_currency(u.first_rate) %><br/>
+          <%= check_box_tag "utilities[]", u.id %> <%= u.name %> <%= to_currency(u.first_rate) %><br/>
         <% end %>
       </p>
 
