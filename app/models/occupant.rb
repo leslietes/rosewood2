@@ -19,7 +19,7 @@ class Occupant < ActiveRecord::Base
     find(occupant_id).update(waiting: false)
   end
   
-  def name
+  def to_s
     "#{first_name} #{last_name}"
   end
   

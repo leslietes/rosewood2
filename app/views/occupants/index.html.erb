@@ -42,7 +42,7 @@
   <tbody>
     <% @occupants.each do |occupant| %>
       <tr>
-        <td><%= link_to occupant.name, occupant %></td>
+        <td><%= link_to occupant, occupant %></td>
         <td><%= occupant.city %></td>
         <td><%= occupant.province %></td>
         <td><%= occupant.mobile %></td>

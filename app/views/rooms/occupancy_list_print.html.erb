@@ -13,7 +13,7 @@
               <td><%= room.room_no %></td>
               <td>
                <% room.checkins.first.checkin_occupants.each do |o| %>
-                 <%= o.occupant.name %><br/>
+                 <%= o.occupant %><br/>
                <% end %>
               </td>
               <td><%= room.checkins.first.start_date %></td>

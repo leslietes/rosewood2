@@ -33,7 +33,7 @@ describe Occupant do
     end
     
     it "returns an occupant's full name as a string" do
-      expect(@occupant.name) == "#{@occupant.first_name} #{@occupant.last_name}"  
+      expect(@occupant) == "#{@occupant.first_name} #{@occupant.last_name}"  
     end
   
     it "returns an occupant's address as a string" do
@@ -42,6 +42,11 @@ describe Occupant do
     
     it "returns an occupants age as an integer" do
       expect(@occupant.age) == "21 years old"
+    end
+    
+    it "it sets occupant status to inactive" do
+      expect(@occupant.inactive!) == true
+      expect(@occupant.active) == false
     end
   end
   
