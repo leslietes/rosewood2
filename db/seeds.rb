@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(email: 'admin@example.com', password: 'secret123')
+User.create(email: 'admin@example.com', password: 'secret123', admin: true, name: 'admin', active: true)
 
 Setting.create(
 email: 'inquiries@rosewoodresidence.com',
@@ -78,8 +78,8 @@ Room.create(room_no: 410, max_occupants: 2, room_rate: 7000, active: true)
 Room.create(room_no: 411, max_occupants: 2, room_rate: 75000, active: true)
 Room.create(room_no: 412, max_occupants: 3, room_rate: 11000, active: true)
 
-Utility.create(name: 'Electricity',           category: 'Basic', description: "Monthly. Per kilowatt hour",    first_limit: 0, first_rate: 450, excess_rate: 0, unit: 'per kwh')
-Utility.create(name: 'Water',                 category: 'Basic', description: "Monthly. First 10 cubic meter", first_limit: 10,first_rate: 150, excess_rate: 0, unit: 'per cubic meter')
+Utility.create(name: 'Electricity',           category: 'Basic', description: "Monthly. Per kilowatt hour",    first_limit: 0, first_rate: 11, excess_rate: 0, unit: 'per kwh')
+Utility.create(name: 'Water',                 category: 'Basic', description: "Monthly. First 10 cubic meter", first_limit: 10,first_rate: 150, excess_rate: 20, unit: 'per cubic meter')
 Utility.create(name: 'Cable TV Subscription', category: 'Bxtra', description: "Monthly fee",  first_rate: 450, unit: 'per month')
 Utility.create(name: 'Cable TV Installation', category: 'Bxtra', description: "One time fee", first_rate: 450, unit: 'one time')
 Utility.create(name: 'Cable TV Termination',  category: 'Bxtra', description: "One time fee", first_rate: 450, unit: 'one time')
