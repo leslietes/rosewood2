@@ -6,8 +6,8 @@ class CheckinOccupant < ActiveRecord::Base
     update(end_date: Date.today)  
   end
   
-  def still_checked_in?
-    return false if end_date.nil?
-    return true
-  end
+  #def still_checked_in?
+  #  return true if end_date.nil?
+  #  return false
+  #end
 end
