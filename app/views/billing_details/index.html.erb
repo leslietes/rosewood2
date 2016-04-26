@@ -1,0 +1,100 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix no_print">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4 no_print">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3 class="no_print">Billing Statements</h3>
+    
+    <p id="notice"><%= notice %></p> 
+    
+    <p class="no_print">
+      <%= label_tag :room_period %><%= @billing.room_period %><br/>
+      <%= label_tag :utilities_period %><%= @billing.utilities_period %>   
+    </p>
+    
+    <%= link_to 'Electricity Readings', electricity_reading_billing_url(@billing.id), class: "styled_links no_print" %>
+    <%= link_to 'Water Readings', water_reading_billing_url(@billing.id), class: "styled_links no_print" %>
+    <%= link_to 'Print All', billing_billing_details_url(@billing.id, format: 'pdf'), class: "styled_links no_print" %>
+    
+   <div class="clear padding20"></div>
+   
+   <% room_no = 0 %>
+   <% @billing_details.each do |detail| %>
+   <div class="billing_statement">
+     
+     <table class="billing_statement_hdr no_border">
+       <tr>
+         <td colspan="2" class="center"><b>Billing Statement</b></td>
+       </tr>
+       <tr>
+         <td class="right" style="width:100px;"><b>Room Number:</b></td>
+         <td class="left"><%= detail.room_no %></td>
+       </tr>
+       <tr>
+         <td class="right"><b>Occupants:</b></td>
+         <td class="left">
+           <% detail.checkin.occupants.each do |occupant| %>
+             <%= occupant.to_s %><br/>
+           <% end %>
+         </td>
+       </tr>
+       <tr>
+         <td class="right"><b>Advance Rent:</b></td>
+         <td class="left"><%= @billing.room_period %></td>
+       </tr>
+       <tr>
+         <td class="right"><b>Utilities:</b></td>
+         <td class="left"><%= @billing.utilities_period %></td>
+       </tr>
+     </table>
+     
+     <p></p>
+    
+     <table>
+       <thead>
+         <th>Utilities</th>
+         <th>From</th>
+         <th>To</th>
+         <th>Amount</th>
+       </thead>  
+       <tbody>
+         <% total = 0 %><% amount = 0 %>
+         <% detail.billing_utilities.each do |utility| %>    
+
+           <tr>
+             <td class="left"><%= utility.utility_name %></td>
+             <td class="center" style="width:100px;"><%= utility.from %></td>
+             <td class="center" style="width:100px;"><%= utility.to %></td>
+             <td class="right" style="width:100px;"><%= to_currency(amount = utility.amount || 0) %><% total = total + amount %></td>
+           </tr>
+           
+         <% end %>
+         <tr>
+           <td colspan="3" class="left">TOTAL</td>
+           <td class="right"><%= to_currency(total) %></td
+         </tr>
+      </tbody>
+    </table>
+    <%= link_to 'Edit', edit_billing_billing_detail_url(@billing.id, detail.id), class: "styled_links no_print" %>
+    <%= link_to 'Print', billing_billing_detail_url(@billing.id, detail.id, format: 'pdf'), class: "styled_links no_print" %>
+    
+    <div class="clear padding20"></div>
+    
+    <% end %>
+      
+    <div class="clear padding15"></div>
+    
+  </div>
+
+</section>

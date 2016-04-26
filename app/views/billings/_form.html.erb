@@ -1,0 +1,29 @@
+<%= form_for(@billing) do |f| %>
+  <% if @billing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@billing.errors.count, "error") %> prohibited this billing from being saved:</h2>
+
+      <ul>
+      <% @billing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <p>
+    <%= f.label :room_period %><br/>
+    <%= f.select :room_month, Billing::MONTHS, prompt: "Select month" %>
+    <%= f.select :room_year, Billing::YEAR, prompt: "Select year" %>
+  </p>
+  
+  <p>
+    <%= f.label :utilities_period %><br/>
+    <%= f.select :utilities_month, Billing::MONTHS, prompt: "Select month" %>
+    <%= f.select :utilities_year, Billing::YEAR, prompt: "Select year" %>
+  </p>
+
+  <div class="actions">
+    <%= f.submit %> <%= link_to 'Cancel', occupancy_list_rooms_url, class: "styled_links" %>
+  </div>
+<% end %>

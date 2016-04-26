@@ -1,0 +1,41 @@
+    <p>
+      <%= label_tag :room_period %>
+      <%= @billing.room_period %>
+    </p>
+
+    <p>
+      <%= label_tag :utilities_period %>
+      <%= @billing.utilities_period %>
+    </p>
+    
+    <p>
+      <%= label_tag :room_no %>
+      <%= @billing_detail.first.room_no %>
+    </p>
+    
+    <p>
+      <%= label_tag :occupants %>
+      <%= @billing_detail.first.checkin.occupants.join(', ') %>
+    </p>
+    
+    <div class="narrow">
+      <%= label_tag 'utilities' %>
+      <%= label_tag 'to' %>
+      <%= label_tag 'from' %>
+      <%= label_tag 'amount' %>
+
+    
+    <%= form_tag billing_billing_detail_url(@billing.id, @billing_detail.first.id), method: :put do %>
+      <% @billing_detail.first.billing_utilities.each do |utility| %>
+        <%= fields_for "utilities[]", utility do |f| %>
+            <%= f.text_field 'utility_name' %>
+            <%= f.text_field 'from' %>
+            <%= f.text_field 'to' %>
+            <%= f.text_field 'amount' %><br/>
+        <% end %> 
+          
+      <% end %>
+      <%= submit_tag %> <%= link_to 'Cancel', billing_billing_details_url(@billing.id), class: "styled_links" %>
+    <% end %>
+    
+    </div>    

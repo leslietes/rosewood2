@@ -1,0 +1,41 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+    <div class="col_3_4 last">
+      <h3 class="red">Water Reading</h3>
+
+      <p id="notice"><%= notice %></p>
+      
+      <div class="narrow">
+        <%= label_tag 'Room No' %>
+        <%= label_tag 'From' %>
+        <%= label_tag 'To' %>
+        
+        <%= form_tag do %>
+
+          <% @utilities.each do |utility| %>
+              <%= fields_for "utilities[]", utility do |f| %>
+                <%= label_tag utility.billing_detail.room_no %>
+                <%= f.text_field 'from' %>
+                <%= f.text_field 'to'   %><br/>
+              <% end%>
+          <% end %>
+          <%= submit_tag %> <%= link_to 'Back', billing_billing_details_url(params[:id]), class: "styled_links" %>
+        <% end %>
+        
+      </div>
+              
+    </div>
+        
+    <div class="clear padding15"></div>
+  </section>

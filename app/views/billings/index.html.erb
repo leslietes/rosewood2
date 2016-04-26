@@ -1,0 +1,49 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3>Billing Statements</h3>
+    
+    <p id="notice"><%= notice %></p> 
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Room Period</th>
+          <th>Utilities Period</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @billings.each do |billing| %>
+          <tr>
+            <td><%= billing.room_period %></td>
+            <td><%= billing.utilities_period %></td>
+            <td>
+              <%= link_to 'Show', billing_billing_details_url(billing) %>
+              <%= link_to 'Edit', edit_billing_path(billing) %>
+              <%#= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    </div>
+      
+  <div class="clear padding15"></div>
+
+</section>
