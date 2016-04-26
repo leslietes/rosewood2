@@ -5,7 +5,7 @@ class Checkin < ActiveRecord::Base
   has_many   :utilities, through: :checkin_details
   has_many   :checkin_details
   has_many   :occupants, through: :checkin_occupants
-  has_many   :checkin_occupants
+  has_many   :checkin_occupants, -> { where 'end_date IS NULL' }
   
   
   def self.find_by_room(room_id)
@@ -50,6 +50,6 @@ class Checkin < ActiveRecord::Base
   
   def transfer_room(new_room_id)
     room = Room.room_no(new_room_id)
-    update(room_id: new_room_id, room_no: room.room_no)
+    update(room_id: new_room_id, room_no: room)
   end
 end
