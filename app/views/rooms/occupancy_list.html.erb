@@ -29,8 +29,8 @@
             <h2><%= room.room_no %></h2>
             <div id="occupants">
               <%= room.checkins.first.start_date %><br/>
-              <% room.checkins.first.checkin_occupants.each do |o| %>
-                <%= o.occupant %><br/>
+              <% room.checkins.first.occupants.each do |o| %>
+                <%= o %><br/>
               <% end %>
 
             </div>

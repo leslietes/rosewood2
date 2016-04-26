@@ -19,7 +19,7 @@
     <p id="notice"><%= notice %></p>
     
     <div class="no_print">
-      <%= link_to 'PRINT', occupancy_details_room_url(@checkin.first, format: "pdf"), class: "styled_links" %> 
+      <%#= link_to 'PRINT', occupancy_details_room_url(@checkin.first, format: "pdf"), class: "styled_links" %> 
     </div>
     
     <div class="clear padding20"></div>
@@ -99,7 +99,7 @@
     <div class="clear padding15"></div>
     
     <div class="no_print">
-      <%= link_to 'PRINT', occupancy_details_room_url(@checkin.first, format: "pdf"), class: "styled_links" %> 
+      <%#= link_to 'PRINT', occupancy_details_room_url(@checkin.first, format: "pdf"), class: "styled_links" %> 
     </div>
     
     <div class="clear padding20"></div>
@@ -110,7 +110,7 @@
     <%= form_tag new_roommate_room_path(id: @checkin.first.id) do %>
       <p>
         <label>New Roommate</label>
-        <%= select_tag "occupants[]", options_for_select(@occupants.map {|o| [o.name, o.id] }), multiple: :multiple, size: 5, prompt: "Select occupant" %><br/>
+        <%= select_tag "occupants[]", options_for_select(@occupants.map {|o| [o.to_s, o.id] }), multiple: :multiple, size: 5, prompt: "Select occupant" %><br/>
       </p>
       
       <p>
