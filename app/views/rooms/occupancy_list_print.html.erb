@@ -1,6 +1,6 @@
     <h3>Occupancy List</h3>
     
-    <table>
+    <table style="width:100%;">
       <thead>
         <th>Room No</th>
         <th>Occupants</th>
@@ -10,7 +10,7 @@
         <% @rooms.each do |room| %>
           <% if room.has_checkin? %>
             <tr>
-              <td><%= room.room_no %></td>
+              <td class="center"><%= room.room_no %></td>
               <td>
                <% room.checkins.first.checkin_occupants.each do |o| %>
                  <%= o.occupant %><br/>
@@ -20,7 +20,7 @@
             </tr>
           <% else %>
             <tr>
-              <td><%= room.room_no %></td>
+              <td class="center"><%= room.room_no %></td>
               <td>VACANT</td>
               <td></td>
             </tr>
