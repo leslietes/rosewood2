@@ -26,7 +26,7 @@
       
       <p>
         <%= label_tag :occupant %>
-        <%= select_tag "occupants[]", options_for_select(@occupants.map {|o| [o.name, o.id] }), multiple: :multiple, size: 5, prompt: "Select occupant" %>
+        <%= select_tag "occupants[]", options_for_select(@occupants.map {|o| [o.to_s, o.id] }), multiple: :multiple, size: 5, prompt: "Select occupant" %>
       </p>
       
       <p>
