@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :users
   resources :faqs
 
   get 'admin'   => "settings#index"
   scope :admin do
+    devise_for :users
     resource :setting
     resources :rooms do
       get 'check_in', on: :collection
@@ -19,6 +19,15 @@ Rails.application.routes.draw do
     end
     resources :occupants
     resources :utilities    
+    resources :billings do
+      resources :billing_details
+      get  'electricity_reading', on: :member
+      post 'electricity_reading', on: :member
+      get  'water_reading', on: :member
+      post 'water_reading', on: :member
+      get  'billing_details', on: :member
+    end
+    resources :users, only: :index
   end
   
   match 'contact' => "home#contact", :via => [:get, :post]
