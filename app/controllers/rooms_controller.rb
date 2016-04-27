@@ -81,9 +81,10 @@ class RoomsController < ApplicationController
       Room.transaction do
         checkin = new_checkin(params[:room_no],params[:start_date]) 
         add_occupants(checkin, params[:occupants], params[:start_date])
-        add_room_rate(checkin, params[:room_no],   params[:start_date])
-        add_utilities(checkin,params[:utilities],  params[:start_date])
+        #add_room_rate(checkin, params[:room_no],   params[:start_date])
+        add_utilities(checkin,params[:utilities],  params[:room_no], params[:start_date])
         occupy_room(params[:room_no]) 
+        return
       end
       redirect_to check_in_rooms_url
       flash[:notice] = "Occupant has checked in"
@@ -227,18 +228,18 @@ class RoomsController < ApplicationController
       end
     end
     
-    def add_utilities(checkin, utilities_array, start_date)
+    def add_utilities(checkin, utilities_array, room_id, start_date)
       return if utilities_array.blank?
       
       utilities_array.each do |key| 
-        # get updated amount
-        amount = Utility.find(key).first_rate
+        # get room rate
+        if key == "1"
+          amount = Room.room_rate(room_id)
+        else
+          amount = Utility.find(key).first_rate  
+        end
+        
         checkin.checkin_details.create(utility_id: key, amount: amount, start_date: start_date, amount: amount)
       end
     end    
-    
-    def add_room_rate(checkin, room_id, start_date)
-      room = Room.find(room_id)
-      checkin.checkin_details.create(utility_id: 1, amount: room.room_rate, start_date: start_date)
-    end
 end

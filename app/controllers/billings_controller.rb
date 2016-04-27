@@ -33,7 +33,7 @@ class BillingsController < ApplicationController
           @billing.save
           @billing.generate_billing_details
         end
-        format.html { redirect_to @billing, notice: 'Billing was successfully created.' }
+        format.html { redirect_to billing_billing_details_url(@billing), notice: 'Billing was successfully created.' }
         format.json { render :show, status: :created, location: @billing }
       else
         format.html { render :new }

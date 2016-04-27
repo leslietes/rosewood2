@@ -34,6 +34,10 @@ class Room < ActiveRecord::Base
     find(room_id).room_no
   end
   
+  def self.room_rate(room_id)
+    find(room_id).room_rate
+  end
+  
   def start_date
     if checkins.blank?
       return ''
