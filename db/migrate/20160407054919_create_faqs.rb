@@ -6,6 +6,7 @@ class CreateFaqs < ActiveRecord::Migration
       t.text    :answer
       t.integer :position
       t.boolean :show
+      t.integer :user_id, null: false
       t.timestamps null: false
     end
   end

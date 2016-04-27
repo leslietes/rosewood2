@@ -35,6 +35,10 @@
     <p>
       <%= label_tag :active? %><%= to_status(@room.active) %>
     </p>
+    
+    <p>
+      <span><i>Last updated at <%= @room.updated_at %> by <%= User.last_user(@room.user_id) %></i></span>
+    </p>
           
     <br/>
 

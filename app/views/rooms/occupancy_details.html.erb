@@ -47,7 +47,7 @@
           <td><%= "#{occupant.first_name} #{occupant.last_name}" %></td>
           <td><%= occupant._sdate %></td>
           <td><%= occupant._edate %></td>
-          <td class="no_print"><%= link_to 'Remove Occupant', remove_occupant_room_url(occupant.occupant_id) if occupant._edate.nil? %></td>
+          <td class="no_print"><%= link_to 'Remove Occupant', remove_occupant_room_url(occupant.id), data: { confirm: 'Are you sure?' } if occupant._edate.nil? %></td>
         </tr>
         <% end %>
       </tbody>
@@ -61,7 +61,7 @@
         New Room Number: 
         <%= select_tag "new_room_id", options_for_select(@rooms), prompt: "Select room" %>
         <%= submit_tag 'Tranfer Room' %>
-        <%= link_to 'Vacate Room', vacate_room_url(@checkin.first), class: "styled_links" %>
+        <%= link_to 'Vacate Room', vacate_room_url(@checkin.first), data: { confirm: 'Are you sure?' }, class: "styled_links" %>
       <% end %>
       
     </div>
@@ -89,12 +89,17 @@
             <%#= to_currency(detail.amount) %>
             <%#= detail.start_date %>
             <%#= detail.end_date   %>
-            <td class="no_print"><%= link_to 'Remove', remove_utility_room_url(detail.id) %></td>
+            <td class="no_print"><%= link_to 'Remove', remove_utility_room_url(detail.id), data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
     </tbody>
     </table>
     <p class="no_print highlight green">These are items added when generating billing statements. Remove one-time items such as Cable TV Installation, Cable TV Termination, Transcient Fees and Damages, and add them as needed.</p>
+    
+    <p>
+      <span><i>Created at <%= @checkin.first.created_at %> by <%= User.last_user(@checkin.first.user_id) %></i></span>
+    </p>
+    
     
     <div class="clear padding15"></div>
     

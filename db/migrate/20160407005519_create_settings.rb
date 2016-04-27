@@ -63,6 +63,8 @@ class CreateSettings < ActiveRecord::Migration
       t.string  :whyus3_file_name
       t.string  :whyus3_content_type
       t.integer :whyus3_file_size
+      
+      t.integer  :user_id, null: false
 
       t.timestamps null: false
     end

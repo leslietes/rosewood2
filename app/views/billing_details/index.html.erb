@@ -86,6 +86,13 @@
          </tr>
       </tbody>
     </table>
+    
+    <div class="no_print">
+      <span><i>Last updated at <%= detail.updated_at %> by <%= User.last_user(detail.user_id) %></i></span>
+    </div>
+      
+    <div class="clear padding20"></div>  
+    
     <%= link_to 'Edit', edit_billing_billing_detail_url(@billing.id, detail.id), class: "styled_links no_print" %>
     <%= link_to 'Print', billing_billing_detail_url(@billing.id, detail.id, format: 'pdf'), class: "styled_links no_print" %>
     

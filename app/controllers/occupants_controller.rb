@@ -26,6 +26,7 @@ class OccupantsController < ApplicationController
   # POST /occupants.json
   def create
     @occupant = Occupant.new(occupant_params)
+    @occupant.user_id = current_user.id
 
     respond_to do |format|
       if @occupant.save
@@ -41,6 +42,8 @@ class OccupantsController < ApplicationController
   # PATCH/PUT /occupants/1
   # PATCH/PUT /occupants/1.json
   def update
+    @occupant.user_id = current_user.id
+        
     respond_to do |format|
       if @occupant.update(occupant_params)
         format.html { redirect_to @occupant, notice: 'Occupant was successfully updated.' }

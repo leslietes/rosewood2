@@ -26,6 +26,7 @@ class UtilitiesController < ApplicationController
   # POST /utilities.json
   def create
     @utility = Utility.new(utility_params)
+    @utility.user_id = current_user.id
 
     respond_to do |format|
       if @utility.save
@@ -41,6 +42,8 @@ class UtilitiesController < ApplicationController
   # PATCH/PUT /utilities/1
   # PATCH/PUT /utilities/1.json
   def update
+    @utility.user_id = current_user.id
+        
     respond_to do |format|
       if @utility.update(utility_params)
         format.html { redirect_to utilities_url, notice: 'Utility was successfully updated.' }

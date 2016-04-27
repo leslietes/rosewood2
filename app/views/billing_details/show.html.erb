@@ -78,6 +78,10 @@
       </tbody>
     </table>
     
+    <p class="no_print">
+      <span><i>Last updated at <%= @billing.updated_at %> by <%= User.last_user(@billing.user_id) %></i></span>
+    </p>
+    
     <div class="clear padding20"></div>
     
   </div>

@@ -7,6 +7,7 @@ class CreateRooms < ActiveRecord::Migration
       t.decimal :room_rate, precision: 8, scale: 2
       t.boolean :active,    default: true
       t.boolean :occupied,  default: false
+      t.integer :user_id,   null:    false
       
       t.timestamps null: false
     end

@@ -5,7 +5,7 @@ class CreateCheckinOccupants < ActiveRecord::Migration
       t.belongs_to :occupant,index: true
       t.date       :start_date
       t.date       :end_date
-      
+      t.integer    :user_id, null: false
       t.timestamps null: false
     end
   end

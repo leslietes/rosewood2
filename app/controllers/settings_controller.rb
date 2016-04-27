@@ -26,6 +26,7 @@ class SettingsController < ApplicationController
   # POST /settings.json
   def create
     @setting = Setting.new(setting_params)
+    @setting.user_id = current_user.id
 
     respond_to do |format|
       if @setting.save
@@ -41,6 +42,8 @@ class SettingsController < ApplicationController
   # PATCH/PUT /settings/1
   # PATCH/PUT /settings/1.json
   def update
+    @setting.user_id = current_user.id
+    
     respond_to do |format|
       if @setting.update(setting_params)
         format.html { redirect_to setting_url, notice: 'Settings were successfully updated.' }

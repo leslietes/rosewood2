@@ -8,7 +8,7 @@ class CreateUtilities < ActiveRecord::Migration
       t.decimal :excess_rate, precision: 6, scale: 2
       t.string  :unit
       t.string  :category
-
+      t.integer :user_id, null: false
       t.timestamps null: false
     end
   end

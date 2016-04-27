@@ -7,7 +7,7 @@ class CreateCheckinDetails < ActiveRecord::Migration
       t.date       :start_date
       t.date       :end_date
       
-      t.integer    :user_id
+      t.integer    :user_id, null: false
       
       t.timestamps null: false
     end

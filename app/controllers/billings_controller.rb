@@ -26,12 +26,13 @@ class BillingsController < ApplicationController
   # POST /billings.json
   def create
     @billing = Billing.new(billing_params)
+    @billing.user_id = current_user.id
     
     respond_to do |format|
       if @billing.valid?
         Billing.transaction do
           @billing.save
-          @billing.generate_billing_details
+          @billing.generate_billing_details(current_user.id)
         end
         format.html { redirect_to billing_billing_details_url(@billing), notice: 'Billing was successfully created.' }
         format.json { render :show, status: :created, location: @billing }
@@ -46,6 +47,8 @@ class BillingsController < ApplicationController
   # PATCH/PUT /billings/1
   # PATCH/PUT /billings/1.json
   def update
+    @billing.user_id = current_user.id
+    
     respond_to do |format|
       if @billing.update(billing_params)
         format.html { redirect_to billings_url, notice: 'Billing was successfully updated.' }

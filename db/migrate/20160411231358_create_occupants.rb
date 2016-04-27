@@ -51,6 +51,7 @@ class CreateOccupants < ActiveRecord::Migration
       
       t.boolean :waiting, null: false, default: true
       t.boolean :active,  null: false, default: true
+      t.integer :user_id, null: false
       
       t.timestamps null: false
     end

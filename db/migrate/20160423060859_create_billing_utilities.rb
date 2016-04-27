@@ -8,6 +8,7 @@ class CreateBillingUtilities < ActiveRecord::Migration
         t.decimal   :from,              precision: 6, scale: 2
         t.decimal   :to,                precision: 6, scale: 2
         t.decimal   :amount,            precision: 8, scale: 2
+        t.integer   :user_id,           null: false
         t.timestamps null: false
     end
   end

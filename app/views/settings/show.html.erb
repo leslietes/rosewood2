@@ -105,6 +105,10 @@
     <p>
       <%= label_tag :email %><%= @setting.email %>
     </p>
+    
+    <p>
+      <span><i>Last updated at <%= @setting.updated_at %> by <%= User.last_user(@setting.user_id) %></i></span>
+    </p>
 
     <%= link_to 'Edit Settings', edit_setting_path(@setting), class: "styled_links" %>
     

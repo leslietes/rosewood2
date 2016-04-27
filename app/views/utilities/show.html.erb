@@ -43,6 +43,10 @@
     <p>
       <%= label_tag :category %><%= @utility.category %>
     </p>
+    
+    <p>
+      <span><i>Last updated at <%= @utility.updated_at %> by <%= User.last_user(@utility.user_id) %></i></span>
+    </p>
           
     <br/>
 

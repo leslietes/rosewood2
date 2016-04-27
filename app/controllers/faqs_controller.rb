@@ -27,6 +27,7 @@ class FaqsController < ApplicationController
   # POST /faqs.json
   def create
     @faq = Faq.new(faq_params)
+    @faq.user_id = current_user.id
 
     respond_to do |format|
       if @faq.save
@@ -42,6 +43,8 @@ class FaqsController < ApplicationController
   # PATCH/PUT /faqs/1
   # PATCH/PUT /faqs/1.json
   def update
+    @faq.user_id = current_user.id
+    
     respond_to do |format|
       if @faq.update(faq_params)
         format.html { redirect_to faqs_url, notice: 'Faq was successfully updated.' }

@@ -82,6 +82,10 @@
       <%= label_tag :guardians_telephone %><%= @occupant.guardians_telephone %><br/>
       <%= label_tag :guardians_mobile    %><%= @occupant.guardians_mobile %>
     </p>      
+    
+    <p>
+      <span><i>Last updated <%= @occupant.updated_at %> by <%= User.last_user(@occupant.user_id)%><i></span>
+    </p>
 
     <%= link_to 'Edit', edit_occupant_path(@occupant), class: "styled_links" %>
 

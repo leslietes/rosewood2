@@ -26,6 +26,7 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
+    @room.user_id = current_user.id
 
     respond_to do |format|
       if @room.save
@@ -41,6 +42,8 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1
   # PATCH/PUT /rooms/1.json
   def update
+    @room.user_id = current_user.id
+    
     respond_to do |format|
       if @room.update(room_params)
         format.html { redirect_to rooms_url, notice: 'Room was successfully updated.' }
@@ -197,6 +200,7 @@ class RoomsController < ApplicationController
   end
   
   private
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
@@ -204,7 +208,7 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:room_no,:max_occupants,:daily_rate,:room_rate,:active,:occupied)
+      params.require(:room).permit(:room_no,:max_occupants,:daily_rate,:room_rate,:active,:occupied,:user_id)
     end
     
     def new_checkin(room_id, start_date)
@@ -223,7 +227,7 @@ class RoomsController < ApplicationController
     
     def add_occupants(checkin, occupants, start_date)
       occupants.each do |occupant_id|
-        checkin.checkin_occupants.create(id: checkin, occupant_id: occupant_id, start_date: start_date)
+        checkin.checkin_occupants.create(id: checkin, occupant_id: occupant_id, start_date: start_date, user_id: current_user.id)
         Occupant.checked_in!(occupant_id)
       end
     end
@@ -239,7 +243,7 @@ class RoomsController < ApplicationController
           amount = Utility.find(key).first_rate  
         end
         
-        checkin.checkin_details.create(utility_id: key, amount: amount, start_date: start_date, amount: amount)
+        checkin.checkin_details.create(utility_id: key, amount: amount, start_date: start_date, amount: amount, user_id: current_user.id)
       end
     end    
 end
