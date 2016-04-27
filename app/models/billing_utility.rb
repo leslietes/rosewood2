@@ -29,4 +29,9 @@ class BillingUtility < ActiveRecord::Base
     
     update(amount: amt)
   end
+  
+  def remove!
+    destroy
+  end
+  
 end

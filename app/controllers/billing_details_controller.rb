@@ -40,6 +40,7 @@ class BillingDetailsController < ApplicationController
   def edit
     @billing = Billing.find(params[:billing_id])
     @billing_detail = BillingDetail.where(id: params[:id]).includes(:billing_utilities,:checkin => {:checkin_occupants => :occupant})
+    @utilities      = Utility.all.pluck(:name,:id)
   end
   
   def update
@@ -60,6 +61,24 @@ class BillingDetailsController < ApplicationController
       format.html { redirect_to @billing_detail, notice: 'Billing Detail was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def add_billing_utilities
+    return unless request.post?
+    
+    billing_detail = BillingDetail.find(params[:id])
+    billing_detail.add_billing_utility(params[:new_billing_utility])
+    
+    redirect_to edit_billing_billing_detail_url(params[:billing_id],params[:id])
+  end
+  
+  def remove_billing_utilities
+    utility = BillingUtility.find(params[:id])
+    utility.destroy
+    
+    flash[:notice] = "Billing Utility was successfully destroyed."
+    
+    redirect_to edit_billing_billing_detail_url(params[:billing_id],params[:billing_details_id], params[:id])
   end
   
   private

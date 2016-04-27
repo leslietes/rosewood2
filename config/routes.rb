@@ -20,14 +20,22 @@ Rails.application.routes.draw do
     resources :occupants
     resources :utilities    
     resources :billings do
-      resources :billing_details
+      resources :billing_details do
+        post 'add_billing_utilities', on: :member
+        delete 'remove_billing_utilities', on: :member
+      end
+      
       get  'electricity_reading', on: :member
       post 'electricity_reading', on: :member
       get  'water_reading', on: :member
       post 'water_reading', on: :member
       get  'billing_details', on: :member
+      
     end
+    
     resources :users, only: :index
+    
+    delete 'admin/billings/:billing_id/billing_details_id/:billing_details_id/billing_utilities/:id' => 'billing_details#remove_billing_utilities', as: :remove_billing_utilities
   end
   
   match 'contact' => "home#contact", :via => [:get, :post]

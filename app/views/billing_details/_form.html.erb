@@ -31,11 +31,21 @@
             <%= f.text_field 'utility_name' %>
             <%= f.text_field 'from' %>
             <%= f.text_field 'to' %>
-            <%= f.text_field 'amount' %><br/>
+            <%= f.text_field 'amount' %>
+            <%= link_to 'Remove', remove_billing_utilities_url(@billing.id, @billing_detail.first.id, utility.id), method: :delete, data: { confirm: 'Are you sure?'}%><br/>
         <% end %> 
           
       <% end %>
       <%= submit_tag %> <%= link_to 'Cancel', billing_billing_details_url(@billing.id), class: "styled_links" %>
+    <% end %>
+    
+    <div class="clear padding15"></div>
+    
+    <div style="width:auto;display:inline-block">
+    <%= form_tag add_billing_utilities_billing_billing_detail_url(@billing,@billing_detail.first) do %>
+      Additional Charges: 
+      <%= select_tag "new_billing_utility", options_for_select(@utilities), prompt: "Select extras" %>
+      <%= submit_tag  %>
     <% end %>
     
     </div>    
