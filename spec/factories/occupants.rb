@@ -11,21 +11,25 @@ FactoryGirl.define do
     f.city     "Riverwood"
     f.province "NSW"
     f.postcode 2210
+    f.user_id  1
   end
   
   factory :occupant1, parent: :occupant do |f|
     f.first_name { Faker::Name.first_name }
     f.last_name  { Faker::Name.last_name }
+    f.user_id    1
   end
   
   factory :occupant2, parent: :occupant do |f|
     f.first_name { Faker::Name.first_name }
     f.last_name  { Faker::Name.last_name }
+    f.user_id    1
   end
   
   factory :invalid_occupant, parent: :occupant do |f|
     f.first_name ''
     f.last_name  ''
+    f.user_id    1
   end
   
 end
