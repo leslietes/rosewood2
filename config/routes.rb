@@ -30,10 +30,11 @@ Rails.application.routes.draw do
       get  'water_reading', on: :member
       post 'water_reading', on: :member
       get  'billing_details', on: :member
-      
     end
     
     resources :users, only: :index
+    
+    get 'admin/billings/:billing_id/print_admin_copy' => 'billing_details#print_admin_copy', as: :print_admin_copy
     
     delete 'admin/billings/:billing_id/billing_details_id/:billing_details_id/billing_utilities/:id' => 'billing_details#remove_billing_utilities', as: :remove_billing_utilities
   end

@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def to_currency(amount)
-    number_to_currency(amount, unit: 'P')
+    number_to_currency(amount, unit: '')
   end
   
   def to_status(status)

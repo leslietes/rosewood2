@@ -26,6 +26,7 @@
     <%= link_to 'Electricity Readings', electricity_reading_billing_url(@billing.id), class: "styled_links no_print" %>
     <%= link_to 'Water Readings', water_reading_billing_url(@billing.id), class: "styled_links no_print" %>
     <%= link_to 'Print All', billing_billing_details_url(@billing.id, format: 'pdf'), class: "styled_links no_print" %>
+    <%= link_to 'Print Admin Copy', print_admin_copy_url(@billing.id, format: 'pdf'), class: "styled_links no_print" %>
     
    <div class="clear padding20"></div>
    

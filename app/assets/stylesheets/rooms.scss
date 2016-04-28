@@ -76,3 +76,9 @@ a.styled_links {
 .narrow input[type='text']{
   width: 120px;
 }
+
+table.admin_table { width:100%;font-size:10px;table-layout:fixed; }
+
+table.admin_table td.left  { text-align:left;padding-left:2px; }
+
+table.admin_table td.right { text-align:right;padding-right:2px; }
