@@ -49,6 +49,7 @@ RSpec.configure do |config|
   config.color = true
   config.tty = true
   config.formatter = :documentation
+  config.include Capybara::DSL
   
 
 # The settings below are suggested to provide a good initial experience
