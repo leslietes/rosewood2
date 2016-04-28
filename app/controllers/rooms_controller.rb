@@ -84,13 +84,11 @@ class RoomsController < ApplicationController
       Room.transaction do
         checkin = new_checkin(params[:room_no],params[:start_date]) 
         add_occupants(checkin, params[:occupants], params[:start_date])
-        #add_room_rate(checkin, params[:room_no],   params[:start_date])
         add_utilities(checkin,params[:utilities],  params[:room_no], params[:start_date])
         occupy_room(params[:room_no]) 
-        return
       end
-      redirect_to check_in_rooms_url
       flash[:notice] = "Occupant has checked in"
+      redirect_to check_in_rooms_url
     else
       flash[:error]  = "Unable to check in. Please select valid room or occupant"
     end
@@ -145,7 +143,7 @@ class RoomsController < ApplicationController
     checkin = Checkin.find(params[:id])
     
     add_occupants(checkin, params[:occupants], params[:start_date]) if !params[:occupants].blank?
-    add_utilities(checkin, params[:utilities], params[:start_date]) if !params[:utilities].blank?
+    add_utilities(checkin, params[:utilities], checkin.room_id, params[:start_date]) if !params[:utilities].blank?
     
     flash[:notice] = "New roommate or utility added"
     redirect_to occupancy_details_room_url()

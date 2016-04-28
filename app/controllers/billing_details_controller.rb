@@ -66,8 +66,13 @@ class BillingDetailsController < ApplicationController
   def add_billing_utilities
     return unless request.post?
     
-    billing_detail = BillingDetail.find(params[:id])
-    billing_detail.add_billing_utility(params[:new_billing_utility])
+    if params[:new_billing_utility].blank?
+      flash[:notice] = "Please select extras to add"
+    else
+      billing_detail = BillingDetail.find(params[:id])
+      billing_detail.add_billing_utility(params[:new_billing_utility], current_user.id)
+      flash[:notice] = "Additional billing charges added successfully"
+    end
     
     redirect_to edit_billing_billing_detail_url(params[:billing_id],params[:id])
   end
@@ -78,7 +83,7 @@ class BillingDetailsController < ApplicationController
     
     flash[:notice] = "Billing Utility was successfully destroyed."
     
-    redirect_to edit_billing_billing_detail_url(params[:billing_id],params[:billing_details_id], params[:id])
+    redirect_to edit_billing_billing_detail_url(params[:billing_id],params[:billing_details_id])
   end
   
   private

@@ -32,7 +32,7 @@
             <%= f.text_field 'from' %>
             <%= f.text_field 'to' %>
             <%= f.text_field 'amount' %>
-            <%= link_to 'Remove', remove_billing_utilities_url(@billing.id, @billing_detail.first.id, utility.id), method: :delete, data: { confirm: 'Are you sure?'}%><br/>
+            <%= link_to 'Remove', remove_billing_utilities_url(@billing.id, @billing_detail.first.id, utility.id), method: :delete, data: { confirm: 'Are you sure?'}, class: "styled_links" %><br/>
         <% end %> 
           
       <% end %>

@@ -11,6 +11,7 @@ class BillingsController < ApplicationController
   # GET /billings/1
   # GET /billings/1.json
   def show
+    redirect_to billing_billing_details_url(@billing)
   end
 
   # GET /billings/new
@@ -111,11 +112,11 @@ class BillingsController < ApplicationController
       params.require(:billing).permit(:room_month,:room_year,:utilities_month,:utilities_year,:user_id)
     end
     
-    def generate_electricity_amount(billing_details)
-      billing_details.each { |detail| detail.calculate_electricity }
+    def generate_electricity_amount(billing_utilities)
+      billing_utilities.each { |utility| utility.calculate_electricity }
     end
     
-    def generate_water_amount(billing_details)
-      billing_details.each { |detail| detail.calculate_water }
+    def generate_water_amount(billing_utilities)
+      billing_utilities.each { |utility| utility.calculate_water }
     end
 end
