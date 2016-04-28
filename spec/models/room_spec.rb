@@ -20,6 +20,12 @@ describe Room do
     expect(room).to be_invalid
   end
   
+  it "returns vacant rooms" do
+    FactoryGirl.create(:room)
+    FactoryGirl.create(:room1)
+    Room.all_vacant.count.should be 2
+  end
+  
   it "returns unoccupied rooms" do
     FactoryGirl.create(:room)
     Room.unoccupied.size.should be 1
@@ -30,6 +36,25 @@ describe Room do
     Room.occupied!(room.id)
     Room.unoccupied.size.should be 0  
   end
+  
+  it "sets status to vacated" do
+    room = FactoryGirl.create(:room)
+    Room.occupied!(room.id)
+    Room.vacated!(room.id)
+    Room.all_vacant.size.should be 1
+  end
+  
+  it "returns room no" do
+    room = FactoryGirl.create(:room)
+    Room.room_no(room.id).should be 101
+  end
+  
+  it "returns room rate" do
+    room = FactoryGirl.create(:room)
+    
+    rate = Room.room_rate(room.id)
+    expect rate == room.room_rate
+  end
 
   describe "room checkins create room data" do
     before :each do
@@ -38,7 +63,7 @@ describe Room do
     end
     
     it "returns start date if has checkin" do
-      @room.checkins.create(room_id: @room.id, start_date: Date.today, user_id: @user.id)
+      @room.checkins.create(room_id: @room.id, start_date: Date.today, user_id: @user.id, room_no: @room.room_no, user_id: 1)
       @room.reload
       @room.start_date.should eq Date.today
     end
@@ -49,7 +74,7 @@ describe Room do
     end
   
     it "returns true if room has checkins" do
-      @room.checkins.create(room_id: @room.id, start_date: Date.today, user_id: @user.id)
+      @room.checkins.create(room_id: @room.id, start_date: Date.today, user_id: @user.id, room_no: @room.room_no, user_id: 1)
       @room.reload
       @room.has_checkin?.should eq true  
     end
@@ -67,8 +92,8 @@ describe Room do
     end
     
     it "returns occupancy list with occupant" do
-      checkin  = @room.checkins.create(room_id: @room.id, start_date: Date.today, user_id: @user.id)  
-      occupants= checkin.checkin_occupants.create(occupant_id: @occupant.id)
+      checkin  = @room.checkins.create(room_id: @room.id, start_date: Date.today, user_id: @user.id, room_no: @room.room_no)  
+      occupants= checkin.checkin_occupants.create(occupant_id: @occupant.id, user_id: @user.id)
     
       list = Room.occupancy_list
       list.size.should be 1

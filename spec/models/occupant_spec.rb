@@ -31,9 +31,9 @@ describe Occupant do
       @occupant.reload
       Occupant.waiting_for_room.size.should be 0
     end
-    
+        
     it "returns an occupant's full name as a string" do
-      expect(@occupant) == "#{@occupant.first_name} #{@occupant.last_name}"  
+      expect(@occupant.to_s) == "#{@occupant.first_name} #{@occupant.last_name}"  
     end
   
     it "returns an occupant's address as a string" do
