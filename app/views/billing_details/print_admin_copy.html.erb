@@ -10,6 +10,10 @@
 
   <div class="col_3_4 last">
     <h3 class="red">Billing Statement Report</h3>
+    
+    <p><b><%= label_tag  :adv_rent_period %></b>: <%= @billing.room_period %></p>
+    <p><b><%= label_tag :utilities_period %></b>: <%= @billing.utilities_period %></p>
+
 
 <table class="admin_table" style="width:100%;font-size:10px;">
   <thead>

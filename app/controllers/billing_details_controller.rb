@@ -87,6 +87,7 @@ class BillingDetailsController < ApplicationController
   end
   
   def print_admin_copy
+    @billing = BillingDetail.find(params[:billing_id]).billing
     @details = BillingDetail.find_by_sql("select billing_details.id, 
                                                  billing_details.room_no, 
                                                  billing_details.checkin_id, 
