@@ -83,9 +83,9 @@ Room.create(room_no: 412, max_occupants: 3, room_rate: 11000, active: true, user
 Utility.create(name: 'Room Rate',             category: 'Basic', user_id: 1)
 Utility.create(name: 'Electricity',           category: 'Basic', description: "Monthly. Per kilowatt hour",    first_limit: 0, first_rate: 11, excess_rate: 0, unit: 'per kwh', user_id: 1)
 Utility.create(name: 'Water',                 category: 'Basic', description: "Monthly. First 10 cubic meter", first_limit: 10,first_rate: 150, excess_rate: 20, unit: 'per cubic meter', user_id: 1)
-Utility.create(name: 'Cable TV Subscription', category: 'Bxtra', description: "Monthly fee",  first_rate: 450, unit: 'per month', user_id: 1)
-Utility.create(name: 'Cable TV Installation', category: 'Bxtra', description: "One time fee", first_rate: 450, unit: 'one time',  user_id: 1)
-Utility.create(name: 'Cable TV Termination',  category: 'Bxtra', description: "One time fee", first_rate: 450, unit: 'one time',  user_id: 1)
+Utility.create(name: 'Cable TV Subscription', category: 'Extra', description: "Monthly fee",  first_rate: 450, unit: 'per month', user_id: 1)
+Utility.create(name: 'Cable TV Installation', category: 'Extra', description: "One time fee", first_rate: 450, unit: 'one time',  user_id: 1)
+Utility.create(name: 'Cable TV Termination',  category: 'Extra', description: "One time fee", first_rate: 450, unit: 'one time',  user_id: 1)
 
 Utility.create(name: 'Parking Fee',    category: 'Extra', description: "Monthly parking fee",    first_rate: 2000,       unit: 'per month', user_id: 1)
 Utility.create(name: 'Transcient Fee', category: 'Extra', description: "Extra person per night", first_rate: 250,        unit: 'per night', user_id: 1)
