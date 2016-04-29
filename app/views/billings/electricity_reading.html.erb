@@ -18,8 +18,8 @@
       
       <div class="narrow">
         <%= label_tag 'Room No' %>
-        <%= label_tag 'From' %>
-        <%= label_tag 'To' %>
+        <%= label_tag 'Present' %>
+        <%= label_tag 'Previous' %>
         
           <%= form_tag do %>
           <% @details.each do |detail| %>
@@ -27,8 +27,8 @@
               
               <%= fields_for "utilities[]", detail do |f| %>
                   <%= label_tag detail.billing_detail.room_no %>
-                  <%= f.text_field 'from' %>
-                  <%= f.text_field 'to'   %><br/>
+                  <%= f.text_field 'to' %>
+                  <%= f.text_field 'from'   %><br/>
               <% end%>
 
             <% end%>  

@@ -18,16 +18,16 @@
       
       <div class="narrow">
         <%= label_tag 'Room No' %>
-        <%= label_tag 'From' %>
-        <%= label_tag 'To' %>
+        <%= label_tag 'Present' %>
+        <%= label_tag 'Previous' %>
         
         <%= form_tag do %>
 
           <% @utilities.each do |utility| %>
               <%= fields_for "utilities[]", utility do |f| %>
                 <%= label_tag utility.billing_detail.room_no %>
-                <%= f.text_field 'from' %>
-                <%= f.text_field 'to'   %><br/>
+                <%= f.text_field 'to' %>
+                <%= f.text_field 'from'   %><br/>
               <% end%>
           <% end %>
           <%= submit_tag %> <%= link_to 'Back', billing_billing_details_url(params[:id]), class: "styled_links" %>
