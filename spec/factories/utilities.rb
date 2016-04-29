@@ -12,7 +12,8 @@ FactoryGirl.define do
     f.name "Electricity"
     f.category    "Basic"
     f.user_id     1
-    f.first_limit 11
+    f.first_rate  11
+    
   end
   
   factory :room_rate, parent: :utility do |f|
