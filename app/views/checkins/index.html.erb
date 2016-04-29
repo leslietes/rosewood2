@@ -17,7 +17,7 @@
     <h3>Occupancy List</h3>
     
     <div class="no_print">
-      <%= link_to 'PRINT', occupancy_list_rooms_url(:format => :pdf) , class: "styled_links "%>
+      <%= link_to 'PRINT', checkins_url(:format => :pdf) , class: "styled_links "%>
     </div>
     
     <div class="clear padding15"></div>
@@ -35,7 +35,7 @@
 
             </div>
             <div id="actions" class="no_print">
-              <%= link_to 'VIEW DETAILS', occupancy_details_room_path(room.checkins.first) %><br/>
+              <%= link_to 'VIEW DETAILS', checkin_url(room.checkins.first) %><br/>
               <%= link_to 'ADD NOTICE TO VACATE' %><br/>
               <%= link_to 'ADD RESERVATION' %><br/>
               <%= link_to 'GENERATE FINAL BILLING' %>
@@ -58,7 +58,7 @@
     <div class="clear padding15"></div>
 
     <div class="no_print">
-      <%= link_to 'PRINT', occupancy_list_rooms_url(:format => :pdf) , class: "styled_links "%>
+      <%= link_to 'PRINT', checkins_url(:format => :pdf) , class: "styled_links "%>
     </div>
     
     <div class="clear padding15"></div>

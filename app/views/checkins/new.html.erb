@@ -18,7 +18,7 @@
 
     <p id="notice"><%= notice %></p>
     
-    <%= form_tag '' do %>
+    <%= form_tag @checkin do %>
       <p>
         <%= label_tag :room_no %>
         <%= select_tag "room_no", options_for_select(@rooms), prompt: "Select room" %>
@@ -48,7 +48,7 @@
         <% end %>
       </p>
       
-      <%= submit_tag 'New Check In' %>     <%= link_to 'Cancel', occupancy_list_rooms_url, class: "styled_links" %>
+      <%= submit_tag 'New Check In' %>     <%= link_to 'Cancel', checkins_url, class: "styled_links" %>
     <% end %>
     
     <div class="clear padding15"></div>

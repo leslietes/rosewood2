@@ -7,6 +7,9 @@ class Checkin < ActiveRecord::Base
   has_many   :occupants, through: :checkin_occupants
   has_many   :checkin_occupants, -> { where 'end_date IS NULL' }
   
+  # notice to vacate
+  has_one    :notice
+  
   
   def self.find_by_room(room_id)
     where("checkout = FALSE AND room_id= :room_id",{ room_id: room_id })
@@ -22,6 +25,7 @@ class Checkin < ActiveRecord::Base
                         checkins.updated_at,
                         checkins.user_id,
                         rooms.room_no,
+                        checkin_occupants.id as checkin_occupants_id,
                         checkin_occupants.occupant_id, 
                         checkin_occupants.start_date as _sdate, 
                         checkin_occupants.end_date as _edate, 

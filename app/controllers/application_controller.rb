@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   protected
   
   def after_sign_in_path_for(resource)
-    occupancy_list_rooms_url
+    checkins_url
   end
 end

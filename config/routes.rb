@@ -6,11 +6,8 @@ Rails.application.routes.draw do
   scope :admin do
     devise_for :users
     resource :setting
-    resources :rooms do
-      get 'check_in', on: :collection
-      post 'check_in', on: :collection
-      get  'occupancy_list', on: :collection
-      get  'occupancy_details', on: :member
+    resources :rooms
+    resources :checkins do
       post 'new_roommate',    on: :member
       get  'remove_occupant', on: :member
       get  'remove_utility',  on: :member
