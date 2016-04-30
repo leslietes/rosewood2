@@ -1,6 +1,7 @@
 class CreateBillings < ActiveRecord::Migration
   def change
     create_table :billings do |t|
+      t.date       :statement_date
       t.string     :room_month
       t.string     :room_year
       t.string     :utilities_month
