@@ -24,7 +24,7 @@
 
    <div class="billing_statement">
      
-      <%= render partial: 'occupants', locals: { billing: @billing, detail: @billing_detail.first, occupants: @billing_detail.first.checkin.occupants } %>
+      <%= render partial: 'occupants', locals: { billing: @billing, detail: @billing_detail.first, occupants: @billing_detail.first.occupants } %>
     
       <%= render partial: 'utilities', locals: { billing_utilities: @billing_detail.first.billing_utilities} %>
      

@@ -2,7 +2,7 @@
    <% @billing_details.each do |detail| %>
    <div class="billing_statement">
      
-     <%= render partial: 'occupants', locals: { billing: @billing, detail: detail, occupants: detail.checkin.occupants } %>
+     <%= render partial: 'occupants', locals: { billing: @billing, detail: detail, occupants: detail.occupants } %>
     
      <%= render partial: 'utilities', locals: { billing_utilities: detail.billing_utilities} %>
     

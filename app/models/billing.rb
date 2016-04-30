@@ -43,6 +43,13 @@ class Billing < ActiveRecord::Base
                                              billing_id: id,
                                                 user_id: user_id)
       end
+      
+      # create billing occupants
+      checkin.checkin_occupants.each do |checkin_occupant|
+        occupant = dtl.billing_occupants.create(occupant_id: checkin_occupant.occupant_id,
+                                                    user_id: user_id)
+      end
+      
     end
   end
   

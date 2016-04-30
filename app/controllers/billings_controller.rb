@@ -110,7 +110,7 @@ class BillingsController < ApplicationController
     @details = BillingDetail.find_by_sql("select billing_details.id, 
                                                  billing_details.room_no, 
                                                  billing_details.checkin_id, 
-                                                 checkin_occupants.occupant_id,
+                                                 billing_occupants.occupant_id,
                                                  occupants.first_name,
                                                  occupants.last_name,
                                                  (select billing_utilities.amount 
@@ -159,10 +159,10 @@ class BillingsController < ApplicationController
                                                          utility_name = 'Damages') as damages
                                                 
                                                     from billing_details,
-                                                         checkin_occupants,
+                                                         billing_occupants,
                                                          occupants
-                                           where billing_details.checkin_id = checkin_occupants.checkin_id and
-                                                 checkin_occupants.occupant_id = occupants.id and
+                                           where billing_details.id = billing_occupants.billing_detail_id and
+                                                 billing_occupants.occupant_id = occupants.id and
                                                  billing_details.billing_id = #{params[:id]};")
     respond_to do |format|
       format.html

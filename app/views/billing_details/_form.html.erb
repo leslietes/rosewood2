@@ -15,7 +15,7 @@
     
     <p>
       <%= label_tag :occupants %>
-      <%= @billing_detail.first.checkin.occupants.join(', ') %>
+      <%= @billing_detail.first.occupants.join(', ') %>
     </p>
     
     <div class="narrow">
@@ -31,11 +31,11 @@
             <%= f.text_field 'utility_name' %>
             
             <% if ['Water','Electricity'].include? utility.utility_name %>
-              <%= f.text_field 'from' %>
               <%= f.text_field 'to' %>
+              <%= f.text_field 'from' %>
             <% else %>
-              <%= f.text_field 'start_date' %>
               <%= f.text_field 'end_date' %>
+              <%= f.text_field 'start_date' %>
             <% end %>
             
             <%= f.text_field 'amount' %>
