@@ -58,8 +58,11 @@
             <div id="vacant"><%= 'VACANT '%></div>
             <div id="actions" class="no_print">
               <br/><br/>
-              <%= link_to 'ADD RESERVATION', new_room_reservation_url(room.id) %><br/>
-
+              <% if room.has_reservation? %>
+                <%= link_to 'VIEW RESERVATION', room_reservation_url(room.id, room.reservation.id) %><br/>
+              <% else %>
+                <%= link_to 'ADD RESERVATION', new_room_reservation_url(room.id) %><br/>
+              <% end %>
             </div>
           </li>  
         <% end %>
