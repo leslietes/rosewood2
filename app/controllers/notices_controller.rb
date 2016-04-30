@@ -20,6 +20,27 @@ class NoticesController < ApplicationController
     end
   end
   
+  def edit
+    @checkin= Checkin.find(params[:checkin_id])
+    @notice = @checkin.notice
+  end
+  
+  def update
+    @checkin= Checkin.find(params[:checkin_id])
+    @notice = @checkin.notice
+    @notice.user_id = current_user.id
+    
+    respond_to do |format|
+      if @notice.update(notice_params)
+        format.html { redirect_to checkin_notice_url, notice: 'Notice to Vacate was successfully updated.' }
+        format.json { render :show, status: :ok, location: @notice }
+      else
+        format.html { render :edit }
+        format.json { render json: @notice.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   def show
     @checkin  = Checkin.find(params[:checkin_id])
     @occupants= @checkin.occupants.pluck(:first_name,:last_name)

@@ -22,18 +22,23 @@
     
     <div class="clear padding20"></div>
     
-    <table>
+    <table style='width:100%;'>
       <thead>
         <th>Room No</th>
-        <th>Moveout Date</th>
-        <th class="no_print">Actions</th>
+        <th>Move Out Date</th>
+        <th>Reservation</th>
+        <th>Move In Date</th>
+        <th colspan="2" class="no_print">Actions</th>
       </thead>
       <tbody>
         <% @rooms.each do |room| %>
           <tr>
-            <td><%= room.room_no %></td>
-            <td><%= room.moveout_date %></td>      
-            <td class="no_print"><%= link_to 'View Notice to Vacate', checkin_notice_url(room.checkin_id, room.notice_id) if room.checkin == 'true'%></td>
+            <td class='center'><%= room.room_no %></td>
+            <td class="center"><%= room.moveout_date %></td> 
+            <td><%= room.name %></td>
+            <td class="center"><%= room.movein_date %></td>     
+            <td class="no_print"><%= link_to 'View Notice to Vacate', checkin_notice_url(room.checkin_id, room.notice_id) if !room.checkin_id.blank?%></td>
+            <td class="no_print"><%= link_to 'View Reservation', room_reservation_url(room.id, room.reservation_id) if !room.reservation_id.blank? %></td>
           </tr>
         <% end %>
       </tbody>

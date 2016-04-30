@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resource :setting
     resources :rooms do
       get 'vacancies', on: :collection
+      resources 'reservations'
     end
     resources :checkins do
       post 'new_roommate',    on: :member

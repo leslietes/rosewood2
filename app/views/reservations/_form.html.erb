@@ -1,0 +1,14 @@
+    <%= form_for [@room,@reservation] do |f| %>
+    
+      <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </p>
+    
+      <p>
+        <%= f.label :movein_date %>
+        <%= f.date_field :movein_date %>
+      </p>
+          
+      <%= submit_tag %>     <%= link_to 'Cancel', checkins_url, class: "styled_links" %>
+    <% end %>

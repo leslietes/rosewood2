@@ -14,7 +14,7 @@
   <div class="col_3_4 last">
     <!--h3 class="red">Settings</h3-->
     
-    <h3>New Notice to Vacate</h3>
+    <h3>Edit Notice to Vacate</h3>
 
     <p id="notice"><%= notice %></p>
     
@@ -40,7 +40,7 @@
         <%= f.text_area :notes %>
       </p>
       
-      <%= submit_tag %>     <%= link_to 'Cancel', checkins_url, class: "styled_links" %>
+      <%= submit_tag %>     <%= link_to 'Cancel', checkin_notice_url(@checkin.id,@notice.id), class: "styled_links" %>
     <% end %>
     
     <div class="clear padding15"></div>

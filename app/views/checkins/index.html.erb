@@ -40,8 +40,15 @@
                 <%= link_to 'ADD NOTICE TO VACATE', new_checkin_notice_url(room.checkins.first.id) %><br/><br/>
               <% else %>
                 <%= link_to 'VIEW NOTICE TO VACATE', checkin_notice_url(room.checkins.first.id, room.checkins.first.notice) %><br/>
-                <%= link_to 'ADD RESERVATION' %><br/>
+                
+                <% if room.has_reservation? %>
+                  <%= link_to 'VIEW RESERVATION', room_reservation_url(room.id, room.reservation.id) %><br/>
+                <% else %>
+                  <%= link_to 'ADD RESERVATION', new_room_reservation_url(room.id) %><br/>
+                  <% end %>
+                  
               <% end %>
+              
               <%= link_to 'GENERATE FINAL BILLING' %>
             </div>
           </li>
@@ -51,7 +58,7 @@
             <div id="vacant"><%= 'VACANT '%></div>
             <div id="actions" class="no_print">
               <br/><br/>
-              <%= link_to 'ADD RESERVATION' %><br/>
+              <%= link_to 'ADD RESERVATION', new_room_reservation_url(room.id) %><br/>
 
             </div>
           </li>  

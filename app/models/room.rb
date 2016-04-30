@@ -7,7 +7,7 @@ class Room < ActiveRecord::Base
   has_many :occupants, through: :checkin_occupants
   has_many :checkin_occupants
   
-  has_many :notices
+  has_one  :reservation
   
   def self.all_vacant
     where(occupied: false).order("room_no")
@@ -35,8 +35,13 @@ class Room < ActiveRecord::Base
                              'VACANT' as moveout_date,
                              '' as checkin_id,
                              '' as notice_id,
-                             'false' as checkin
+                             reservations.id as reservation_id,
+                             reservations.movein_date as movein_date,
+                             reservations.name as name,
+                             rooms.id
                         from rooms
+                   left join reservations
+                          on rooms.id = reservations.room_id
                        where rooms.active = 1 and
                              rooms.occupied = 0
                        UNION
@@ -44,9 +49,14 @@ class Room < ActiveRecord::Base
                              notices.moveout_date,
                              checkins.id as checkin_id,
                              notices.id as notice_id,
-                             'true' as checkin
-                        from checkins,
-                             notices
+                             reservations.id as reservation_id,
+                             reservations.movein_date as movein_date,
+                             reservations.name as name,
+                             checkins.room_id
+                        from notices,
+                             checkins
+                   left join reservations
+                          on checkins.room_id = reservations.room_id
                        where checkins.id = notices.checkin_id
                     order by room_no;")
   end
@@ -69,6 +79,11 @@ class Room < ActiveRecord::Base
   
   def has_checkin?
     return false if checkins.blank?
+    return true
+  end
+  
+  def has_reservation?
+    return false if reservation.blank?
     return true
   end
 end
