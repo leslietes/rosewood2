@@ -1,0 +1,32 @@
+     <table>
+       <thead>
+         <th>Utilities</th>
+         <th>To</th>
+         <th>From</th>
+         <th>Amount</th>
+       </thead>  
+       <tbody>
+         <% total = 0 %><% amount = 0 %>
+         <% billing_utilities.each do |utility| %>    
+
+           <tr>
+             <td class="left"><%= utility.utility_name %></td>
+             
+             <% if ['Water','Electricity'].include? utility.utility_name %>
+               <td class="center" style="width:100px;"><%= utility.to %></td>
+               <td class="center" style="width:100px;"><%= utility.from %></td>
+             <% else %>
+               <td class="center" style="width:100px;"><%= utility.end_date %></td>
+               <td class="center" style="width:100px;"><%= utility.start_date %></td>
+             <% end %>
+             
+             <td class="right" style="width:100px;"><%= to_currency(amount = utility.amount || 0) %><% total = total + amount %></td>
+           </tr>
+           
+         <% end %>
+         <tr>
+           <td colspan="3" class="left">TOTAL</td>
+           <td class="right"><%= to_currency(total) %></td
+         </tr>
+      </tbody>
+    </table>

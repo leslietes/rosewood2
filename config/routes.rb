@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get  'remove_utility',  on: :member
       get  'vacate',          on: :member
       post 'transfer',        on: :member
+      get  'print',           on: :collection
       resources :notices
     end
     resources :occupants
@@ -30,6 +31,8 @@ Rails.application.routes.draw do
       get  'water_reading', on: :member
       post 'water_reading', on: :member
       get  'billing_details', on: :member
+      get  'reports',         on: :collection
+      get  'print_summary',   on: :member
     end
     resources :users, only: :index
     

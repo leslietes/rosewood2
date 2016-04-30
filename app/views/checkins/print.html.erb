@@ -1,0 +1,65 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix no_print">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4 no_print">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3>Occupancy List as of <%= Date.today %></h3>
+
+    <p id="notice"><%= notice %></p>
+    
+    <div class="no_print">
+      <%= link_to 'PRINT', print_checkins_url(:format => :pdf) , class: "styled_links "%>
+    </div>
+    
+    <div class="clear padding15"></div>
+    
+    <table style="width:100%;">
+      <thead>
+        <th>Room No</th>
+        <th>Occupants</th>
+        <th>Start Date</th>
+      </thead>
+      <tbody>
+        <% @rooms.each do |room| %>
+          <% if room.has_checkin? %>
+            <tr>
+              <td class="center"><%= room.room_no %></td>
+              <td>
+               <% room.checkins.first.checkin_occupants.each do |o| %>
+                 <%= o.occupant %><br/>
+               <% end %>
+              </td>
+              <td><%= room.checkins.first.start_date %></td>
+            </tr>
+          <% else %>
+            <tr>
+              <td class="center"><%= room.room_no %></td>
+              <td>VACANT</td>
+              <td></td>
+            </tr>
+          <% end %>
+        <% end %>    
+      </tbody>
+    </table>
+    
+    <div class="no_print">
+      <%= link_to 'PRINT', print_checkins_url(:format => :pdf) , class: "styled_links "%>
+    </div>
+    
+    <div class="clear padding15"></div>
+    
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>

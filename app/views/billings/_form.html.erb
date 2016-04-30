@@ -12,6 +12,12 @@
   <% end %>
   
   <p>
+    <%= f.label :statement_date %><br/>
+    <%= f.date_field :statement_date %>
+    <span><i>yyyy-mm-dd</i></span>
+  </p>
+  
+  <p>
     <%= f.label :advance_rent_period %><br/>
     <%= f.select :room_month, Billing::MONTHS, prompt: "Select month" %>
     <%= f.select :room_year, Billing::YEAR, prompt: "Select year" %>

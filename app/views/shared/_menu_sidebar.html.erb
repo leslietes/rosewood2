@@ -10,17 +10,18 @@
 
 <h3 class="red">Transactions</h3>
 <ul class="contact-address">
-  <li><%= link_to 'Checkin In', new_checkin_url %><%#= link_to 'Check In', check_in_rooms_url %></li>
+  <li><%= link_to 'Checkin In', new_checkin_url %></li>
+  <li><%= link_to 'Checkin Details', checkins_url %>
   <li><%= link_to 'Generate Billings', new_billing_url %></li>
+  <li><%= link_to 'Billing Details', billings_url %></li>
 
 </ul>  
 
 <h3 class="red">Reports</h3>
 <ul class="contact-address">
-  <li><%= link_to 'Occupancy List', checkins_url %><%#= link_to 'Occupancy List', occupancy_list_rooms_url %></li>
+  <li><%= link_to 'Occupancy List', print_checkins_url %></li>
   <li><%= link_to 'Vacancy List', vacancies_rooms_url %></li>
-  <li><%= link_to 'Billing Statements', billings_url %></li>
-
+  <li><%= link_to 'Billing Summary', reports_billings_url %></li>
 </ul>
 
 <h3 class="red">Account Settings</h3>

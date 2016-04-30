@@ -24,66 +24,12 @@
 
    <div class="billing_statement">
      
-     <table class="billing_statement_hdr no_border">
-       <tr>
-         <td colspan="2" class="center"><b>Billing Statement</b></td>
-       </tr>
-       <tr>
-         <td class="right" style="width:100px;"><b>Room Number:</b></td>
-         <td class="left"><%= @billing_detail.first.room_no %></td>
-       </tr>
-       <tr>
-         <td class="right"><b>Occupants:</b></td>
-         <td class="left">
-           <%@billing_detail.first.checkin.occupants.each do |occupant| %>
-             <%= occupant.to_s %><br/>
-           <% end %>
-         </td>
-       </tr>
-       <tr>
-         <td class="right"><b>Advance Rent:</b></td>
-         <td class="left"><%= @billing.room_period %></td>
-       </tr>
-       <tr>
-         <td class="right"><b>Utilities:</b></td>
-         <td class="left"><%= @billing.utilities_period %></td>
-       </tr>
-     </table>
+      <%= render partial: 'occupants', locals: { billing: @billing, detail: @billing_detail.first, occupants: @billing_detail.first.checkin.occupants } %>
+    
+      <%= render partial: 'utilities', locals: { billing_utilities: @billing_detail.first.billing_utilities} %>
      
-     <p></p>
-    
-     <table>
-       <thead>
-         <th>Utilities</th>
-         <th>From</th>
-         <th>To</th>
-         <th>Amount</th>
-       </thead>  
-       <tbody>
-         <% total = 0 %><% amount = 0 %>
-         <% @billing_detail.first.billing_utilities.each do |utility| %>    
-
-           <tr>
-             <td class="left"><%= utility.utility_name %></td>
-             <td class="center" style="width:100px;"><%= utility.from %></td>
-             <td class="center" style="width:100px;"><%= utility.to %></td>
-             <td class="right" style="width:100px;"><%= to_currency(amount = utility.amount || 0) %><% total = total + amount %></td>
-           </tr>
-           
-         <% end %>
-         <tr>
-           <td colspan="3" class="left">TOTAL</td>
-           <td class="right"><%= to_currency(total) %></td
-         </tr>
-      </tbody>
-    </table>
-    
-    <p class="no_print">
-      <span><i>Last updated at <%= @billing.updated_at %> by <%= User.last_user(@billing.user_id) %></i></span>
-    </p>
-    
-    <div class="clear padding20"></div>
-    
+      <div class="clear padding15"></div>
+      
+    </div>
   </div>
-
 </section>

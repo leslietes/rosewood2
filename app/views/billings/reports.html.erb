@@ -14,17 +14,16 @@
   <div class="col_3_4 last">
     <!--h3 class="red">Settings</h3-->
     
-    <h3>Billing Statements</h3>
+    <h3>Billing Summary</h3>
     
     <p id="notice"><%= notice %></p> 
-    
+        
     <table>
       <thead>
         <tr>
           <th>Statement Date</th>
           <th>Adv Rent Period</th>
           <th>Utilities Period</th>
-          <th>Readings</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -36,12 +35,8 @@
             <td><%= billing.room_period %></td>
             <td><%= billing.utilities_period %></td>
             <td>
-              <%= link_to 'Electricity', electricity_reading_billing_url(billing.id) %>
-              <%= link_to 'Water', water_reading_billing_url(billing.id) %>
-            </td>
-            <td>
-              <%= link_to 'Show', billing_billing_details_url(billing) %>
-              <%= link_to 'Edit', edit_billing_path(billing) %>
+              <%#= link_to 'Print Statements', billing_billing_details_url(billing) %>
+              <%= link_to 'Print Summary', print_summary_billing_url(billing.id) %>
               <%#= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
           </tr>

@@ -29,8 +29,15 @@
       <% @billing_detail.first.billing_utilities.each do |utility| %>
         <%= fields_for "utilities[]", utility do |f| %>
             <%= f.text_field 'utility_name' %>
-            <%= f.text_field 'from' %>
-            <%= f.text_field 'to' %>
+            
+            <% if ['Water','Electricity'].include? utility.utility_name %>
+              <%= f.text_field 'from' %>
+              <%= f.text_field 'to' %>
+            <% else %>
+              <%= f.text_field 'start_date' %>
+              <%= f.text_field 'end_date' %>
+            <% end %>
+            
             <%= f.text_field 'amount' %>
             <%= link_to 'Remove', remove_billing_utilities_url(@billing.id, @billing_detail.first.id, utility.id), method: :delete, data: { confirm: 'Are you sure?'}, class: "styled_links" %><br/>
         <% end %> 

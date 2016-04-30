@@ -1,0 +1,100 @@
+<section class="container clearfix">
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line no_print">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  
+  <div class="col_1_4 no_print">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+
+  <div class="col_3_4 last">
+    <h3 class="red">Billing Statement Report</h3>
+        
+    <p><b><%= label_tag :statement_date   %></b>: <%= @billing.statement_date %></p>
+    <p><b><%= label_tag  :adv_rent_period %></b>: <%= @billing.room_period %></p>
+    <p><b><%= label_tag :utilities_period %></b>: <%= @billing.utilities_period %></p>
+
+    <div class="no_print">  
+      <%= link_to 'Print', print_summary_billing_url(@billing.id, format: 'pdf'), class: "styled_links" %>
+    </div>
+    
+    <div class="clear padding15"></div>
+
+<table class="admin_table" style="width:100%;font-size:10px;">
+  <thead>
+    <th>Room No</th>
+    <th>Occupants</th>
+    <th>Room</th>
+    <th>Electricity</th>
+    <th>Water</th>
+    <th>Cable Inst.</th>
+    <th>Cable Subs.</th>
+    <th>Cable Term.</th>
+    <th>Parking</th>
+    <th>Cleaning</th>
+    <th>Transcient</th>
+    <th>Penalty</th>
+    <th>Damages</th>
+    <th>Total</th>
+  </thead>
+  <tbody>
+    <% room, elec, water, installation, subscription, termination, parking, cleaning, transcient, penalty, damages = 0,0,0,0,0,0,0,0,0,0,0 %>
+    <% room_no = 0 %>
+    <% @details.each do |detail| %>
+      <% total = 0 %>
+      <% if room_no != detail.room_no %>
+        <tr>
+          <td class="center"><%= detail.room_no %></td>
+          <td class="left"><%= "#{detail.first_name} #{detail.last_name}" %></td>
+          <td class="right"><%= to_currency(detail.room) %>       <% total += detail.room %></td>
+          <td class="right"><%= to_currency(detail.electricity) %><% total += detail.electricity %></td>
+          <td class="right"><%= to_currency(detail.water) %>      <% total += detail.water %></td>
+          <td class="right"><%= to_currency(detail.installation)%><% total += detail.installation if !detail.installation.blank? %></td>
+          <td class="right"><%= to_currency(detail.subscription)%><% total += detail.subscription if !detail.subscription.blank? %></td>
+          <td class="right"><%= to_currency(detail.termination) %><% total += detail.termination  if !detail.termination.blank?  %></td>
+          <td class="right"><%= to_currency(detail.parking)     %><% total += detail.parking      if !detail.parking.blank?      %></td>
+          <td class="right"><%= to_currency(detail.cleaning)    %><% total += detail.cleaning     if !detail.cleaning.blank?     %></td>
+          <td class="right"><%= to_currency(detail.transcient)  %><% total += detail.transcient   if !detail.transcient.blank?   %></td>
+          <td class="right"><%= to_currency(detail.penalty)     %><% total += detail.penalty      if !detail.penalty.blank?      %></td>
+          <td class="right"><%= to_currency(detail.damages)     %><% total += detail.damages      if !detail.damages.blank?      %></td>
+          <td class="right"><%= to_currency(total) %></td>
+        </tr>
+        
+        <% room += detail.room %>
+        <% elec += detail.electricity %>
+        <% water+= detail.water %>
+        <% room_no = detail.room_no %>
+        
+      <% else %>
+        <tr>
+          <td></td>
+          <td class="left"><%= "#{detail.first_name} #{detail.last_name}" %></td>
+          <td colspan="12"></td>
+        </tr>
+      <% end %>
+    <% end %>
+    
+    <tr>
+      <td colspan="2" class="center">Total</td>
+      <td class="right"><%= to_currency(room) %></td>
+      <td class="right"><%= to_currency(elec) %></td>
+      <td class="right"><%= to_currency(water)%></td>
+      <td class="right"><%= to_currency(installation) %></td>
+      <td class="right"><%= to_currency(subscription) %></td>
+      <td class="right"><%= to_currency(termination ) %></td>
+      <td class="right"><%= to_currency(parking)      %></td>
+      <td class="right"><%= to_currency(cleaning)     %></td>
+      <td class="right"><%= to_currency(transcient)   %></td>
+      <td class="right"><%= to_currency(penalty)      %></td>
+      <td class="right"><%= to_currency(damages) %></td>
+      <td class="right"><%= to_currency(room+elec+water)%></td>
+      
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>  

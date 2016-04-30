@@ -101,6 +101,83 @@ class BillingsController < ApplicationController
     end
   end
   
+  def reports
+    @billings = Billing.all
+  end
+  
+  def print_summary
+    @billing = BillingDetail.find(params[:id]).billing
+    @details = BillingDetail.find_by_sql("select billing_details.id, 
+                                                 billing_details.room_no, 
+                                                 billing_details.checkin_id, 
+                                                 checkin_occupants.occupant_id,
+                                                 occupants.first_name,
+                                                 occupants.last_name,
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Room Rate') as room,
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Electricity') as electricity,              
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Water') as water,
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Cable TV Installation') as installation,
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Cable TV Subscription') as subscription,
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Cable TV Termination') as termination,
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Parking') as parking,
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Cleaning Fees') as cleaning,         
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Transcient') as transcient,
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Cable TV Termination') as penalty,
+                                                 (select billing_utilities.amount 
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                         utility_name = 'Damages') as damages
+                                                
+                                                    from billing_details,
+                                                         checkin_occupants,
+                                                         occupants
+                                           where billing_details.checkin_id = checkin_occupants.checkin_id and
+                                                 checkin_occupants.occupant_id = occupants.id and
+                                                 billing_details.billing_id = #{params[:id]};")
+    respond_to do |format|
+      format.html
+      format.pdf do
+        html = render_to_string(:layout => false, :action => "print_summary.html.erb")
+        # many other options
+        kit  = PDFKit.new(html, :page_size =>   'Letter')
+        # you have to give whole path of stylesheet
+        kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/print.css"
+        # use disposition inline to open in browser. if removed, will automatically download. Another option is 'inline'
+        send_data kit.to_pdf, filename: "billing_#{Date.today}.pdf", type: "application/pdf", disposition: "inline"
+      end
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_billing
@@ -109,7 +186,7 @@ class BillingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def billing_params
-      params.require(:billing).permit(:room_month,:room_year,:utilities_month,:utilities_year,:user_id)
+      params.require(:billing).permit(:statement_date,:room_month,:room_year,:utilities_month,:utilities_year,:user_id)
     end
     
     def generate_electricity_amount(billing_utilities)
