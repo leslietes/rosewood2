@@ -30,6 +30,27 @@ class Room < ActiveRecord::Base
     Room.where(active: true).includes(checkins: {:checkin_occupants => :occupant}).order(room_no: :asc)
   end
   
+  def self.vacancy_list
+    Room.find_by_sql("select rooms.room_no,
+                             'VACANT' as moveout_date,
+                             '' as checkin_id,
+                             '' as notice_id,
+                             'false' as checkin
+                        from rooms
+                       where rooms.active = 1 and
+                             rooms.occupied = 0
+                       UNION
+                      select checkins.room_no,
+                             notices.moveout_date,
+                             checkins.id as checkin_id,
+                             notices.id as notice_id,
+                             'true' as checkin
+                        from checkins,
+                             notices
+                       where checkins.id = notices.checkin_id
+                    order by room_no;")
+  end
+  
   def self.room_no(room_id)
     find(room_id).room_no
   end

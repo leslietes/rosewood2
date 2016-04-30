@@ -1,0 +1,52 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix no_print">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4 no_print">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <h3 class="red">Vacancies</h3>
+
+    <p id="notice"><%= notice %></p>
+    
+    <div class="no_print">
+      <%= link_to 'PRINT', vacancies_rooms_url(:format => :pdf) , class: "styled_links "%>
+    </div>
+    
+    <div class="clear padding20"></div>
+    
+    <table>
+      <thead>
+        <th>Room No</th>
+        <th>Moveout Date</th>
+        <th class="no_print">Actions</th>
+      </thead>
+      <tbody>
+        <% @rooms.each do |room| %>
+          <tr>
+            <td><%= room.room_no %></td>
+            <td><%= room.moveout_date %></td>      
+            <td class="no_print"><%= link_to 'View Notice to Vacate', checkin_notice_url(room.checkin_id, room.notice_id) if room.checkin == 'true'%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <div class="no_print">
+      <%= link_to 'PRINT', vacancies_rooms_url(:format => :pdf) , class: "styled_links "%>
+    </div>
+    
+    
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>  
+
+

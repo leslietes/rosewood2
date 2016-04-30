@@ -59,4 +59,9 @@ class Checkin < ActiveRecord::Base
     room = Room.room_no(new_room_id)
     update(room_id: new_room_id, room_no: room)
   end
+  
+  def has_no_notice?
+    return true if notice.nil?
+    return false
+  end
 end

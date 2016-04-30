@@ -1,0 +1,60 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3>Notice to Vacate</h3>
+
+    <p id="notice"><%= notice %></p>
+    
+    <p>
+      <%= label_tag :room_no %>
+      <%= @checkin.room_no %>
+    </p>
+    
+    <p>
+      <%= label_tag :occupants %>
+      <%= @occupants.join(", ") %>
+    </p>
+    
+    <p>
+      <%= label_tag :moveout_date %>
+      <%= @notice.moveout_date %>
+    </p>
+    
+    <p>
+      <%= label_tag :reason %>
+      <%= @notice.reason %>
+    </p>
+    
+    <p>
+      <%= label_tag :date_received %>
+      <%= @notice.date_received %>
+    </p>
+    
+    <p>
+      <%= label_tag :notes %>
+      <%= @notice.notes %>
+    </p>
+    
+    <p>
+      <span><i>Last updated at <%= @notice.updated_at %> by <%= User.last_user(@notice.user_id) %></i></span>
+    </p>
+    
+    <div class="clear padding15"></div>
+    
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>  

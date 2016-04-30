@@ -1,0 +1,51 @@
+<!-- START CONTENT -->
+<section class="container clearfix">
+  <!-- Page Title -->
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">Settings</h1>
+    <div class="clear"></div>
+  </header>
+  <!-- /Page Title -->
+
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <!--h3 class="red">Settings</h3-->
+    
+    <h3>Notice to Vacate</h3>
+
+    <p id="notice"><%= notice %></p>
+    
+    <%= form_for [@checkin,@notice] do |f| %>
+    
+      <p>
+        <%= f.label :moveout_date %>
+        <%= f.date_field :moveout_date %>
+      </p>
+    
+      <p>
+        <%= f.label :reason %>
+        <%= f.text_area :reason %>
+      </p>
+    
+      <p>
+        <%= f.label :date_received %>
+        <%= f.date_field :date_received, value: Date.today %>
+      </p>
+    
+      <p>
+        <%= f.label :notes %>
+        <%= f.text_area :notes %>
+      </p>
+      
+      <%= submit_tag %>     <%= link_to 'Cancel', checkins_url, class: "styled_links" %>
+    <% end %>
+    
+    <div class="clear padding15"></div>
+    
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>  

@@ -36,8 +36,12 @@
             </div>
             <div id="actions" class="no_print">
               <%= link_to 'VIEW DETAILS', checkin_url(room.checkins.first) %><br/>
-              <%= link_to 'ADD NOTICE TO VACATE' %><br/>
-              <%= link_to 'ADD RESERVATION' %><br/>
+              <% if room.checkins.first.has_no_notice? %>
+                <%= link_to 'ADD NOTICE TO VACATE', new_checkin_notice_url(room.checkins.first.id) %><br/><br/>
+              <% else %>
+                <%= link_to 'VIEW NOTICE TO VACATE', checkin_notice_url(room.checkins.first.id, room.checkins.first.notice) %><br/>
+                <%= link_to 'ADD RESERVATION' %><br/>
+              <% end %>
               <%= link_to 'GENERATE FINAL BILLING' %>
             </div>
           </li>

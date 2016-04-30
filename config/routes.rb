@@ -6,13 +6,16 @@ Rails.application.routes.draw do
   scope :admin do
     devise_for :users
     resource :setting
-    resources :rooms
+    resources :rooms do
+      get 'vacancies', on: :collection
+    end
     resources :checkins do
       post 'new_roommate',    on: :member
       get  'remove_occupant', on: :member
       get  'remove_utility',  on: :member
       get  'vacate',          on: :member
       post 'transfer',        on: :member
+      resources :notices
     end
     resources :occupants
     resources :utilities    
@@ -28,7 +31,6 @@ Rails.application.routes.draw do
       post 'water_reading', on: :member
       get  'billing_details', on: :member
     end
-    
     resources :users, only: :index
     
     get 'admin/billings/:billing_id/print_admin_copy' => 'billing_details#print_admin_copy', as: :print_admin_copy
