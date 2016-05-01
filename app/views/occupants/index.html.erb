@@ -23,7 +23,7 @@
     <div class="clear padding20"></div>
     
     
-<table>
+<table id="occupants_list">
   <thead>
     <tr>
       <th>Name</th>
@@ -42,7 +42,7 @@
   <tbody>
     <% @occupants.each do |occupant| %>
       <tr>
-        <td><%= link_to occupant, occupant %></td>
+        <td class="left"><%= link_to occupant, occupant %></td>
         <td><%= occupant.city %></td>
         <td><%= occupant.province %></td>
         <td><%= occupant.mobile %></td>
@@ -51,17 +51,22 @@
         <td><%= occupant.year_or_date_started %></td>
         <td><%= to_status(occupant.active?) %></td>
         <td><%= to_status(occupant.waiting?) %></td>
-        <%#= link_to 'Show', occupant %>
-        <td><%= link_to 'Edit', edit_occupant_path(occupant) %></td>
-        <%#= link_to 'Destroy', occupant, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <td>
+          <%= link_to 'Show', occupant %>
+          <%= link_to 'Edit', edit_occupant_path(occupant) %>
+          <%#= link_to 'Destroy', occupant, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<div class="clear padding15"></div>
+
 <span><i>
-  Occupants should be 'active = true' and 'waiting = true' to appear on Check In page.<br/>
-  Occupants who are 'active = false' have moved out.<br/>
-  Occupants who are 'waiting = false' have checked in.<br/><br/>
+  Occupants should be 'active = yes' and 'waiting = yes' to appear on Check In page.<br/>
+  Occupants who are 'active = no' have moved out.<br/>
+  Occupants who are 'waiting = no' have checked in.<br/><br/>
 </i></span>
 
 </div>
