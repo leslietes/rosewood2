@@ -22,7 +22,7 @@
     
       <p>
         <%= f.label :moveout_date %>
-        <%= f.date_field :moveout_date %>
+        <%= f.text_field :moveout_date, value: Date.today %>
       </p>
     
       <p>
@@ -32,7 +32,7 @@
     
       <p>
         <%= f.label :date_received %>
-        <%= f.date_field :date_received, value: Date.today %>
+        <%= f.text_field :date_received, value: Date.today %>
       </p>
     
       <p>

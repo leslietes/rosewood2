@@ -7,7 +7,7 @@
     
       <p>
         <%= f.label :movein_date %>
-        <%= f.date_field :movein_date %>
+        <%= f.text_field :movein_date, value: Date.today %>
       </p>
           
       <%= submit_tag %>     <%= link_to 'Cancel', checkins_url, class: "styled_links" %>
