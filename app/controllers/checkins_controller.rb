@@ -128,18 +128,22 @@ class CheckinsController < ApplicationController
   end
   
   def transfer
-    checkin = Checkin.find(params[:id])
+    if !params[:new_room_id].blank?
     
-    Checkin.transaction do
-      checkin.transfer_room(params[:new_room_id])
-      Room.vacated!(params[:room_id])
-      Room.occupied!(params[:new_room_id])
+      checkin = Checkin.find(params[:id])
     
+      Checkin.transaction do
+        checkin.transfer_room(params[:new_room_id])
+        Room.vacated!(params[:room_id])
+        Room.occupied!(params[:new_room_id])
+      end
+      
       flash[:notice] = "Room transfer was made successfully" 
-      redirect_to checkin_url(checkin)
+    else
+      flash[:notice] = "Room number not selected"
     end
-
-    return  
+    
+    redirect_to checkin_url(params[:id])  
   end
   
   def remove_occupant
