@@ -49,7 +49,7 @@
                   
               <% end %>
               
-              <%= link_to 'GENERATE FINAL BILLING' %>
+              <%= link_to 'GENERATE FINAL BILLING', final_billing_billing_url(room.checkins.first.id) %>
             </div>
           </li>
         <% else %>

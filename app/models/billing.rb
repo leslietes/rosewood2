@@ -8,8 +8,9 @@ class Billing < ActiveRecord::Base
   validates :utilities_month, presence: true
   validates :utilities_year , presence: true
   
-  validates_uniqueness_of :room_month, scope: :room_year
-  validates_uniqueness_of :utilities_month, scope: :utilities_year
+  validates_uniqueness_of :statement_date
+  validates_uniqueness_of :room_month, scope: [:room_year, :statement_date]
+  validates_uniqueness_of :utilities_month, scope: [:utilities_year, :statement_date]
   
   
   MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"]
@@ -50,6 +51,36 @@ class Billing < ActiveRecord::Base
                                                     user_id: user_id)
       end
       
+    end
+  end
+  
+  def generate_final_billing(checkin_id,user_id)
+    checkin = Checkin.where(id: checkin_id).includes(:checkin_details,:utilities)
+  
+    # create billing detail
+    dtl = billing_details.create(checkin_id: checkin.first.id, 
+                                    room_no: checkin.first.room_no,
+                                    user_id: user_id)
+    
+    checkin.first.checkin_details.each do |checkin_detail|
+    # automatically set amount except for water and elec
+      if (checkin_detail.utility.name != 'Water') && (checkin_detail.utility.name != 'Electricity')
+        amount = checkin_detail.amount
+      else
+        amount = 0
+      end
+        
+      utl = dtl.billing_utilities.create(utility_name: checkin_detail.utility.name,
+                                                 rate: checkin_detail.amount,
+                                               amount: amount,
+                                           billing_id: id,
+                                              user_id: user_id)
+    end
+      
+    # create billing occupants
+    checkin.first.checkin_occupants.each do |checkin_occupant|
+      occupant = dtl.billing_occupants.create(occupant_id: checkin_occupant.occupant_id,
+                                                  user_id: user_id)
     end
   end
   

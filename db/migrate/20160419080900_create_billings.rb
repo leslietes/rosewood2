@@ -6,6 +6,7 @@ class CreateBillings < ActiveRecord::Migration
       t.string     :room_year
       t.string     :utilities_month
       t.string     :utilities_year
+      t.boolean    :final_billing, default: false
       t.integer    :user_id, null: false
       t.timestamps null: false
     end

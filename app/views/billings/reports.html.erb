@@ -18,7 +18,7 @@
     
     <p id="notice"><%= notice %></p> 
         
-    <table>
+    <table id="billings">
       <thead>
         <tr>
           <th>Statement Date</th>
@@ -31,12 +31,12 @@
       <tbody>
         <% @billings.each do |billing| %>
           <tr>
-            <td><%= billing.statement_date %></td>
+            <td><%= billing.statement_date %><%= "*" if billing.final_billing? %></td>
             <td><%= billing.room_period %></td>
             <td><%= billing.utilities_period %></td>
             <td>
               <%#= link_to 'Print Statements', billing_billing_details_url(billing) %>
-              <%= link_to 'Print Summary', print_summary_billing_url(billing.id) %>
+              <%= link_to 'Show', print_summary_billing_url(billing.id) %>
               <%#= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
           </tr>
@@ -46,6 +46,7 @@
     
     </div>
       
+    <span><i>*final billings</i></span>  
   <div class="clear padding15"></div>
 
 </section>

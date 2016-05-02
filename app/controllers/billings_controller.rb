@@ -178,6 +178,32 @@ class BillingsController < ApplicationController
     end
   end
   
+  def final_billing
+    @checkin = Checkin.find(params[:id])
+    @billing = Billing.new
+    
+    return unless request.post?
+    
+    @billing = Billing.new(statement_date: params[:statement_date],
+                                    room_month: params[:room_month],
+                                     room_year: params[:room_year],
+                               utilities_month: params[:utilities_month],
+                                utilities_year: params[:utilities_year],
+                                 final_billing: true,
+                                       user_id: current_user.id )
+      if @billing.valid?                                 
+        Billing.transaction do
+          @billing.save
+          @billing.generate_final_billing(@checkin.id,current_user.id)
+        end
+        redirect_to billing_billing_details_url(@billing.id), notice: 'Final Billing was successfully created.'
+      else
+        render :final_billing
+      end
+    
+    
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_billing

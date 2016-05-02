@@ -34,6 +34,8 @@ Rails.application.routes.draw do
       get  'billing_details', on: :member
       get  'reports',         on: :collection
       get  'print_summary',   on: :member
+      get  'final_billing',   on: :member
+      post 'final_billing',   on: :member
     end
     resources :users, only: :index
     

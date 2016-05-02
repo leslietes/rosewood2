@@ -32,7 +32,7 @@
       <tbody>
         <% @billings.each do |billing| %>
           <tr>
-            <td><%= billing.statement_date %></td>
+            <td><%= billing.statement_date %><%= "*" if billing.final_billing? %></td>
             <td><%= billing.room_period %></td>
             <td><%= billing.utilities_period %></td>
             <td>
@@ -50,6 +50,8 @@
     </table>
     
     </div>
+    
+    <span><i>*final billings</i></span>
       
   <div class="clear padding15"></div>
 

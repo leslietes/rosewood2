@@ -9,7 +9,7 @@
   </div>
 
   <div class="col_3_4 last">
-    <h3 class="red">Billing Statement Report</h3>
+    <h3 class="red"><%= @billing.final_billing? ? "Final Billing" : "Billing Statement Report"%></h3>
         
     <p><b><%= label_tag :statement_date   %></b>: <%= @billing.statement_date %></p>
     <p><b><%= label_tag  :adv_rent_period %></b>: <%= @billing.room_period %></p>

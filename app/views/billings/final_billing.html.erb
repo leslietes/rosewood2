@@ -1,0 +1,61 @@
+<section class="container clearfix">
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line">New Billing Period</h1>
+    <div class="clear"></div>
+  </header>
+  
+  <div class="col_1_4">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+  
+  <div class="col_3_4 last">
+    <h3 class="red">Final Billing</h3>
+
+    <p id="notice"><%= notice %></p>
+    
+    <p>
+      <%= label_tag :room_no %><%= @checkin.room_no %>
+    </p>
+    
+    <p>
+      <%= label_tag :occupants %>
+    </p>
+
+    <%= form_tag final_billing_billing_url(@checkin.id), method: :post do %>
+      <% if @billing.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@billing.errors.count, "error") %> prohibited this billing from being saved:</h2>
+
+          <ul>
+          <% @billing.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+  
+      <p>
+        <%= label_tag :statement_date %><br/>
+        <%= text_field_tag :statement_date, '', id: 'datepicker' %>
+      </p>
+  
+      <p>
+        <%= label_tag :advance_rent_period %><br/>
+        <%= select_tag :room_month, options_for_select(Billing::MONTHS), prompt: "Select month" %>
+        <%= select_tag :room_year,  options_for_select(Billing::YEAR),   prompt: "Select year" %>
+      </p>
+  
+      <p>
+        <%= label_tag :utilities_period %><br/>
+        <%= select_tag :utilities_month, options_for_select(Billing::MONTHS), prompt: "Select month" %>
+        <%= select_tag :utilities_year,  options_for_select(Billing::YEAR),   prompt: "Select year" %>
+      </p>
+
+      <div class="actions">
+        <%= submit_tag %> <%= link_to 'Cancel', checkins_url, class: "styled_links" %>
+      </div>
+    <% end %>
+  </div>
+        
+  <div class="clear padding15"></div>
+</section>  
