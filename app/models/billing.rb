@@ -2,7 +2,7 @@ class Billing < ActiveRecord::Base
   
   has_many :billing_details
   
-  
+  validates :statement_date,  presence: true
   validates :room_month,      presence: true
   validates :room_year,       presence: true
   validates :utilities_month, presence: true
