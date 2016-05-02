@@ -74,8 +74,8 @@ class CheckinsController < ApplicationController
     @extra = Utility.extras
     
     # at least one occupant should be selected
-    if params[:occupants].blank? || params[:room_no].blank?
-      flash[:notice] = "Please select room and occupant"
+    if params[:occupants].blank? || params[:room_no].blank? || params[:start_date].blank?
+      flash[:notice] = "Room number, occupants and start date needs to be selected"
       render :new
       return
     end
@@ -96,8 +96,8 @@ class CheckinsController < ApplicationController
   end
   
   def new_roommate
-    if params[:occupants].blank? && params[:utilities].blank?
-      flash[:notice] = "Please select new roommate or utility to add"
+    if params[:start_date].blank? || (params[:occupants].blank? && params[:utilities].blank?)
+      flash[:notice] = "Occupants or utilities AND start date needs to be selected"
       redirect_to checkin_url(params[:id]) 
       return
     end
