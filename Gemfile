@@ -6,6 +6,7 @@ gem 'devise'
 gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-ui-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
