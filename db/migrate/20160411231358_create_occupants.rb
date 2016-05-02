@@ -15,7 +15,7 @@ class CreateOccupants < ActiveRecord::Migration
       t.string  :postcode
       t.string  :telephone
       t.string  :mobile
-      t.date    :birthdate
+      t.string  :birthdate
       
       t.string  :school_or_work
       t.string  :course_or_position

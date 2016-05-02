@@ -4,8 +4,8 @@ class CreateCheckinDetails < ActiveRecord::Migration
       t.belongs_to :checkin, index: true
       t.belongs_to :utility, index: true
       t.decimal    :amount
-      t.date       :start_date
-      t.date       :end_date
+      t.string     :start_date
+      t.string     :end_date
       
       t.integer    :user_id, null: false
       

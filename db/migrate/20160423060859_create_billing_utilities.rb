@@ -6,8 +6,8 @@ class CreateBillingUtilities < ActiveRecord::Migration
         t.string    :utility_name,      null: false
         
         # for room stay if starting mid month
-        t.date      :start_date
-        t.date      :end_date
+        t.string    :start_date
+        t.string    :end_date
         
         # for water and electricity
         t.decimal   :rate,              precision: 8, scale: 2, default: 0

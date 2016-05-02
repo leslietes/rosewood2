@@ -5,8 +5,8 @@ class CreateCheckins < ActiveRecord::Migration
       t.integer    :room_no,    null:    false
       t.boolean    :checkout,   default: false
       
-      t.date       :start_date, null:    false
-      t.date       :end_date
+      t.string     :start_date, null:    false
+      t.string     :end_date
       
       t.integer    :user_id,    null:    false
       t.timestamps null: false
