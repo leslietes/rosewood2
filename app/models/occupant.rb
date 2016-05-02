@@ -30,7 +30,7 @@ class Occupant < ActiveRecord::Base
   
   def age
     return "" if birthdate.blank?
-    "(#{Date.today.year - birthdate.year} years old)" 
+    "(#{Date.today.year - birthdate.to_date.year} years old)" 
   end
   
   def inactive!
