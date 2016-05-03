@@ -39,6 +39,7 @@
     
     <div>
       <%= link_to 'Edit', edit_room_reservation_url(@room.id,@reservation.id), class: "styled_links" %>
+      <%= link_to 'Destroy', room_reservation_url(@room.id, @reservation.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "styled_links" %>
       <%= link_to 'Back', checkins_url, class: "styled_links" %>
     </div>
     

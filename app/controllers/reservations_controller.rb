@@ -46,6 +46,15 @@ class ReservationsController < ApplicationController
     @reservation = @room.reservation
   end
   
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    respond_to do |format|
+      format.html { redirect_to vacancies_rooms_url, notice: 'Reservation was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+  
   private
   
   # Never trust parameters from the scary internet, only allow the white list through.

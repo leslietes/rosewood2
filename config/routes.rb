@@ -2,13 +2,13 @@ Rails.application.routes.draw do
 
   resources :faqs
 
-  get 'admin'   => "settings#index"
+  get 'admin'   => "checkins#index"
   scope :admin do
     devise_for :users
-    resource :setting
+    resource :setting, only: [:create,:update,:show]
     resources :rooms do
       get 'vacancies', on: :collection
-      resources 'reservations'
+      resources 'reservations', except: :index
     end
     resources :checkins do
       post 'new_roommate',    on: :member
