@@ -65,7 +65,7 @@ describe CheckinsController do
       it "displays a warning if no room or no occupant selected" do
         post :create, start_date: Date.today, user_id: 1
         expect(response).to render_template :new
-        expect(flash[:notice]).to eq "Please select room and occupant"
+        expect(flash[:notice]).to eq "Room number, occupants and start date needs to be selected"
       end
       
       it "processes a check in" do
@@ -135,12 +135,12 @@ describe CheckinsController do
         get :show, id: @checkin.id
         post :new_roommate, id: @checkin.id
         
-        expect(flash[:notice]).to eq "Please select new roommate or utility to add"
+        expect(flash[:notice]).to eq "Occupants or utilities AND start date needs to be selected"
       end
       
       it "adds new occupant when an occupant is selected" do
         get :show, id: @checkin.id
-        post :new_roommate, id: @checkin.id, occupants: [@occupant1.id]
+        post :new_roommate, id: @checkin.id, occupants: [@occupant1.id], start_date: Date.today.to_s
         
         expect(flash[:notice]).to eq "New roommate or utility added"
         response.should redirect_to checkin_url(@checkin.id)        
@@ -148,7 +148,7 @@ describe CheckinsController do
       
       it "adds new utility when a utility selected" do
         get :show, id: @checkin.id
-        post :new_roommate, id: @checkin.id, utilities: [@utility1.id]
+        post :new_roommate, id: @checkin.id, utilities: [@utility1.id], start_date: Date.today.to_s
         
         expect(flash[:notice]).to eq "New roommate or utility added"
         response.should redirect_to checkin_url(@checkin.id)        

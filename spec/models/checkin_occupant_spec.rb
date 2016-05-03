@@ -7,6 +7,6 @@ describe CheckinOccupant do
     checkin.checkin_occupants.count.should eq 2
     
     occupant1.vacate_room!
-    occupant1.end_date.should eq Date.today
+    occupant1.end_date.should eq Date.today.to_s
   end
 end

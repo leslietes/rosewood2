@@ -65,7 +65,7 @@ describe Room do
     it "returns start date if has checkin" do
       @room.checkins.create(room_id: @room.id, start_date: Date.today, user_id: @user.id, room_no: @room.room_no, user_id: 1)
       @room.reload
-      @room.start_date.should eq Date.today
+      @room.start_date.should eq Date.today.to_s
     end
   
     it "returns nil if no checkins" do
