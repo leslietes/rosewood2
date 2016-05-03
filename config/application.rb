@@ -34,5 +34,8 @@ module Rosewood
         :request_specs => true
         g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
+    
+    # for lost images on deploy
+    config.serve_static_assets = true
   end
 end
