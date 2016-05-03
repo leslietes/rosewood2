@@ -33,8 +33,8 @@ class Room < ActiveRecord::Base
   def self.vacancy_list
     Room.find_by_sql("select rooms.room_no,
                              'VACANT' as moveout_date,
-                             '' as checkin_id,
-                             '' as notice_id,
+                             0 as checkin_id,
+                             0 as notice_id,
                              reservations.id as reservation_id,
                              reservations.movein_date as movein_date,
                              reservations.name as name,
