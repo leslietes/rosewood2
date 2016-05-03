@@ -54,6 +54,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  
+  # redirect to home page on 404
+  get  '*path' => redirect('/')
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
