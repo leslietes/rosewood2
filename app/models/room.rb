@@ -42,8 +42,8 @@ class Room < ActiveRecord::Base
                         from rooms
                    left join reservations
                           on rooms.id = reservations.room_id
-                       where rooms.active = 1 and
-                             rooms.occupied = 0
+                       where rooms.active = true and
+                             rooms.occupied = false
                        UNION
                       select checkins.room_no,
                              notices.moveout_date,
