@@ -38,7 +38,7 @@
       <tbody>
         <% @utilities.each do |utility| %>
           <tr>
-            <td><%= link_to utility.name, utility %></td>
+            <td class="left"><%= link_to utility.name, utility %></td>
             <td><%= utility.description %></td>
             <td><%= to_currency(utility.first_rate) %></td>
             <td><%= utility.first_limit %></td>
