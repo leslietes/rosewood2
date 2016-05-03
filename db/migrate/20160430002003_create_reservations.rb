@@ -7,5 +7,7 @@ class CreateReservations < ActiveRecord::Migration
       t.integer  :user_id,     null: false
       t.timestamps null: false
     end
+    
+    add_index :reservations, :room_id
   end
 end

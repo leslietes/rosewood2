@@ -8,5 +8,8 @@ class CreateCheckinOccupants < ActiveRecord::Migration
       t.integer    :user_id, null: false
       t.timestamps null: false
     end
+    
+    add_index :checkin_occupants, :checkin_id
+    add_index :checkin_occupants, :occupant_id
   end
 end

@@ -7,5 +7,8 @@ class CreateBillingOccupants < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    
+    add_index :billing_occupants, :billing_detail_id
+    add_index :billing_occupants, :occupant_id
   end
 end

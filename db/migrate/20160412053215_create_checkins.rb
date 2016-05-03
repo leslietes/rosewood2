@@ -11,5 +11,7 @@ class CreateCheckins < ActiveRecord::Migration
       t.integer    :user_id,    null:    false
       t.timestamps null: false
     end
+    
+    add_index :checkins, :room_id
   end
 end

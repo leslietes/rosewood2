@@ -11,5 +11,7 @@ class CreateRooms < ActiveRecord::Migration
       
       t.timestamps null: false
     end
+    
+    add_index :rooms, :room_no, unique: true
   end
 end

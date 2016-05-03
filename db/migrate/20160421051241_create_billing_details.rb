@@ -7,5 +7,8 @@ class CreateBillingDetails < ActiveRecord::Migration
       t.integer   :user_id,      null: false
       t.timestamps null: false
     end
+    
+    add_index :billing_details, :billing_id
+    add_index :billing_details, :checkin_id
   end
 end

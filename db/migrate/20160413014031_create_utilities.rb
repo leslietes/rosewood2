@@ -11,5 +11,6 @@ class CreateUtilities < ActiveRecord::Migration
       t.integer :user_id, null: false
       t.timestamps null: false
     end
+    add_index :utilities, :name, unique: true
   end
 end

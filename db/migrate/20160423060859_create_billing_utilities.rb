@@ -18,5 +18,8 @@ class CreateBillingUtilities < ActiveRecord::Migration
         t.integer   :user_id,           null: false
         t.timestamps null: false
     end
+    
+    add_index :billing_utilities, :billing_id
+    add_index :billing_utilities, :billing_detail_id
   end
 end

@@ -11,5 +11,8 @@ class CreateCheckinDetails < ActiveRecord::Migration
       
       t.timestamps null: false
     end
+    
+    add_index :checkin_details, :checkin_id
+    add_index :checkin_details, :utilitiy_id
   end
 end
