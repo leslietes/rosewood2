@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'admin'   => "checkins#index"
   scope :admin do
     devise_for :users
-    resource :setting, only: [:create,:update,:show]
+    resource :setting, only: [:create,:edit, :update,:show]
     resources :rooms do
       get 'vacancies', on: :collection
       resources 'reservations', except: :index
