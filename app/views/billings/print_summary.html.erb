@@ -36,10 +36,12 @@
     <th>Transcient</th>
     <th>Penalty</th>
     <th>Damages</th>
+    <th>Lost Key</th>
+    <th>Locked Out</th>
     <th>Total</th>
   </thead>
   <tbody>
-    <% room, elec, water, installation, subscription, termination, parking, cleaning, transcient, penalty, damages = 0,0,0,0,0,0,0,0,0,0,0 %>
+    <% room, elec, water, installation, subscription, termination, parking, cleaning, transcient, penalty, damages, lost_key, locked_out = 0,0,0,0,0,0,0,0,0,0,0,0,0 %>
     <% room_no = 0 %>
     <% @details.each do |detail| %>
       <% total = 0 %>
@@ -58,19 +60,31 @@
           <td class="right"><%= to_currency(detail.transcient)  %><% total += detail.transcient   if !detail.transcient.blank?   %></td>
           <td class="right"><%= to_currency(detail.penalty)     %><% total += detail.penalty      if !detail.penalty.blank?      %></td>
           <td class="right"><%= to_currency(detail.damages)     %><% total += detail.damages      if !detail.damages.blank?      %></td>
+          <td class="right"><%= to_currency(detail.lost_key)    %><% total += detail.lost_key     if !detail.lost_key.blank?     %></td>
+          <td class="right"><%= to_currency(detail.locked_out)  %><% total += detail.locked_out   if !detail.locked_out.blank?   %></td>
           <td class="right"><%= to_currency(total) %></td>
         </tr>
         
         <% room += detail.room %>
         <% elec += detail.electricity %>
         <% water+= detail.water %>
+        <% subscription += detail.subscription if !detail.subscription.blank? %>
+        <% installation += detail.installation if !detail.installation.blank? %>
+        <% termination  += detail.termination  if !detail.termination.blank?  %>
+        <% parking      += detail.parking      if !detail.parking.blank?      %>
+        <% cleaning     += detail.cleaning     if !detail.cleaning.blank?     %>
+        <% transcient   += detail.transcient   if !detail.transcient.blank?   %>
+        <% penalty      += detail.penalty      if !detail.penalty.blank?      %>
+        <% damages      += detail.damages      if !detail.damages.blank?      %>
+        <% lost_key     += detail.lost_key     if !detail.lost_key.blank?     %>
+        <% locked_out   += detail.locked_out   if !detail.locked_out.blank?   %>
         <% room_no = detail.room_no %>
         
       <% else %>
         <tr>
           <td></td>
           <td class="left"><%= "#{detail.first_name} #{detail.last_name}" %></td>
-          <td colspan="12"></td>
+          <td colspan="14"></td>
         </tr>
       <% end %>
     <% end %>
@@ -87,8 +101,10 @@
       <td class="right"><%= to_currency(cleaning)     %></td>
       <td class="right"><%= to_currency(transcient)   %></td>
       <td class="right"><%= to_currency(penalty)      %></td>
-      <td class="right"><%= to_currency(damages) %></td>
-      <td class="right"><%= to_currency(room+elec+water)%></td>
+      <td class="right"><%= to_currency(damages)      %></td>
+      <td class="right"><%= to_currency(lost_key)     %></td>
+      <td class="right"><%= to_currency(locked_out)   %></td>
+      <td class="right"><%= to_currency(room+elec+water+installation+subscription+termination+parking+cleaning+transcient+penalty+damages+lost_key+locked_out)%></td>
       
     </tr>
   </tbody>

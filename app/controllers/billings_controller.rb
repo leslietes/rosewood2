@@ -140,23 +140,31 @@ class BillingsController < ApplicationController
                                                  (select billing_utilities.amount 
                                                     from billing_utilities 
                                                    where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Parking') as parking,
+                                                         utility_name = 'Parking Fee') as parking,
                                                  (select billing_utilities.amount 
                                                     from billing_utilities 
                                                    where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Cleaning Fees') as cleaning,         
+                                                         utility_name = 'Cleaning Fee') as cleaning,         
                                                  (select billing_utilities.amount 
                                                     from billing_utilities 
                                                    where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Transcient') as transcient,
+                                                         utility_name = 'Transcient Fee') as transcient,
                                                  (select billing_utilities.amount 
                                                     from billing_utilities 
                                                    where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Cable TV Termination') as penalty,
+                                                         utility_name = 'Penalty') as penalty,
                                                  (select billing_utilities.amount 
                                                     from billing_utilities
                                                    where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Damages') as damages
+                                                         utility_name = 'Damages') as damages,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Lost Key') as lost_key,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Locked Out') as locked_out
                                                 
                                                     from billing_details,
                                                          billing_occupants,
