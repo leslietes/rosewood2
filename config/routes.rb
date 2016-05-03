@@ -10,19 +10,19 @@ Rails.application.routes.draw do
       get 'vacancies', on: :collection
       resources 'reservations', except: :index
     end
-    resources :checkins do
+    resources :checkins, except: [:edit,:update,:destroy] do
       post 'new_roommate',    on: :member
       get  'remove_occupant', on: :member
       get  'remove_utility',  on: :member
       get  'vacate',          on: :member
       post 'transfer',        on: :member
       get  'print',           on: :collection
-      resources :notices
+      resources :notices, except: [:index,:destroy]
     end
     resources :occupants
     resources :utilities    
     resources :billings do
-      resources :billing_details do
+      resources :billing_details, except: [:new,:create] do
         post 'add_billing_utilities', on: :member
         delete 'remove_billing_utilities', on: :member
       end
@@ -31,7 +31,6 @@ Rails.application.routes.draw do
       post 'electricity_reading', on: :member
       get  'water_reading', on: :member
       post 'water_reading', on: :member
-      get  'billing_details', on: :member
       get  'reports',         on: :collection
       get  'print_summary',   on: :member
       get  'final_billing',   on: :member
@@ -39,13 +38,11 @@ Rails.application.routes.draw do
     end
     resources :users, only: :index
     
-    get 'admin/billings/:billing_id/print_admin_copy' => 'billing_details#print_admin_copy', as: :print_admin_copy
-    
     delete 'admin/billings/:billing_id/billing_details_id/:billing_details_id/billing_utilities/:id' => 'billing_details#remove_billing_utilities', as: :remove_billing_utilities
   end
   
   match 'contact' => "home#contact", :via => [:get, :post]
-  get 'location'=> "home#location"
+  get   'location'=> "home#location"
   
   devise_scope :user do
     get 'login', :to => 'devise/sessions#new'
