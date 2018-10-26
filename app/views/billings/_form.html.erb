@@ -10,22 +10,31 @@
       </ul>
     </div>
   <% end %>
-  
+
   <p>
     <%= f.label :statement_date %><br/>
     <%= f.text_field :statement_date, id: 'datepicker' %>
   </p>
-  
+
   <p>
     <%= f.label :advance_rent_period %><br/>
-    <%= f.select :room_month, Billing::MONTHS, prompt: "Select month" %>
-    <%= f.select :room_year, Billing::YEAR, prompt: "Select year" %>
+    <%= f.text_field :advance_rent_period %>
+    <%#= f.select :room_month, Billing::MONTHS, prompt: "Select month" %>
+    <%#= f.select :room_year, Billing::YEAR, prompt: "Select year" %>
   </p>
-  
+
+  <p>
+    <%= f.label :electricity_reading_period %><br/>
+    <%= f.text_field :electricity_reading_period %>
+    <%#= f.select :room_month, Billing::MONTHS, prompt: "Select month" %>
+    <%#= f.select :room_year, Billing::YEAR, prompt: "Select year" %>
+  </p>
+
   <p>
     <%= f.label :utilities_period %><br/>
-    <%= f.select :utilities_month, Billing::MONTHS, prompt: "Select month" %>
-    <%= f.select :utilities_year, Billing::YEAR, prompt: "Select year" %>
+    <%= f.text_field :utilities_reading_period %>
+    <%#= f.select :utilities_month, Billing::MONTHS, prompt: "Select month" %>
+    <%#= f.select :utilities_year, Billing::YEAR, prompt: "Select year" %>
   </p>
 
   <div class="actions">

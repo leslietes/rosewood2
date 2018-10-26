@@ -3,22 +3,22 @@
     <h1 class="regular brown bottom_line no_print">Settings</h1>
     <div class="clear"></div>
   </header>
-  
+
   <div class="col_1_4 no_print">
     <%= render :partial => '/shared/menu_sidebar' %>
   </div>
 
   <div class="col_3_4 last">
     <h3 class="red"><%= @billing.final_billing? ? "Final Billing" : "Billing Statement Summary"%></h3>
-        
-    <p><b><%= label_tag :statement_date   %></b>: <%= @billing.statement_date %></p>
-    <p><b><%= label_tag  :adv_rent_period %></b>: <%= @billing.room_period %></p>
-    <p><b><%= label_tag :utilities_period %></b>: <%= @billing.utilities_period %></p>
 
-    <div class="no_print">  
+    <p><b><%= label_tag :statement_date   %></b>: <%= @billing.statement_date %></p>
+    <p><b><%= label_tag  :adv_rent_period %></b>: <%= @billing.advance_rent_period %></p>
+    <p><b><%= label_tag :utilities_period %></b>: <%= @billing.utilities_reading_period %></p>
+
+    <div class="no_print">
       <%= link_to 'Print', print_summary_billing_url(@billing.id, format: 'pdf'), class: "styled_links" %>
     </div>
-    
+
     <div class="clear padding15"></div>
 
 <table class="admin_table" style="width:100%;font-size:10px;">
@@ -64,7 +64,7 @@
           <td class="right"><%= to_currency(detail.locked_out)  %><% total += detail.locked_out   if !detail.locked_out.blank?   %></td>
           <td class="right"><%= to_currency(total) %></td>
         </tr>
-        
+
         <% room += detail.room %>
         <% elec += detail.electricity %>
         <% water+= detail.water %>
@@ -79,7 +79,7 @@
         <% lost_key     += detail.lost_key     if !detail.lost_key.blank?     %>
         <% locked_out   += detail.locked_out   if !detail.locked_out.blank?   %>
         <% room_no = detail.room_no %>
-        
+
       <% else %>
         <tr>
           <td></td>
@@ -88,7 +88,7 @@
         </tr>
       <% end %>
     <% end %>
-    
+
     <tr>
       <td colspan="2" class="center">Total</td>
       <td class="right"><%= to_currency(room) %></td>
@@ -105,12 +105,12 @@
       <td class="right"><%= to_currency(lost_key)     %></td>
       <td class="right"><%= to_currency(locked_out)   %></td>
       <td class="right"><%= to_currency(room+elec+water+installation+subscription+termination+parking+cleaning+transcient+penalty+damages+lost_key+locked_out)%></td>
-      
+
     </tr>
   </tbody>
 </table>
 
   </div>
-        
+
   <div class="clear padding15"></div>
-</section>  
+</section>

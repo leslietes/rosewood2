@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <p>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -22,35 +22,40 @@
     <%= f.text_area :description %>
   </p>
   <div class="clear"></div>
-  
+
   <p>
     <%= f.label :rate %>
     <%= f.text_field :first_rate %>
   </p>
   <div class="clear"></div>
-  
+
   <p>
     <%= f.label :limit %>
     <%= f.text_field :first_limit %>
   </p>
-  
+
   <p>
     <%= f.label :excess_rate %>
     <%= f.text_field :excess_rate %>
   </p>
-    
+
   <p>
     <%= f.label :unit %>
     <%= f.text_field :unit %>
   </p>
   <div class="clear"></div>
-  
+
   <p>
     <%= f.label :category %>
     <%= f.select(:category, Utility::CATEGORIES) %>
   </p>
 
+  <p>
+    <%= f.label :sort_order %>
+    <%= f.text_field :sort_order %>
+  </p>
+
   <div class="actions">
-    <%= f.submit %>  <%= link_to 'Cancel', utilities_path, class: "styled_links" %>      
+    <%= f.submit %>  <%= link_to 'Cancel', utilities_path, class: "styled_links" %>
   </div>
 <% end %>

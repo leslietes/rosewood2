@@ -10,14 +10,14 @@
   <div class="col_1_4">
     <%= render :partial => '/shared/menu_sidebar' %>
   </div>
-  
+
   <div class="col_3_4 last">
     <!--h3 class="red">Settings</h3-->
-    
+
     <h3>Billing Statements</h3>
-    
-    <p id="notice"><%= notice %></p> 
-    
+
+    <p id="notice"><%= notice %></p>
+
     <table id="billings">
       <thead>
         <tr>
@@ -33,8 +33,8 @@
         <% @billings.each do |billing| %>
           <tr>
             <td><%= billing.statement_date %><%= "*" if billing.final_billing? %></td>
-            <td><%= billing.room_period %></td>
-            <td><%= billing.utilities_period %></td>
+            <td><%= billing.advance_rent_period %></td>
+            <td><%= billing.utilities_reading_period %></td>
             <td>
               <%= link_to 'Electricity', electricity_reading_billing_url(billing.id) %>
               <%= link_to 'Water', water_reading_billing_url(billing.id) %>
@@ -42,17 +42,17 @@
             <td>
               <%= link_to 'Show', billing_billing_details_url(billing) %>
               <%= link_to 'Edit', edit_billing_path(billing) %>
-              <%#= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    
+
     </div>
-    
+
     <span><i>*final billings</i></span>
-      
+
   <div class="clear padding15"></div>
 
 </section>

@@ -10,26 +10,26 @@
   <div class="col_1_4 no_print">
     <%= render :partial => '/shared/menu_sidebar' %>
   </div>
-  
+
   <div class="col_3_4 last">
     <!--h3 class="red">Settings</h3-->
-    
+
     <h3 class="no_print">Billing Statement</h3>
-    
-    <p id="notice"><%= notice %></p> 
-        
+
+    <p id="notice"><%= notice %></p>
+
    <div class="clear padding20"></div>
-   
+
    <% room_no = 0 %>
 
    <div class="billing_statement">
-     
+
       <%= render partial: 'occupants', locals: { billing: @billing, detail: @billing_detail.first, occupants: @billing_detail.first.occupants } %>
-    
+
       <%= render partial: 'utilities', locals: { billing_utilities: @billing_detail.first.billing_utilities} %>
-     
+
       <div class="clear padding15"></div>
-      
+
     </div>
   </div>
 </section>

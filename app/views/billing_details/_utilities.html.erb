@@ -1,32 +1,55 @@
      <table>
        <thead>
-         <th>Utilities</th>
-         <th>To</th>
-         <th>From</th>
+         <th>Details</th>
+         <th>Period</th>
+         <th>Present <br/>Reading</th>
+         <th>Previous <br/>Reading</th>
+         <th>&nbsp;</th>
          <th>Amount</th>
-       </thead>  
+       </thead>
        <tbody>
          <% total = 0 %><% amount = 0 %>
-         <% billing_utilities.each do |utility| %>    
+         <% billing_utilities.each do |utility| %>
 
            <tr>
              <td class="left"><%= utility.utility_name %></td>
-             
-             <% if ['Water','Electricity'].include? utility.utility_name %>
-               <td class="center" style="width:100px;"><%= utility.to %></td>
-               <td class="center" style="width:100px;"><%= utility.from %></td>
+             <td class="center"><%= utility.utility_period %></td>
+
+             <% if [WATER_MIN,ELECTRICITY].include? utility.utility_name %>
+               <td class="center" style="width:150px;"><%= utility.to %></td>
+               <td class="center" style="width:150px;"><%= utility.from %></td>
+               <td class="center" style="width:150px;"><%= utility.to - utility.from %></td>
              <% else %>
-               <td class="center" style="width:100px;"><%= utility.end_date %></td>
-               <td class="center" style="width:100px;"><%= utility.start_date %></td>
+               <td class="center" style="width:150px;"><%= utility.end_date %></td>
+               <td class="center" style="width:150px;"><%= utility.start_date %></td>
+               <td class="center" style="width:150px;">&nbsp;</td>
              <% end %>
-             
-             <td class="right" style="width:100px;"><%= to_currency(amount = utility.amount || 0) %><% total = total + amount %></td>
+
+             <td class="right" style="width:150px;"><%= to_currency(amount = utility.amount || 0) %><% total = total + amount %></td>
            </tr>
-           
+
          <% end %>
          <tr>
-           <td colspan="3" class="left">TOTAL</td>
+           <td colspan="5" class="left">TOTAL</td>
            <td class="right"><%= to_currency(total) %></td
          </tr>
       </tbody>
+    </table>
+
+    <table class="print_footer no_border">
+      <tr>
+        <td>Received by:</td>
+        <td>&nbsp;</td>
+        <td>Date received:</td>
+      </tr>
+      <tr>
+        <td class="center"><br/><br/><br/>____________________________________</td>
+        <td>&nbsp;</td>
+        <td class="center"><br/><br/><br/>____________________________________</td>
+      </tr>
+      <tr>
+        <td class="center">Signature Over Printed Name</td>
+        <td>&nbsp;</td>
+        <td class="center"></td>
+      </tr>
     </table>

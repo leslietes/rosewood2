@@ -1,31 +1,33 @@
      <table class="billing_statement_hdr no_border">
        <tr>
-         <td colspan="2" class="center"><b>Billing Statement</b></td>
+         <td colspan="2" class="center heading">
+           <b>Billing Statement</b><br/>
+           As of <%= billing.statement_date %>
+         </td>
        </tr>
+
+
        <tr>
-         <td class="right" style="width:100px;"><b>Room Number:</b></td>
+         <td class="left" style="width:200px;"><b>Room Number:</b></td>
          <td class="left"><%= detail.room_no %></td>
        </tr>
        <tr>
-         <td class="right"><b>Occupants:</b></td>
+         <td class="left"><b>Occupants:</b></td>
          <td class="left">
            <% occupants.each do |occupant| %>
              <%= occupant.to_s %><br/>
            <% end %>
          </td>
        </tr>
+
        <tr>
-         <td class="right"><b>Statement Date:</b></td>
-         <td class="left"><%= billing.statement_date %></td>
+         <td class="left"><b></b></td>
+         <td class="left"><%#= billing.advance_rent_period %></td>
        </tr>
        <tr>
-         <td class="right"><b>Advance Rent:</b></td>
-         <td class="left"><%= billing.room_period %></td>
-       </tr>
-       <tr>
-         <td class="right"><b>Utilities:</b></td>
-         <td class="left"><%= billing.utilities_period %></td>
+         <td class="left"><b></b></td>
+         <td class="left"><%#= billing.utilities_reading_period %></td>
        </tr>
      </table>
-     
-     <p></p>
+
+     <br/><br/>

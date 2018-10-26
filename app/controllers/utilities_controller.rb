@@ -43,7 +43,7 @@ class UtilitiesController < ApplicationController
   # PATCH/PUT /utilities/1.json
   def update
     @utility.user_id = current_user.id
-        
+
     respond_to do |format|
       if @utility.update(utility_params)
         format.html { redirect_to utilities_url, notice: 'Utility was successfully updated.' }
@@ -73,6 +73,6 @@ class UtilitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def utility_params
-      params.require(:utility).permit(:name,:description,:first_rate,:first_limit,:excess_rate,:unit,:category)
+      params.require(:utility).permit(:name,:description,:sort_order,:first_rate,:first_limit,:excess_rate,:unit,:category)
     end
 end

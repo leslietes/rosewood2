@@ -28,7 +28,7 @@ class BillingsController < ApplicationController
   def create
     @billing = Billing.new(billing_params)
     @billing.user_id = current_user.id
-    
+
     respond_to do |format|
       if @billing.valid?
         Billing.transaction do
@@ -42,14 +42,14 @@ class BillingsController < ApplicationController
         format.json { render json: @billing.errors, status: :unprocessable_entity }
       end
     end
-    
+
   end
 
   # PATCH/PUT /billings/1
   # PATCH/PUT /billings/1.json
   def update
     @billing.user_id = current_user.id
-    
+
     respond_to do |format|
       if @billing.update(billing_params)
         format.html { redirect_to billings_url, notice: 'Billing was successfully updated.' }
@@ -70,10 +70,10 @@ class BillingsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def electricity_reading
     @details = BillingUtility.get_electricity(params[:id])
-  
+
     return unless request.post?
 
     # update multiple records in one form
@@ -85,12 +85,12 @@ class BillingsController < ApplicationController
       render :electricity_reading
     end
   end
-  
+
   def water_reading
     @utilities = BillingUtility.get_water(params[:id])
-    
+
     return unless request.post?
-    
+
     # update multiple records in one form
     if BillingUtility.update(params['utilities'].keys, params['utilities'].values)
       generate_water_amount(@utilities)
@@ -100,62 +100,62 @@ class BillingsController < ApplicationController
       render :water_reading
     end
   end
-  
+
   def reports
     @billings = Billing.all
   end
-  
+
   def print_summary
     @billing = BillingDetail.find(params[:id]).billing
-    @details = BillingDetail.find_by_sql("select billing_details.id, 
-                                                 billing_details.room_no, 
-                                                 billing_details.checkin_id, 
+    @details = BillingDetail.find_by_sql("select billing_details.id,
+                                                 billing_details.room_no,
+                                                 billing_details.checkin_id,
                                                  billing_occupants.occupant_id,
                                                  occupants.first_name,
                                                  occupants.last_name,
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Room Rate') as room,
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Electricity') as electricity,              
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Water') as water,
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Cable TV Installation') as installation,
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Cable TV Subscription') as subscription,
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Cable TV Termination') as termination,
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Parking Fee') as parking,
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Cleaning Fee') as cleaning,         
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Transcient Fee') as transcient,
-                                                 (select billing_utilities.amount 
-                                                    from billing_utilities 
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
-                                                         utility_name = 'Penalty') as penalty,
-                                                 (select billing_utilities.amount 
+                                                 (select billing_utilities.amount
                                                     from billing_utilities
-                                                   where billing_utilities.billing_detail_id = billing_details.id and 
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Advance Room Rental') as room,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Electricity') as electricity,
+                                                 (select sum(billing_utilities.amount)
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         (utility_name = 'Water (excess)' or utility_name = 'Water (minimum)')) as water,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Cable TV Installation') as installation,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Cable TV Subscription') as subscription,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Cable TV Termination') as termination,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Parking Fee') as parking,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Cleaning Fee') as cleaning,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Transcient Fee') as transcient,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
+                                                         utility_name = 'Penalty') as penalty,
+                                                 (select billing_utilities.amount
+                                                    from billing_utilities
+                                                   where billing_utilities.billing_detail_id = billing_details.id and
                                                          utility_name = 'Damages') as damages,
                                                  (select billing_utilities.amount
                                                     from billing_utilities
@@ -165,7 +165,7 @@ class BillingsController < ApplicationController
                                                     from billing_utilities
                                                    where billing_utilities.billing_detail_id = billing_details.id and
                                                          utility_name = 'Locked Out') as locked_out
-                                                
+
                                                     from billing_details,
                                                          billing_occupants,
                                                          occupants
@@ -185,13 +185,13 @@ class BillingsController < ApplicationController
       end
     end
   end
-  
+
   def final_billing
     @checkin = Checkin.find(params[:id])
     @billing = Billing.new
-    
+
     return unless request.post?
-    
+
     @billing = Billing.new(statement_date: params[:statement_date],
                                     room_month: params[:room_month],
                                      room_year: params[:room_year],
@@ -199,7 +199,7 @@ class BillingsController < ApplicationController
                                 utilities_year: params[:utilities_year],
                                  final_billing: true,
                                        user_id: current_user.id )
-      if @billing.valid?                                 
+      if @billing.valid?
         Billing.transaction do
           @billing.save
           @billing.generate_final_billing(@checkin.id,current_user.id)
@@ -208,10 +208,10 @@ class BillingsController < ApplicationController
       else
         render :final_billing
       end
-    
-    
+
+
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_billing
@@ -220,13 +220,13 @@ class BillingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def billing_params
-      params.require(:billing).permit(:statement_date,:room_month,:room_year,:utilities_month,:utilities_year,:user_id)
+      params.require(:billing).permit(:statement_date,:advance_rent_period,:electricity_reading_period,:utilities_reading_period,:user_id)
     end
-    
+
     def generate_electricity_amount(billing_utilities)
       billing_utilities.each { |utility| utility.calculate_electricity }
     end
-    
+
     def generate_water_amount(billing_utilities)
       billing_utilities.each { |utility| utility.calculate_water }
     end

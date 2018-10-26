@@ -10,21 +10,22 @@
   <div class="col_1_4">
     <%= render :partial => '/shared/menu_sidebar' %>
   </div>
-  
+
   <div class="col_3_4 last">
     <!--h3 class="red">Settings</h3-->
-    
+
     <h3>Utilities</h3>
 
     <p id="notice"><%= notice %></p>
-        
-    <%= link_to 'New Utility', new_utility_path, class: "styled_links" %>      
+
+    <%= link_to 'New Utility', new_utility_path, class: "styled_links" %>
 
     <div class="clear padding20"></div>
-    
+
     <table id="utilities_list">
       <thead>
         <tr>
+          <th>Sort Order</th>
           <th>Name</th>
           <th>Description</th>
           <th>Rate</th>
@@ -38,6 +39,7 @@
       <tbody>
         <% @utilities.each do |utility| %>
           <tr>
+            <td><%= utility.sort_order %></td>
             <td class="left"><%= link_to utility.name, utility %></td>
             <td><%= utility.description %></td>
             <td><%= to_currency(utility.first_rate) %></td>
@@ -51,10 +53,10 @@
         <% end %>
       </tbody>
     </table>
-  <%= link_to 'New Utility', new_utility_path, class: "styled_links" %>          
+  <%= link_to 'New Utility', new_utility_path, class: "styled_links" %>
   </div>
-  
 
-  
+
+
   <div class="clear padding15"></div>
 </section>

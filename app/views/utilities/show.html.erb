@@ -10,50 +10,54 @@
   <div class="col_1_4">
     <%= render :partial => '/shared/menu_sidebar' %>
   </div>
-  
+
   <div class="col_3_4 last">
     <h3 class="red">Utilities</h3>
 
     <p id="notice"><%= notice %></p>
-        
+
     <p>
       <%= label_tag :name %><%= @utility.name %>
     </p>
-    
+
     <p>
       <%= label_tag :description %><%= @utility.description %>
     </p>
-    
+
     <p>
       <%= label_tag :rate %><%= to_currency(@utility.first_rate) %>
     </p>
-    
+
     <p>
       <%= label_tag :limit %><%= to_currency(@utility.first_limit) %>
     </p>
-    
+
     <p>
       <%= label_tag :excess_rate %><%= to_currency(@utility.excess_rate) %>
     </p>
-    
+
     <p>
       <%= label_tag :unit %><%= @utility.unit %>
     </p>
-    
+
     <p>
       <%= label_tag :category %><%= @utility.category %>
     </p>
-    
+
+    <p>
+      <%= label_tag :sort_order %><%= @utility.sort_order %>
+    </p>
+
     <p>
       <span><i>Last updated at <%= @utility.updated_at %> by <%= User.last_user(@utility.user_id) %></i></span>
     </p>
-          
+
     <br/>
 
-    <%= link_to 'Edit', edit_utility_path(@utility), class: "styled_links" %> 
+    <%= link_to 'Edit', edit_utility_path(@utility), class: "styled_links" %>
     <%= link_to 'Cancel', utilities_path, class: "styled_links" %>
 
   </div>
-        
+
   <div class="clear padding15"></div>
 </section>

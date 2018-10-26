@@ -6,13 +6,13 @@ class CreateCheckinDetails < ActiveRecord::Migration
       t.decimal    :amount
       t.string     :start_date
       t.string     :end_date
-      
+
       t.integer    :user_id, null: false
-      
+
       t.timestamps null: false
     end
-    
-    add_index :checkin_details, :checkin_id
-    add_index :checkin_details, :utilitiy_id
+
+    #add_index :checkin_details, :checkin_id
+    #add_index :checkin_details, :utilitiy_id
   end
 end
