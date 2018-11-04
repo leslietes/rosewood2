@@ -37,6 +37,15 @@
     page-break-before: always;
   }**/
 
+  .print_footer {
+      position:relative;
+    bottom:0px;
+    left:0px;
+    height:150px;
+margin-top: 550px;
+  }
+
+
   .no_print {
     display: none;
   }
@@ -47,11 +56,5 @@
 
   table.no_border, table.no_border th, table.no_border td { border: none; }
 
-  .print_footer {
-    position:fixed;
-    bottom:0px;
-    left:0px;
-    height:50px;
-  }
 
 }
