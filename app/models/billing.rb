@@ -39,7 +39,7 @@ class Billing < ActiveRecord::Base
           amount = checkin_detail.amount
 
         elsif checkin_detail.utility.name == WATER_MIN
-          utility_period = utilities_reading_period
+          utility_period = electricity_reading_period
           amount = checkin_detail.amount
 
         elsif checkin_detail.utility.name == WATER_EXCESS
@@ -103,6 +103,8 @@ class Billing < ActiveRecord::Base
   def self.get_electricity_charges(billing_id)
 #    includes(:billing_details,:billing_utilities).where("billing_ = 'Electricity'")
   end
+
+
 
   #def room_period
   #  "#{room_month} #{room_year}"

@@ -19,6 +19,7 @@
     </p>
 
     <div class="narrow">
+      <%= label_tag 'sort_order' %>
       <%= label_tag 'utilities' %>
       <%= label_tag 'period' %>
       <%= label_tag 'to' %>
@@ -29,6 +30,7 @@
     <%= form_tag billing_billing_detail_url(@billing.id, @billing_detail.first.id), method: :put do %>
       <% @billing_detail.first.billing_utilities.each do |utility| %>
         <%= fields_for "utilities[]", utility do |f| %>
+            <%= f.text_field 'sort_order' %>
             <%= f.text_field 'utility_name' %>
             <%= f.text_field 'utility_period' %>'
 

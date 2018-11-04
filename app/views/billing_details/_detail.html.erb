@@ -1,20 +1,40 @@
    <% room_no = 0 %>
    <% @billing_details.each do |detail| %>
    <div class="billing_statement">
-     
+
      <%= render partial: 'occupants', locals: { billing: @billing, detail: detail, occupants: detail.occupants } %>
-    
+
      <%= render partial: 'utilities', locals: { billing_utilities: detail.billing_utilities} %>
-    
+
     <div class="no_print">
       <span><i>Last updated at <%= detail.updated_at %> by <%= User.last_user(detail.user_id) %></i></span>
     </div>
-      
-    <div class="clear padding20"></div>  
-    
+
+    <div class="clear padding20"></div>
+
+    <table class="print_footer no_border">
+      <thead></thead>
+      <tbody>
+      <tr>
+        <td>Received by:</td>
+        <td>&nbsp;</td>
+        <td>Date received:</td>
+      </tr>
+      <tr>
+        <td class="center"><br/><br/><br/>____________________________________</td>
+        <td>&nbsp;</td>
+        <td class="center"><br/><br/><br/>____________________________________</td>
+      </tr>
+      <tr>
+        <td class="center">Signature Over Printed Name</td>
+        <td>&nbsp;</td>
+        <td class="center"></td>
+      </tr></tbody>
+    </table>
+
     <%= link_to 'Edit', edit_billing_billing_detail_url(@billing.id, detail.id), class: "styled_links no_print" %>
     <%= link_to 'Print', billing_billing_detail_url(@billing.id, detail.id, format: 'pdf'), class: "styled_links no_print" %>
     <div class="clear padding20"></div>
-    
+
     <% end %>
   </div>
