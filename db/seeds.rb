@@ -78,7 +78,7 @@ Room.create(room_no: 407, max_occupants: 2, room_rate: 7000, active: true,  user
 Room.create(room_no: 408, max_occupants: 2, room_rate: 7500, active: true,  user_id: 1)
 Room.create(room_no: 409, max_occupants: 2, room_rate: 7000, active: true,  user_id: 1)
 Room.create(room_no: 410, max_occupants: 2, room_rate: 7500, active: true,  user_id: 1)
-Room.create(room_no: 411, max_occupants: 2, room_rate: 75000, active: true, user_id: 1)
+Room.create(room_no: 411, max_occupants: 2, room_rate: 7500, active: true, user_id: 1)
 Room.create(room_no: 412, max_occupants: 3, room_rate: 10500, active: true, user_id: 1)
 
 Utility.create(name: ROOM_RATE,   category: 'Basic', sort_order: 1, user_id: 1)
@@ -89,7 +89,7 @@ Utility.create(name: 'Cable TV Subscription', category: 'Extra', sort_order: 5, 
 Utility.create(name: 'Cable TV Installation', category: 'Extra', sort_order: 6, description: "One time fee", first_rate: 450, unit: 'one time',  user_id: 1)
 Utility.create(name: 'Cable TV Termination',  category: 'Extra', sort_order: 7, description: "One time fee", first_rate: 450, unit: 'one time',  user_id: 1)
 
-Utility.create(name: 'Parking Fee',    category: 'Extra', sort_order: 8, description: "Monthly parking fee",    first_rate: 1500,       unit: 'per month', user_id: 1)
+Utility.create(name: 'Basement Parking',    category: 'Extra', sort_order: 8, description: "Monthly parking fee",    first_rate: 1500,       unit: 'per month', user_id: 1)
 Utility.create(name: 'Transcient Fee', category: 'Extra', sort_order: 9, description: "Extra person per night", first_rate: 250,        unit: 'per night', user_id: 1)
 Utility.create(name: 'Penalty',        category: 'Extra', sort_order: 10, description: "Past due penalty",       first_rate: 100,        unit: 'per day',   user_id: 1)
 Utility.create(name: 'Damages',        category: 'Extra', sort_order: 11, description: "Rate depending on damage",                       unit: 'per damage',user_id: 1)
@@ -103,8 +103,7 @@ Occupant.create(first_name: 'Asvatha', last_name: 'Karthikeyan', user_id: 1)
 Occupant.create(first_name: 'Sathiyapriya', last_name: 'Sivakumar', user_id: 1)
 Occupant.create(first_name: 'Hazel Olive', last_name: 'Parmes', user_id: 1)
 Occupant.create(first_name: 'Rheina', last_name: 'Retana', user_id: 1)
-Occupant.create(first_name: 'Roche', last_name: 'Ompad', user_id: 1)
-
+Occupant.create(first_name: 'Loraine', last_name: 'Ompad', user_id: 1)
 Occupant.create(first_name: 'Loren Grace', last_name: 'Manigos', user_id: 1)
 Occupant.create(first_name: 'Annikka Felicitty', last_name: 'Balaga', user_id: 1)
 Occupant.create(first_name: 'Charlemagne', last_name: 'Hoppe', user_id: 1)
