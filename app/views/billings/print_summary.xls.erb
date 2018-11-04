@@ -1,0 +1,74 @@
+<section class="container clearfix">
+
+  <div class="col_3_4 last">
+    <h3 class="red"><%= @billing.final_billing? ? "Final Billing" : "Billing Statement Summary"%></h3>
+
+    <p><b><%= label_tag :statement_date   %></b>: <%= @billing.statement_date %></p>
+    <p><b><%= label_tag  :adv_rent_period %></b>: <%= @billing.advance_rent_period %></p>
+    <p><b><%= label_tag :utilities_period %></b>: <%= @billing.utilities_reading_period %></p>
+
+    <div class="clear padding15"></div>
+
+<table class="" style="width:100%;font-size:12px;">
+  <thead>
+    <th>Room No</th>
+    <th>Occupants</th>
+    <th>Room</th>
+    <th>Electricity</th>
+    <th>Water</th>
+    <th>Cable Inst.</th>
+    <th>Cable Subs.</th>
+    <th>Cable Term.</th>
+    <th>Parking</th>
+    <th>Cleaning</th>
+    <th>Transcient</th>
+    <th>Penalty</th>
+    <th>Damages</th>
+    <th>Lost Key</th>
+    <th>Locked Out</th>
+    <th>Total</th>
+  </thead>
+  <tbody>
+    <% room_no = 0 %>
+    <% @details.each do |detail| %>
+      <% total = 0 %>
+      <% if room_no != detail.room_no %>
+        <tr>
+          <td class="center"><%= detail.room_no %></td>
+          <td class="left"><%= "#{detail.first_name} #{detail.last_name}" %></td>
+          <td class="right"><%= to_currency(detail.room) %>       <% total += detail.room %></td>
+          <td class="right"><%= to_currency(detail.electricity) %><% total += detail.electricity %></td>
+          <td class="right"><%= to_currency(detail.water) %>      <% total += detail.water %></td>
+          <td class="right"><%= to_currency(detail.installation)%><% total += detail.installation if !detail.installation.blank? %></td>
+          <td class="right"><%= to_currency(detail.subscription)%><% total += detail.subscription if !detail.subscription.blank? %></td>
+          <td class="right"><%= to_currency(detail.termination) %><% total += detail.termination  if !detail.termination.blank?  %></td>
+          <td class="right"><%= to_currency(detail.parking)     %><% total += detail.parking      if !detail.parking.blank?      %></td>
+          <td class="right"><%= to_currency(detail.cleaning)    %><% total += detail.cleaning     if !detail.cleaning.blank?     %></td>
+          <td class="right"><%= to_currency(detail.transcient)  %><% total += detail.transcient   if !detail.transcient.blank?   %></td>
+          <td class="right"><%= to_currency(detail.penalty)     %><% total += detail.penalty      if !detail.penalty.blank?      %></td>
+          <td class="right"><%= to_currency(detail.damages)     %><% total += detail.damages      if !detail.damages.blank?      %></td>
+          <td class="right"><%= to_currency(detail.lost_key)    %><% total += detail.lost_key     if !detail.lost_key.blank?     %></td>
+          <td class="right"><%= to_currency(detail.locked_out)  %><% total += detail.locked_out   if !detail.locked_out.blank?   %></td>
+          <td class="right"><%= to_currency(total) %></td>
+        </tr>
+
+
+        <% room_no = detail.room_no %>
+
+      <% else %>
+        <tr>
+          <td></td>
+          <td class="left"><%= "#{detail.first_name} #{detail.last_name}" %></td>
+          <td colspan="14"></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+
+  </tbody>
+</table>
+
+  </div>
+
+  <div class="clear padding15"></div>
+</section>

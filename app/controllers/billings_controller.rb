@@ -140,7 +140,7 @@ class BillingsController < ApplicationController
                                                  (select billing_utilities.amount
                                                     from billing_utilities
                                                    where billing_utilities.billing_detail_id = billing_details.id and
-                                                         utility_name = 'Parking Fee') as parking,
+                                                         utility_name = 'Basement Parking') as parking,
                                                  (select billing_utilities.amount
                                                     from billing_utilities
                                                    where billing_utilities.billing_detail_id = billing_details.id and
@@ -174,6 +174,8 @@ class BillingsController < ApplicationController
                                                  billing_details.billing_id = #{params[:id]};")
     respond_to do |format|
       format.html
+      format.csv { send_data @details.to_csv }
+      format.xls
       format.pdf do
         html = render_to_string(:layout => false, :action => "print_summary.html.erb")
         # many other options
