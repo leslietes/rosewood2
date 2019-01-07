@@ -6,6 +6,17 @@
 
      <%= render partial: 'utilities', locals: { billing_utilities: detail.billing_utilities} %>
 
+     <div class="comments">
+       <%= detail.comments %>
+     </div>
+
+     <div class="no_print">
+     <%= form_tag add_billing_detail_comments_url(@billing.id, detail.id), method: :put do  %>
+       <%= text_field_tag :add_comment %>
+       <%= submit_tag %>
+     <% end %>
+     </div>
+
     <div class="no_print">
       <span><i>Last updated at <%= detail.updated_at %> by <%= User.last_user(detail.user_id) %></i></span>
     </div>

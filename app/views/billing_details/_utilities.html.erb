@@ -15,7 +15,7 @@
              <td class="left"><%= utility.utility_name %></td>
              <td class="center"><%= utility.utility_period %></td>
 
-             <% if [WATER_MIN,ELECTRICITY].include? utility.utility_name %>
+             <% if [WATER_COM,WATER_MIN,ELECTRICITY].include? utility.utility_name %>
                <td class="center" style="width:150px;"><%= utility.to %></td>
                <td class="center" style="width:150px;"><%= utility.from %></td>
                <td class="center" style="width:150px;"><%= utility.to - utility.from %></td>
@@ -35,5 +35,3 @@
          </tr>
       </tbody>
     </table>
-
-    

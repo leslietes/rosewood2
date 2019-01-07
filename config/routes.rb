@@ -20,13 +20,13 @@ Rails.application.routes.draw do
       resources :notices, except: [:index,:destroy]
     end
     resources :occupants
-    resources :utilities    
+    resources :utilities
     resources :billings do
       resources :billing_details, except: [:new,:create] do
         post 'add_billing_utilities', on: :member
         delete 'remove_billing_utilities', on: :member
       end
-      
+
       get  'electricity_reading', on: :member
       post 'electricity_reading', on: :member
       get  'water_reading', on: :member
@@ -37,13 +37,15 @@ Rails.application.routes.draw do
       post 'final_billing',   on: :member
     end
     resources :users, only: :index
-    
+
     delete 'admin/billings/:billing_id/billing_details_id/:billing_details_id/billing_utilities/:id' => 'billing_details#remove_billing_utilities', as: :remove_billing_utilities
+
+    put 'billings/:billing_id/billing_details/:billing_details_id/add_comment' => 'billing_details#add_comments', as: :add_billing_detail_comments
   end
-  
+
   match 'contact' => "home#contact", :via => [:get, :post]
   get   'location'=> "home#location"
-  
+
   devise_scope :user do
     get 'login', :to => 'devise/sessions#new'
     get 'logout',:to => 'devise/sessions#destroy'
@@ -54,7 +56,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-  
+
   # redirect to home page on 404
   get  '*path' => redirect('/')
 

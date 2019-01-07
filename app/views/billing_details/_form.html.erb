@@ -34,7 +34,7 @@
             <%= f.text_field 'utility_name' %>
             <%= f.text_field 'utility_period' %>'
 
-            <% if ['Water (minimum)','Water (excess)','Electricity'].include? utility.utility_name %>
+            <% if ['Water (minimum)','Water (excess)','Electricity', 'Water (commercial)'].include? utility.utility_name %>
               <%= f.text_field 'to' %>
               <%= f.text_field 'from' %>
             <% else %>

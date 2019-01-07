@@ -24,7 +24,8 @@ class BillingDetailsController < ApplicationController
 
   def show
     @billing = Billing.find(params[:billing_id])
-    @billing_detail= @billing.billing_details.where(params[:id]).includes(:billing_utilities,:checkin => {:checkin_occupants => :occupant})
+    @billing_detail = BillingDetail.where(id: params[:id]).includes(:billing_utilities,:checkin => {:checkin_occupants => :occupant})
+    #@billing_detail= @billing.billing_details.where(params[:id]).includes(:billing_utilities,:checkin => {:checkin_occupants => :occupant})
     respond_to do |format|
       format.html
       format.pdf do
@@ -86,6 +87,15 @@ class BillingDetailsController < ApplicationController
     flash[:notice] = "Billing Utility was successfully destroyed."
 
     redirect_to edit_billing_billing_detail_url(params[:billing_id],params[:billing_details_id])
+  end
+
+  def add_comments
+    @billing = Billing.find(params[:billing_id])
+    @billing_detail = BillingDetail.where(id: params[:billing_details_id]).first
+    @billing_detail.comments = params[:add_comment]
+    @billing_detail.save
+
+    redirect_to billing_billing_details_url(params[:billing_id]), notice: 'Successfully added comments.'
   end
 
   private
