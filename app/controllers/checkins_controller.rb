@@ -21,6 +21,7 @@ class CheckinsController < ApplicationController
     @rooms = Room.occupancy_list
     respond_to do |format|
       format.html
+      format.xls
       format.pdf do
         html = render_to_string(:layout => false, :action => "print.html.erb")
         # many other options
