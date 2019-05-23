@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         delete 'remove_billing_utilities', on: :member
       end
 
+      get  'occupancy_list', on: :member
       get  'electricity_reading', on: :member
       post 'electricity_reading', on: :member
       get  'water_reading', on: :member

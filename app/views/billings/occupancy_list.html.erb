@@ -1,0 +1,53 @@
+<section class="container clearfix">
+  <header class="container page_info clearfix">
+    <h1 class="regular brown bottom_line no_print">Settings</h1>
+    <div class="clear"></div>
+  </header>
+
+  <div class="col_1_4 no_print">
+    <%= render :partial => '/shared/menu_sidebar' %>
+  </div>
+
+  <div class="col_3_4 last">
+    <h3 class="red center">Occupancy List as of <%= @billing.statement_date %></h3>
+
+    <p></p>
+
+
+    <div class="no_print">
+      <%= link_to 'Print', occupancy_list_billing_url(@billing.id, format: 'pdf'), class: "styled_links" %>
+      <%= link_to 'Excel', occupancy_list_billing_url(@billing.id, format: 'xls'), class: "styled_links" %>
+    </div>
+
+    <div class="clear padding15"></div>
+
+<table class="admin_table" style="width:100%;font-size:10px;">
+  <thead>
+    <th>Room No</th>
+    <th>Occupants</th>
+    <th>Start Date</th>
+  </thead>
+  <tbody>
+
+    <% @billing_details.each do |detail| %>
+      <tr>
+        <td class="center"><%= detail.room_no %></td>
+        <td class="left">
+
+          <% detail.checkin.occupants.each do |occupant| %>
+            <%= occupant.to_s %><br/>
+          <% end %>
+        </td>
+        <td class="center"><%= detail.checkin.start_date %></td>
+      </tr>
+
+    <% end %>
+
+
+  </tbody>
+</table>
+
+  </div>
+
+  <div class="clear padding15"></div>
+</section>

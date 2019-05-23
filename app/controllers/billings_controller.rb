@@ -105,6 +105,26 @@ class BillingsController < ApplicationController
     @billings = Billing.all
   end
 
+  def occupancy_list
+    @billing = Billing.find(params[:id])
+    @billing_details= @billing.billing_details.includes(:checkin => {:checkin_occupants => :occupant})
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @details.to_csv }
+      format.xls
+      format.pdf do
+        html = render_to_string(:layout => false, :action => "occupancy_list.html.erb")
+        # many other options
+        kit  = PDFKit.new(html, :page_size =>   'A4')
+        # you have to give whole path of stylesheet
+        kit.stylesheets << "#{Rails.root}/app/assets/stylesheets/print.css"
+        # use disposition inline to open in browser. if removed, will automatically download. Another option is 'inline'
+        send_data kit.to_pdf, filename: "occupancy_list_as_of_#{@billing.statement_date}.pdf", orientation: "Portrait", type: "application/pdf", disposition: "inline"
+      end
+    end
+  end
+
   def print_summary
     @billing = BillingDetail.find(params[:id]).billing
     @details = BillingDetail.find_by_sql("select billing_details.id,
@@ -165,7 +185,10 @@ class BillingsController < ApplicationController
                                                     from billing_utilities
                                                    where billing_utilities.billing_detail_id = billing_details.id and
                                                          utility_name = 'Locked Out') as locked_out
-
+                                                (select billing_utilities.amount
+                                                            from billing_utilities
+                                                           where billing_utilities.billing_detail_id = billing_details.id and
+                                                                 utility_name = 'Overage') as overage
                                                     from billing_details,
                                                          billing_occupants,
                                                          occupants

@@ -37,6 +37,8 @@
             <td>
               <%#= link_to 'Print Statements', billing_billing_details_url(billing) %>
               <%= link_to 'Show', print_summary_billing_url(billing.id) %>
+              <%= link_to 'PDF', print_summary_billing_url(billing.id, format: 'pdf') %>
+              <%= link_to 'Excel', print_summary_billing_url(billing.id, format: 'xls') %>              
               <%#= link_to 'Destroy', billing, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
           </tr>

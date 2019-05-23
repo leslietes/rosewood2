@@ -17,6 +17,7 @@
 
     <div class="no_print">
       <%= link_to 'Print', print_summary_billing_url(@billing.id, format: 'pdf'), class: "styled_links" %>
+      <%= link_to 'Excel', print_summary_billing_url(@billing.id, format: 'xls'), class: "styled_links" %>
     </div>
 
     <div class="clear padding15"></div>

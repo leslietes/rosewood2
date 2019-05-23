@@ -1,0 +1,39 @@
+
+
+
+
+
+    <h3 class="red">Occupancy List as of <%= @billing.statement_date %></h3>
+
+    <p></p>
+
+
+  
+
+    <div class="clear padding15"></div>
+
+<table class="admin_table" style="width:100%;font-size:10px;">
+  <thead>
+    <th>Room No</th>
+    <th>Occupants</th>
+    <th>Start Date</th>
+  </thead>
+  <tbody>
+
+    <% @billing_details.each do |detail| %>
+      <tr>
+        <td class="center"><%= detail.room_no %></td>
+        <td>
+
+          <% detail.checkin.occupants.each do |occupant| %>
+            <%= occupant.to_s %><br/>
+          <% end %>
+        </td>
+        <td class="center"><%= detail.checkin.start_date %></td>
+      </tr>
+
+    <% end %>
+
+
+  </tbody>
+</table>
