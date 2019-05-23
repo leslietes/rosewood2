@@ -49,7 +49,7 @@ class BillingDetailsController < ApplicationController
   def update
     respond_to do |format|
       if BillingUtility.update(params['utilities'].keys, params['utilities'].values)
-        format.html { redirect_to billing_billing_details_url(params[:billing_id]), notice: 'Billing was successfully updated.' }
+        format.html { redirect_to billing_billing_detail_url(params[:billing_id], params[:id]), notice: 'Billing was successfully updated.' }
         format.json { render :show, status: :ok, location: @billing_detail }
       else
         format.html { render :edit }
