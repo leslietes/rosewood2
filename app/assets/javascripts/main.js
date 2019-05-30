@@ -7,7 +7,9 @@ $(document).ready(function(){
   $('#occupants_list').dataTable();
   $('#rooms_list').dataTable();
   $('#utilities_list').dataTable();
-  $('#billings').dataTable();
+  $('#billings').dataTable({
+      "order": [[0, "desc"]]
+  });
 
   $('#datepicker').datepicker({
     changeMonth: true,
@@ -17,7 +19,7 @@ $(document).ready(function(){
     changeMonth: true,
     changeYear: true
   });
-}); 
+});
 
 $(function () {
     $('#work').carouFredSel({
