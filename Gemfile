@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'paperclip', '~> 5.0.0.beta1'
+gem 'paperclip', '~> 6.1.0'
 gem 'devise'
 gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
