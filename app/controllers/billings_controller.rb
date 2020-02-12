@@ -5,7 +5,7 @@ class BillingsController < ApplicationController
   # GET /billings
   # GET /billings.json
   def index
-    @billings = Billing.all
+    @billings = Billing.all.order(created_at: :desc)
   end
 
   # GET /billings/1
@@ -184,7 +184,7 @@ class BillingsController < ApplicationController
                                                  (select billing_utilities.amount
                                                     from billing_utilities
                                                    where billing_utilities.billing_detail_id = billing_details.id and
-                                                         utility_name = 'Locked Out') as locked_out
+                                                         utility_name = 'Locked Out') as locked_out,
                                                 (select billing_utilities.amount
                                                             from billing_utilities
                                                            where billing_utilities.billing_detail_id = billing_details.id and
@@ -254,5 +254,9 @@ class BillingsController < ApplicationController
 
     def generate_water_amount(billing_utilities)
       billing_utilities.each { |utility| utility.calculate_water }
+    end
+
+    def get_occupants
+      @occupants = Occupant.all
     end
 end

@@ -13,4 +13,9 @@ class BillingDetail < ActiveRecord::Base
     billing_utilities.create(sort_order: utility.sort_order, utility_name: utility.name, rate:utility.first_rate, amount:utility.first_rate, billing_id: billing.id, user_id: user_id)
   end
 
+  def add_billing_occupant(occupant_id, user_id)
+    occupant = Occupant.find(occupant_id)
+    billing_occupants.create(billing_detail_id: billing_id , occupant_id: occupant_id, user_id: user_id)
+  end
+
 end

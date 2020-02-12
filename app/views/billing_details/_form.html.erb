@@ -15,8 +15,23 @@
 
     <p>
       <%= label_tag :occupants %>
-      <%= @billing_detail.first.occupants.join(', ') %>
+      <% @billing_detail.first.billing_occupants.each do |occupant| %>
+        <%= occupant.occupant %>  <%= link_to '(remove)', remove_billing_occupant_billing_billing_detail_url(@billing_detail.first.id, occupant.id), method: :delete, data: { confirm: 'Are you sure?'}, class: "styled_links" %><br/>
+      <% end %>
     </p>
+
+    <%= form_tag add_billing_occupant_billing_billing_detail_url(billing_id: @billing.id, id: @billing_detail.first.id) do %>
+      <p>
+        <label>New Roommate</label>
+        <%= select_tag "occupant_id", options_for_select(@occupants.map {|o| [o.to_s, o.id] }), prompt: "Select occupant" %><br/>
+        <%= submit_tag 'Add' %>
+      </p>
+
+    <% end %>
+
+
+
+<div class="clear padding15"></div>
 
     <div class="narrow">
       <%= label_tag 'sort_order' %>

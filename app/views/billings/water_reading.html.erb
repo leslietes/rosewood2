@@ -10,32 +10,35 @@
   <div class="col_1_4">
     <%= render :partial => '/shared/menu_sidebar' %>
   </div>
-  
+
     <div class="col_3_4 last">
       <h3 class="red">Water Reading</h3>
 
       <p id="notice"><%= notice %></p>
-      
+
       <div class="narrow">
         <%= label_tag 'Room No' %>
         <%= label_tag 'Present' %>
         <%= label_tag 'Previous' %>
-        
+        <%= label_tag 'Difference' %>
+
         <%= form_tag do %>
 
           <% @utilities.each do |utility| %>
               <%= fields_for "utilities[]", utility do |f| %>
                 <%= label_tag utility.billing_detail.room_no %>
                 <%= f.text_field 'to' %>
-                <%= f.text_field 'from'   %><br/>
+                <%= f.text_field 'from'   %>
+                <%= utility.to - utility.from %>
+                <br/>
               <% end%>
           <% end %>
           <%= submit_tag %> <%#= link_to 'Back', billing_billing_details_url(params[:id]), class: "styled_links" %>  <%= link_to 'Cancel', billings_url, class: "styled_links" %>
         <% end %>
-        
+
       </div>
-              
+
     </div>
-        
+
     <div class="clear padding15"></div>
   </section>

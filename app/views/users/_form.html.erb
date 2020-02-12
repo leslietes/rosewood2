@@ -1,0 +1,50 @@
+<%= form_for User.new, :url => 'create_user_path', :html => {:class => "admin_form"} do |f| %>
+
+  <% if @user.errors.any? %>
+      <%= pluralize(@user.errors.count, "error")%> prohibited this entry from being saved
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+  <% end %>
+  
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+
+ <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :confirm_password %>
+    <%= f.password_field :password_confirmation %>
+  </p>  
+  
+  <p>
+    <%= f.label :admin %>
+    <%= f.check_box :admin %>
+  </p>
+  
+  <p>
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </p>
+  
+
+  <div class="clear padding25"></div>  
+
+
+  <%= f.submit class: "button white" %>
+  <%= link_to 'Cancel', faqs_url, class: "styled_links "%>
+
+  <div class="clear padding25"></div>
+<% end %>

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       resources :billing_details, except: [:new,:create] do
         post 'add_billing_utilities', on: :member
         delete 'remove_billing_utilities', on: :member
+        delete 'remove_billing_occupant', on: :member
+        post 'add_billing_occupant', on: :member
       end
 
       get  'electricity_reading', on: :member

@@ -52,7 +52,7 @@
           <td class="left"><%= "#{detail.first_name} #{detail.last_name}" %></td>
           <td class="right"><%= to_currency(detail.room) %>       <% total += detail.room %></td>
           <td class="right"><%= to_currency(detail.electricity) %><% total += detail.electricity %></td>
-          <td class="right"><%= to_currency(detail.water) %>      <% total += detail.water %></td>
+          <td class="right"><%= to_currency(detail.water) || 0 %>      <% total += (detail.water || 0) %></td>
           <td class="right"><%= to_currency(detail.installation)%><% total += detail.installation if !detail.installation.blank? %></td>
           <td class="right"><%= to_currency(detail.subscription)%><% total += detail.subscription if !detail.subscription.blank? %></td>
           <td class="right"><%= to_currency(detail.termination) %><% total += detail.termination  if !detail.termination.blank?  %></td>
@@ -68,7 +68,7 @@
 
         <% room += detail.room %>
         <% elec += detail.electricity %>
-        <% water+= detail.water %>
+        <% water+= (detail.water || 0)%>
         <% subscription += detail.subscription if !detail.subscription.blank? %>
         <% installation += detail.installation if !detail.installation.blank? %>
         <% termination  += detail.termination  if !detail.termination.blank?  %>

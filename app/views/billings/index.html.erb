@@ -21,6 +21,7 @@
     <table id="billings">
       <thead>
         <tr>
+
           <th>Statement Date</th>
           <th>Adv Rent Period</th>
           <th>Utilities Period</th>
@@ -32,9 +33,12 @@
       <tbody>
         <% @billings.each do |billing| %>
           <tr>
+            
             <td><%= billing.statement_date %><%= "*" if billing.final_billing? %></td>
             <td><%= billing.advance_rent_period %></td>
             <td><%= billing.utilities_reading_period %></td>
+
+
             <td>
               <%= link_to 'Electricity', electricity_reading_billing_url(billing.id) %>
               <%= link_to 'Water', water_reading_billing_url(billing.id) %>

@@ -44,6 +44,7 @@ class BillingDetailsController < ApplicationController
     @billing = Billing.find(params[:billing_id])
     @billing_detail = BillingDetail.where(id: params[:id]).includes(:billing_utilities,:checkin => {:checkin_occupants => :occupant})
     @utilities      = Utility.all.pluck(:name,:id)
+    @occupants      = Occupant.add_to_billing_detail
   end
 
   def update
@@ -97,6 +98,32 @@ class BillingDetailsController < ApplicationController
 
     redirect_to billing_billing_details_url(params[:billing_id]), notice: 'Successfully added comments.'
   end
+
+  def remove_billing_occupant
+    occupant = BillingOccupant.find(params[:id])
+    occupant.destroy
+
+    flash[:notice] = "Occupant was successfully removed."
+
+    redirect_to edit_billing_billing_detail_url(params[:billing_id],params[:billing_details_id])
+
+  end
+
+  def add_billing_occupant
+    return unless request.post?
+
+    if params[:occupant_id].blank?
+      flash[:notice] = "Please select occupant to add"
+    else
+      billing_detail = BillingDetail.find(params[:id])
+      billing_detail.add_billing_occupant(params[:occupant_id], current_user.id)
+      flash[:notice] = "Additional billing charges added successfully"
+    end
+
+    redirect_to edit_billing_billing_detail_url(params[:billing_id],params[:id])
+  end
+
+
 
   private
 
